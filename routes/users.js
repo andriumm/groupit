@@ -34,6 +34,24 @@ router.post("/", function (req, res, next) {
     });
 });
 
+/* PUT one user. */
+router.put("/:id", function (req, res, next) {
+  const { name, username, email, password } = req.body;
+  const { id } = req.params;
+  models.Users.update(
+    { name, username, email, password },
+    {
+      where: {
+        id,
+      },
+    }
+  )
+    .then(() => res.send({ message: "user updated succesfully!" }))
+    .catch((error) => {
+      res.status(500).send(error);
+    });
+});
+
 /* DELETE one user. */
 router.delete("/:id", function (req, res, next) {
   const { id } = req.params;

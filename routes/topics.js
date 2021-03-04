@@ -38,7 +38,7 @@ router.post("/:user_id", function (req, res, next) {
 /* DELETE one topic. */
 
 router.delete("/:id", function (req, res, next) {
-  const { id, user_id } = req.params;
+  const { id } = req.params;
   models.Topics.destroy({
     where: {
       id,
