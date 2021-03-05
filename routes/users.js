@@ -1,69 +1,96 @@
 var express = require("express");
 var router = express.Router();
 const models = require("../models");
+const jwt = require("jsonwebtoken");
+//const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
+require("dotenv").config();
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
+const supersecret = process.env.SUPER_SECRET;
+
+/* POST one user => REGISTER. */
+router.post("/register", function (req, res, next) {
+	const { name, username, email, password } = req.body;
+	models.Users.create({ name, username, email, password })
+		.then(() => res.send({ message: "new user added succesfully!" }))
+		.catch((error) => {
+			res.status(500).send(error);
+		});
+});
+
+//POST user LOGIN
+router.post("/login", async function (req, res, next) {
+	const { email, password } = req.body;
+	try {
+		const user = await models.Users.findOne({ where: { email } });
+
+		if (user === null) {
+			res.send({ message: "user doesn't exist" });
+		} else {
+			user_id = user.id;
+			const correctPassword = await bcrypt.compare(password, user.password);
+			if (!correctPassword) throw new Error("Incorrect password");
+			var token = jwt.sign({ user_id }, supersecret);
+			res.send({ message: "Login successful, here is your token", token });
+		}
+	} catch (error) {
+		res.status(400).send({ message: error.message });
+	}
+});
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
-  models.Users.findAll()
-    .then((data) => res.send(data))
-    .catch((error) => {
-      res.status(500).send(error);
-    });
+	models.Users.findAll()
+		.then((data) => res.send(data))
+		.catch((error) => {
+			res.status(500).send(error);
+		});
 });
 
 /* GET one user. */
 router.get("/:id", function (req, res, next) {
-  const { id } = req.params;
-  models.Users.findOne({
-    where: {
-      id,
-    },
-  })
-    .then((data) => res.send(data))
-    .catch((error) => {
-      res.status(500).send(error);
-    });
-});
-/* POST one user. */
-router.post("/", function (req, res, next) {
-  const { name, username, email, password } = req.body;
-  models.Users.create({ name, username, email, password })
-    .then(() => res.send({ message: "new user added succesfully!" }))
-    .catch((error) => {
-      res.status(500).send(error);
-    });
+	const { id } = req.params;
+	models.Users.findOne({
+		where: {
+			id,
+		},
+	})
+		.then((data) => res.send(data))
+		.catch((error) => {
+			res.status(500).send(error);
+		});
 });
 
 /* PUT one user. */
 router.put("/:id", function (req, res, next) {
-  const { name, username, email, password } = req.body;
-  const { id } = req.params;
-  models.Users.update(
-    { name, username, email, password },
-    {
-      where: {
-        id,
-      },
-    }
-  )
-    .then(() => res.send({ message: "user updated succesfully!" }))
-    .catch((error) => {
-      res.status(500).send(error);
-    });
+	const { name, username, email, password } = req.body;
+	const { id } = req.params;
+	models.Users.update(
+		{ name, username, email, password },
+		{
+			where: {
+				id,
+			},
+		}
+	)
+		.then(() => res.send({ message: "user updated succesfully!" }))
+		.catch((error) => {
+			res.status(500).send(error);
+		});
 });
 
 /* DELETE one user. */
 router.delete("/:id", function (req, res, next) {
-  const { id } = req.params;
-  models.Users.destroy({
-    where: {
-      id,
-    },
-  })
-    .then(() => res.send({ message: "user deleted!" }))
-    .catch((error) => {
-      res.status(500).send(error);
-    });
+	const { id } = req.params;
+	models.Users.destroy({
+		where: {
+			id,
+		},
+	})
+		.then(() => res.send({ message: "user deleted!" }))
+		.catch((error) => {
+			res.status(500).send(error);
+		});
 });
 
 module.exports = router;
