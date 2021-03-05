@@ -35,6 +35,27 @@ router.post("/:user_id", function (req, res, next) {
     });
 });
 
+/* PUT one topic. */
+router.put("/:id", function (req, res, next) {
+  const { topic_name, priority } = req.body;
+  const { id } = req.params;
+  models.Topics.update(
+    {
+      topic_name,
+      priority,
+    },
+    {
+      where: {
+        id,
+      },
+    }
+  )
+    .then(() => res.send({ message: "topic updated succesfully!" }))
+    .catch((error) => {
+      res.status(500).send(error);
+    });
+});
+
 /* DELETE one topic. */
 
 router.delete("/:id", function (req, res, next) {
