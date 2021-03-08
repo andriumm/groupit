@@ -8,15 +8,7 @@ module.exports = {
 				primaryKey: true,
 				type: Sequelize.INTEGER,
 			},
-			user_id: {
-				allowNull: false,
-				type: Sequelize.INTEGER,
-			},
 			topic_id: {
-				allowNull: false,
-				type: Sequelize.INTEGER,
-			},
-			subcategory_id: {
 				allowNull: false,
 				type: Sequelize.INTEGER,
 			},
