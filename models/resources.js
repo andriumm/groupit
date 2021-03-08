@@ -19,10 +19,10 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			user_id: DataTypes.INTEGER,
 			topic_id: DataTypes.INTEGER,
+			subcategory_id: DataTypes.INTEGER,
 			resource_name: DataTypes.STRING,
 			url: DataTypes.STRING,
 			format: DataTypes.STRING,
-			subcategory: DataTypes.STRING,
 			priority: DataTypes.INTEGER,
 			complete: DataTypes.BOOLEAN,
 			reminder: DataTypes.BOOLEAN,
