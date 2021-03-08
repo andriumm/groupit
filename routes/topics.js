@@ -2,8 +2,27 @@ const models = require("../models");
 var express = require("express");
 var router = express.Router();
 
-/* GET topics listing. */
+/* GET topics based on parent */
+
 router.get("/", function (req, res, next) {
+  
+  const { parent } = req.body;
+  
+  models.Topics.findAll({
+
+    where: {
+      parent,
+    },
+
+  })
+    .then((data) => res.send(data))
+    .catch((error) => {
+      res.status(500).send(error);
+    });
+});
+
+/* GET all topics and subcategories. */
+router.get("/all", function (req, res, next) {
   models.Topics.findAll()
     .then((data) => res.send(data))
     .catch((error) => {
@@ -27,8 +46,8 @@ router.get("/:id", function (req, res, next) {
 /* POST one topic. */
 router.post("/:user_id", function (req, res, next) {
   const { user_id } = req.params;
-  const { topic_name, priority } = req.body;
-  models.Topics.create({ user_id, topic_name, priority })
+  const { topic_name, priority, parent } = req.body;
+  models.Topics.create({ user_id, topic_name, priority, parent })
     .then(() => res.send({ message: "new topic added succesfully!" }))
     .catch((error) => {
       res.status(500).send(error);
@@ -37,12 +56,13 @@ router.post("/:user_id", function (req, res, next) {
 
 /* PUT one topic. */
 router.put("/:id", function (req, res, next) {
-  const { topic_name, priority } = req.body;
+  const { topic_name, priority, parent } = req.body;
   const { id } = req.params;
   models.Topics.update(
     {
       topic_name,
       priority,
+      parent,
     },
     {
       where: {
