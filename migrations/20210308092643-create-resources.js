@@ -1,8 +1,7 @@
 "use strict";
-
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
-		await queryInterface.createTable("Subcategories", {
+		await queryInterface.createTable("Resources", {
 			id: {
 				allowNull: false,
 				autoIncrement: true,
@@ -13,9 +12,27 @@ module.exports = {
 				allowNull: false,
 				type: Sequelize.INTEGER,
 			},
-			subcategory_name: {
+			resource_name: {
 				allowNull: false,
 				type: Sequelize.STRING,
+			},
+			url: {
+				type: Sequelize.STRING,
+			},
+			format: {
+				type: Sequelize.STRING,
+			},
+			priority: {
+				type: Sequelize.INTEGER,
+			},
+			complete: {
+				type: Sequelize.BOOLEAN,
+			},
+			reminder: {
+				type: Sequelize.BOOLEAN,
+			},
+			created_date: {
+				type: Sequelize.DATE,
 			},
 			createdAt: {
 				allowNull: false,
@@ -27,8 +44,7 @@ module.exports = {
 			},
 		});
 	},
-
 	down: async (queryInterface, Sequelize) => {
-		await queryInterface.dropTable("Subcategories");
+		await queryInterface.dropTable("Resources");
 	},
 };
