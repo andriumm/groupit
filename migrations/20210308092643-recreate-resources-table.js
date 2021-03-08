@@ -9,21 +9,25 @@ module.exports = {
 				type: Sequelize.INTEGER,
 			},
 			user_id: {
+				allowNull: false,
 				type: Sequelize.INTEGER,
 			},
 			topic_id: {
+				allowNull: false,
+				type: Sequelize.INTEGER,
+			},
+			subcategory_id: {
+				allowNull: false,
 				type: Sequelize.INTEGER,
 			},
 			resource_name: {
+				allowNull: false,
 				type: Sequelize.STRING,
 			},
 			url: {
 				type: Sequelize.STRING,
 			},
 			format: {
-				type: Sequelize.STRING,
-			},
-			subcategory: {
 				type: Sequelize.STRING,
 			},
 			priority: {
