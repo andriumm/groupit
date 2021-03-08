@@ -26,12 +26,13 @@ router.get("/:id", function (req, res, next) {
 });
 /* POST one resource. */
 router.post("/:user_id/:topic_id", function (req, res, next) {
+  console.log("here")
   const { user_id, topic_id } = req.params;
   const {
     resource_name,
     url,
     format,
-    subcategory,
+    subcategory_id,
     priority,
     complete,
     reminder,
@@ -43,7 +44,7 @@ router.post("/:user_id/:topic_id", function (req, res, next) {
     resource_name,
     url,
     format,
-    subcategory,
+    subcategory_id,
     priority,
     complete,
     reminder,

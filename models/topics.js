@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			Topics.hasMany(models.Resources, { foreignKey: "topic_id" });
 			Topics.belongsTo(models.Users, { foreignKey: "user_id" });
-			Topics.hasMany(modles.Subcategories, { foreignKey: "topic_id" });
+			Topics.hasMany(models.Subcategories, { foreignKey: "topic_id" });
 		}
 	}
 	Topics.init(

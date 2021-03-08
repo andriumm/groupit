@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
 	class Subcategories extends Model {
 		static associate(models) {
 			Subcategories.belongsTo(models.Topics, { foreignKey: "topic_id" });
-			Subcategories.hasMany(modles.Resources, { foreignKey: "subcategory_id" });
+			Subcategories.hasMany(models.Resources, { foreignKey: "subcategory_id" });
 		}
 	}
 	Subcategories.init(
