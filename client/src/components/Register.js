@@ -36,7 +36,6 @@ export default function Register() {
 			console.log("Your information has been registered!", user);
 		} catch (error) {
 			console.log(error);
-			//res.status(500).send(error);
 		}
 	};
 
