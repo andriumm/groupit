@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-//const mime = require("mime/lite");
 
 export default function Register() {
 	const [user, setUser] = useState({
@@ -22,6 +21,7 @@ export default function Register() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		console.log("here");
 		addUser();
 	};
 
