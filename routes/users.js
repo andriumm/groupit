@@ -7,6 +7,7 @@ require("dotenv").config();
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const supersecret = process.env.SUPER_SECRET;
+const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 
 /* POST one user => REGISTER. */
 router.post("/register", function (req, res, next) {
@@ -39,7 +40,7 @@ router.post("/login", async function (req, res, next) {
 });
 
 /* GET users listing. */
-router.get("/", function (req, res, next) {
+router.get("/", userShouldBeLoggedIn, function (req, res, next) {
 	models.Users.findAll()
 		.then((data) => res.send(data))
 		.catch((error) => {
@@ -48,7 +49,7 @@ router.get("/", function (req, res, next) {
 });
 
 /* GET one user. */
-router.get("/:id", function (req, res, next) {
+router.get("/:id", userShouldBeLoggedIn, function (req, res, next) {
 	const { id } = req.params;
 	models.Users.findOne({
 		where: {
@@ -62,7 +63,7 @@ router.get("/:id", function (req, res, next) {
 });
 
 /* PUT one user. */
-router.put("/:id", function (req, res, next) {
+router.put("/:id", userShouldBeLoggedIn, function (req, res, next) {
 	const { name, username, email, password } = req.body;
 	const { id } = req.params;
 	models.Users.update(
@@ -80,7 +81,7 @@ router.put("/:id", function (req, res, next) {
 });
 
 /* DELETE one user. */
-router.delete("/:id", function (req, res, next) {
+router.delete("/:id", userShouldBeLoggedIn, function (req, res, next) {
 	const { id } = req.params;
 	models.Users.destroy({
 		where: {
