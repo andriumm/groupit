@@ -21,17 +21,19 @@ export default function Register() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log("here");
 		addUser();
 	};
 
 	const addUser = async () => {
+		const { name, username, email, password } = user;
 		try {
 			const user = await axios.post("/users/register", {
-				user,
+				name,
+				username,
+				email,
+				password,
 			});
 			console.log("Your information has been registered!", user);
-			//res.send({ message: "User successfuly registered!" });
 		} catch (error) {
 			console.log(error);
 			//res.status(500).send(error);
