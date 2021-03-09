@@ -10,15 +10,16 @@ export default function Profile() {
 	}, []);
 
 	const getProfile = async () => {
-		//const {id} = ;
+		const { id } = 9;
 		try {
-			const profile = await axios.get(`/users/9`, {
+			const profile = await axios.get(`/users/${id}`, {
 				headers: {
 					"x-access-token": localStorage.getItem("token"),
 				},
 			});
 
 			setProfileInfo(profile.data);
+			console.log(id);
 			console.log("profile", profile.data);
 		} catch (error) {
 			console.log(error);
