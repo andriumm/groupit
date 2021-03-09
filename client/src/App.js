@@ -1,7 +1,14 @@
 import "./App.css";
+import InsertTopics from "./components/InsertTopics.js"
 
 function App() {
-	return <div className="App"></div>;
+	return <div className="App">
+
+
+  <InsertTopics />
+
+
+  </div>;
 }
 
 export default App;
