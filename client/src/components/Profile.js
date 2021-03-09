@@ -18,7 +18,6 @@ export default function Profile() {
 			});
 
 			setProfileInfo(profile.data);
-			console.log(id);
 			console.log("profile", profile.data);
 		} catch (error) {
 			console.log(error);
@@ -34,7 +33,7 @@ export default function Profile() {
 				<div>{profileInfo.email}</div>
 			</div>
 			<div>
-				<UpdateProfile />
+				<UpdateProfile currentUser={profileInfo} />
 			</div>
 		</div>
 	);

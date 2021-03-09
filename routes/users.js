@@ -48,7 +48,7 @@ router.get("/", userShouldBeLoggedIn, function (req, res, next) {
 		});
 });
 
-/* GET one user. */
+/* GET  users profile. */
 router.get("/myprofile", userShouldBeLoggedIn, function (req, res, next) {
 	const id = req.user_id;
 	models.Users.findOne({
@@ -63,9 +63,9 @@ router.get("/myprofile", userShouldBeLoggedIn, function (req, res, next) {
 });
 
 /* PUT one user. */
-router.put("/:id", userShouldBeLoggedIn, function (req, res, next) {
+router.put("/profile_update", userShouldBeLoggedIn, function (req, res, next) {
 	const { name, username, email, password } = req.body;
-	const { id } = req.params;
+	const id = req.user_id;
 	models.Users.update(
 		{ name, username, email, password },
 		{
