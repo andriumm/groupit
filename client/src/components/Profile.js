@@ -10,9 +10,8 @@ export default function Profile() {
 	}, []);
 
 	const getProfile = async () => {
-		const { id } = 9;
 		try {
-			const profile = await axios.get(`/users/${id}`, {
+			const profile = await axios.get(`/users/myprofile`, {
 				headers: {
 					"x-access-token": localStorage.getItem("token"),
 				},

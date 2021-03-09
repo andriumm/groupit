@@ -49,8 +49,8 @@ router.get("/", userShouldBeLoggedIn, function (req, res, next) {
 });
 
 /* GET one user. */
-router.get("/:id", userShouldBeLoggedIn, function (req, res, next) {
-	const { id } = req.params;
+router.get("/myprofile", userShouldBeLoggedIn, function (req, res, next) {
+	const id = req.user_id;
 	models.Users.findOne({
 		where: {
 			id,
