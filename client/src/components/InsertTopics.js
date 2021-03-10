@@ -3,20 +3,27 @@ import SkipButton from './SkipButton'
 
 const InsertTopics = ({ onAdd }) => {
 
-  const [ newTopic, setTopics ] = useState('')
+  const [ newTopic, setTopic ] = useState('')
   const [ priority, setPriority ] = useState(false)
   const [ subtopic, setSubtopic ] = useState(null)
 
 
-  const handleChange = (e) => {
-    e.target.checked === "yes_priority" ? setPriority(true) : setPriority(false)
-    e.target.checked === "no_priority" ? setPriority(false) : setPriority(true)
-  }
+  // const handleChange = (e) => {
+  //   e.target.checked === "yes_priority" ? setPriority(true) : setPriority(false)
+  //   e.target.checked === "no_priority" ? setPriority(false) : setPriority(true)
+  // }
   
 
   const handleSubmit = (e) => {
     e.preventDefault();
     addTopic();
+  
+
+    onAdd({ newTopic, priority, subtopic })
+
+    setTopic('')
+    setPriority(false)
+    setSubtopic(null)
   }
 
   const addTopic = () => {
@@ -27,7 +34,7 @@ const InsertTopics = ({ onAdd }) => {
       },
       body: JSON.stringify({ newTopic, priority, subtopic }),
     })
-    .then(() => setTopics(newTopic))
+    .then(() => setTopic(newTopic))
     .catch((error => {
       return error;
     }));
@@ -45,36 +52,24 @@ const InsertTopics = ({ onAdd }) => {
 				<label htmlFor="topic">
 					Add a Topic
 					<input
-						onChange={(e) => setTopics(e.target.value)}
+						onChange={(e) => setTopic(e.target.value)}
             type="text"
 						name="topic"
 						value={newTopic}
 						id="topic"
 					/>
 				</label>
-        <label>
-          Is this a priority?
-          <label htmlFor="priority">
-            Yes
-            <input
-              onChange={handleChange}
-              type="radio"
-              name="priority"
-              value="yes_priority"
-              id={priority}
-            />
-          </label>
-
-          <label htmlFor="priority">
-            No
-            <input
-              onChange={handleChange}
-              type="radio"
-              name="priority"
-              value="no_priority"
-              id={priority}
-            />
-          </label>
+          
+        <label htmlFor="priority">
+          Tick here if this is a priority
+          <input
+            onChange={(e) => setPriority(e.currentTarget.checked)}
+            type="checkbox"
+            checked={priority}
+            name="priority"
+            value={priority}
+            id="priority"
+          />
         </label>
 
 				<label htmlFor="subtopic">
