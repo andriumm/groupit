@@ -20,7 +20,7 @@ export default function Dasboard() {
 
   const getTopics = async () => {
     try {
-      const topic = await axios.get("/topics/all", {
+      const topic = await axios.get("/topics", {
         parent: null,
       });
       console.log(topic);
@@ -34,6 +34,7 @@ export default function Dasboard() {
       const subcategory = await axios.get("/topics", {
         parent: "",
       });
+      //await setSubcategories(subcategory)?
       console.log(subcategory);
     } catch (error) {
       console.log(error);

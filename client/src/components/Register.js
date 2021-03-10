@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 export default function Register() {
@@ -9,7 +10,7 @@ export default function Register() {
 		password: "",
 	});
 
-	//THIS IS NOT FINISHED!
+	const history = useHistory();
 
 	const handleChange = ({ target }) => {
 		const { name, value } = target;
@@ -33,6 +34,7 @@ export default function Register() {
 				email,
 				password,
 			});
+			history.push("/login");
 			console.log("Your information has been registered!", user);
 		} catch (error) {
 			console.log(error);

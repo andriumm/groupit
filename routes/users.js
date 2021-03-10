@@ -48,9 +48,9 @@ router.get("/", userShouldBeLoggedIn, function (req, res, next) {
 		});
 });
 
-/* GET one user. */
-router.get("/:id", userShouldBeLoggedIn, function (req, res, next) {
-	const { id } = req.params;
+/* GET  users profile. */
+router.get("/myprofile", userShouldBeLoggedIn, function (req, res, next) {
+	const id = req.user_id;
 	models.Users.findOne({
 		where: {
 			id,
@@ -62,23 +62,28 @@ router.get("/:id", userShouldBeLoggedIn, function (req, res, next) {
 		});
 });
 
-/* PUT one user. */
-router.put("/:id", userShouldBeLoggedIn, function (req, res, next) {
-	const { name, username, email, password } = req.body;
-	const { id } = req.params;
-	models.Users.update(
-		{ name, username, email, password },
-		{
-			where: {
-				id,
-			},
-		}
-	)
-		.then(() => res.send({ message: "user updated succesfully!" }))
-		.catch((error) => {
+router.put(
+	"/profile_update",
+	userShouldBeLoggedIn,
+	async function (req, res, next) {
+		try {
+			const { name, username, email, password } = req.body;
+			const id = req.user_id;
+			await models.Users.update(
+				{ name, username, email, password },
+				{
+					where: {
+						id,
+					},
+				}
+			);
+
+			res.send({ message: "user updated succesfully!" });
+		} catch (error) {
 			res.status(500).send(error);
-		});
-});
+		}
+	}
+);
 
 /* DELETE one user. */
 router.delete("/:id", userShouldBeLoggedIn, function (req, res, next) {
