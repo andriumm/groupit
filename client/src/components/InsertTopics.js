@@ -1,29 +1,25 @@
 import React, { useState } from "react";
-import SkipButton from './SkipButton'
+//import SkipButton from './SkipButton'
 
-const InsertTopics = ({ onAdd }) => {
+const InsertTopics = () => {
 
-  const [ newTopic, setTopic ] = useState('')
-  const [ priority, setPriority ] = useState(false)
-  const [ subtopic, setSubtopic ] = useState(null)
-
-
-  // const handleChange = (e) => {
-  //   e.target.checked === "yes_priority" ? setPriority(true) : setPriority(false)
-  //   e.target.checked === "no_priority" ? setPriority(false) : setPriority(true)
-  // }
+  const [ newTopic, setNewTopic ] = useState([]);
+  const [ topic, setTopic ] = useState('');
+  const [ priority, setPriority ] = useState(false);
+  const [ subtopic, setSubtopic ] = useState(null);
   
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    /* To fix if time allows <- does not clear up input except for priority*/
+
+    // setTopic('')
+    // setPriority(false)
+    // setSubtopic(null)
+
     addTopic();
-  
 
-    onAdd({ newTopic, priority, subtopic })
-
-    setTopic('')
-    setPriority(false)
-    setSubtopic(null)
   }
 
   const addTopic = () => {
@@ -32,9 +28,9 @@ const InsertTopics = ({ onAdd }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ newTopic, priority, subtopic }),
+      body: JSON.stringify({ topic, priority, subtopic }),
     })
-    .then(() => setTopic(newTopic))
+    .then(() => setNewTopic(newTopic))
     .catch((error => {
       return error;
     }));
@@ -50,18 +46,18 @@ const InsertTopics = ({ onAdd }) => {
 
       <form onSubmit={handleSubmit}>
 				<label htmlFor="topic">
-					Add a Topic
+					Topic name
 					<input
 						onChange={(e) => setTopic(e.target.value)}
             type="text"
 						name="topic"
-						value={newTopic}
+						value={topic}
 						id="topic"
 					/>
 				</label>
           
         <label htmlFor="priority">
-          Tick here if this is a priority
+          Tick if this is a priority
           <input
             onChange={(e) => setPriority(e.currentTarget.checked)}
             type="checkbox"
@@ -83,7 +79,7 @@ const InsertTopics = ({ onAdd }) => {
 					/>
 				</label>
 
-				<button>Add</button>
+				<input type="submit" value="Add Topic" />
 			</form>
 
 
