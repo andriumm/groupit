@@ -1,35 +1,16 @@
 import React, { useState } from "react";
 import SkipButton from './SkipButton'
 
-export default function InsertTopics() {
+const InsertTopics = ({ onAdd }) => {
 
-  const [ newTopic, setTopics ] = useState({
-    topic: "",
-    priority: false,
-    subTopic: null,
-  });
+  const [ newTopic, setTopics ] = useState('')
+  const [ priority, setPriority ] = useState(false)
+  const [ subtopic, setSubtopic ] = useState(null)
 
-  // const handleChange = (e) => {
-  //   if (newTopic.priority.id === "yes_priority") {
-  //     return newTopic.priority = true
-  //   }
 
-  //   setTopics((state) => ({...state, [e.target.value]: e.target.value}));
-  // };
-
-  const handleChange = ({ target }) => {
-		
-    if (newTopic.priority.id === "yes_priority") {
-      return newTopic.priority = true
-    }
-    
-    const { name, value } = target;
-		setTopics((state) => ({
-			...state,
-			[name]: value,
-		}));
-
-  };
+  const handleChange = (e) => {
+    e.target.checked === "yes_priority" ? setPriority(true) : false
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +23,7 @@ export default function InsertTopics() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ topic, priority, subTopic }),
+      body: JSON.stringify({ newTopic, priority, subtopic }),
     })
     .then(() => setTopics(newTopic))
     .catch((error => {
@@ -62,10 +43,10 @@ export default function InsertTopics() {
 				<label htmlFor="topic">
 					Add a Topic
 					<input
-						onChange={handleChange}
+						onChange={(e) => setTopics(e.target.value)}
             type="text"
 						name="topic"
-						value={newTopic.topic}
+						value={newTopic}
 						id="topic"
 					/>
 				</label>
@@ -76,7 +57,7 @@ export default function InsertTopics() {
 						onChange={handleChange}
 						type="radio"
             name="priority"
-						value={newTopic.priority}
+						value={priority}
 						id="yes_priority"
 					/>
 				</label>
@@ -87,7 +68,7 @@ export default function InsertTopics() {
 						onChange={handleChange}
             type="radio"
 						name="priority"
-						value={newTopic.priority}
+						value={priority}
 						id="no_priority"
 					/>
 				</label>
@@ -95,10 +76,10 @@ export default function InsertTopics() {
 				<label htmlFor="subtopic">
 					Any subtopic in mind?
 					<input
-						onChange={handleChange}
+						onChange={(e) => setSubtopic(e.target.value)}
             type="text"
 						name="subtopic"
-						value={newTopic.subtopic}
+						value={subtopic}
 						id="subtopic"
 					/>
 				</label>
@@ -116,3 +97,4 @@ export default function InsertTopics() {
 
 }
 
+export default InsertTopics
