@@ -1,5 +1,6 @@
-import axios from "axios";
 import React, { useState } from "react";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 //import SkipButton from './SkipButton'
 
 const InsertTopics = () => {
@@ -9,6 +10,8 @@ const InsertTopics = () => {
     isPriority: false,
     subtopic: '',
   })
+
+  const history = useHistory();
 
   const handleChange = (event) => {
     const target = event.target;
@@ -24,37 +27,31 @@ const InsertTopics = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    addTopic();
 
-    /* To fix if time allows <- does not clear up input except for priority*/
-    // setTopic('')
-    // setPriority(false)
-    // setSubtopic(null)
-
-   addTopic();
+  };
 
 
-  }
-
-
-  const addTopic = () => {
-    
-    axios
-    .post("/topics/:user_id", newTopic, {
-      headers: {
-        "x-access-token": localStorage.getItem("token"),
-      },
+  const addTopic = async () => {
+    const { topic_name, priority, parent } = newTopic;
+    try {
+      const newTopic = await axios.post("/topics/:user_id", {
+        topic_name, 
+        priority, 
+        parent
     });
     
-    
-
     // if (newTopic.subtopic !== null) {
     //   return newTopic.subtopic = newTopic[0]
     // }
-
+      history.push("/login");
       console.log("New Topic added", newTopic);
       //console.log(newTopic.data)
 
-}
+    } catch (error) {
+			console.log(error);
+		}
+};
 
   return (
 
