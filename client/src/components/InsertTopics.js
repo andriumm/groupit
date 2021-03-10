@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SkipButton from './SkipButton'
 
 export default function InsertTopics() {
 
@@ -8,14 +9,27 @@ export default function InsertTopics() {
     subTopic: null,
   });
 
-  const handleChange = (e) => {
+  // const handleChange = (e) => {
+  //   if (newTopic.priority.id === "yes_priority") {
+  //     return newTopic.priority = true
+  //   }
+
+  //   setTopics((state) => ({...state, [e.target.value]: e.target.value}));
+  // };
+
+  const handleChange = ({ target }) => {
+		
     if (newTopic.priority.id === "yes_priority") {
       return newTopic.priority = true
     }
+    
+    const { name, value } = target;
+		setTopics((state) => ({
+			...state,
+			[name]: value,
+		}));
 
-    setTopics((state) => ({...state, [e.target.value]: e.target.value}));
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -81,7 +95,7 @@ export default function InsertTopics() {
 				<label htmlFor="subtopic">
 					Any subtopic in mind?
 					<input
-						// onChange={handleChange}
+						onChange={handleChange}
             type="text"
 						name="subtopic"
 						value={newTopic.subtopic}

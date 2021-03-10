@@ -43,6 +43,29 @@ router.get("/:id", function (req, res, next) {
       res.status(500).send(error);
     });
 });
+
+/* GET one subtopic. */
+// router.get("/:id/:parent", function (req, res, next) {
+//   const { parent } = req.body;
+//   const { id } = req.params;
+//   models.Topics.findAll(
+//     {
+//       parent,
+//     },
+//     {
+//       where: {
+//         id,
+//       },
+//     }
+
+//   )
+//     .then((data) => res.send(data))
+//     .catch((error) => {
+//       res.status(500).send(error);
+//     });
+// });
+
+
 /* POST one topic. */
 router.post("/:user_id", function (req, res, next) {
   const { user_id } = req.params;
