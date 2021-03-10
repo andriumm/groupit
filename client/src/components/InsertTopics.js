@@ -9,8 +9,10 @@ const InsertTopics = ({ onAdd }) => {
 
 
   const handleChange = (e) => {
-    e.target.checked === "yes_priority" ? setPriority(true) : false
+    e.target.checked === "yes_priority" ? setPriority(true) : setPriority(false)
+    e.target.checked === "no_priority" ? setPriority(false) : setPriority(true)
   }
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,28 +52,30 @@ const InsertTopics = ({ onAdd }) => {
 						id="topic"
 					/>
 				</label>
+        <label>
+          Is this a priority?
+          <label htmlFor="priority">
+            Yes
+            <input
+              onChange={handleChange}
+              type="radio"
+              name="priority"
+              value="yes_priority"
+              id={priority}
+            />
+          </label>
 
-				<label htmlFor="priority">
-					Yes
-					<input
-						onChange={handleChange}
-						type="radio"
-            name="priority"
-						value={priority}
-						id="yes_priority"
-					/>
-				</label>
-
-				<label htmlFor="priority">
-					No
-					<input
-						onChange={handleChange}
-            type="radio"
-						name="priority"
-						value={priority}
-						id="no_priority"
-					/>
-				</label>
+          <label htmlFor="priority">
+            No
+            <input
+              onChange={handleChange}
+              type="radio"
+              name="priority"
+              value="no_priority"
+              id={priority}
+            />
+          </label>
+        </label>
 
 				<label htmlFor="subtopic">
 					Any subtopic in mind?
