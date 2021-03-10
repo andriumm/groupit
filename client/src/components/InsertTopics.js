@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 //import SkipButton from './SkipButton'
 
@@ -23,19 +24,30 @@ const InsertTopics = () => {
   }
 
   const addTopic = () => {
-    fetch("/:user_id", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ topic, priority, subtopic }),
-    })
-    .then(() => setNewTopic(newTopic))
-    .catch((error => {
-      return error;
-    }));
     
-  }
+    axios
+    .post("/:user_id", newTopic)
+    .then(result => {
+
+      console.log(result);
+      console.log(result.data)
+  })
+}
+
+  // const addTopic = () => {
+  //   fetch("/:user_id", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ topic, priority, subtopic }),
+  //   })
+  //   .then(() => setNewTopic(newTopic))
+  //   .catch((error => {
+  //     return error;
+  //   }));
+    
+  // }
 
   return (
 
@@ -57,7 +69,7 @@ const InsertTopics = () => {
 				</label>
           
         <label htmlFor="priority">
-          Tick if this is a priority
+          Set it as a priority
           <input
             onChange={(e) => setPriority(e.currentTarget.checked)}
             type="checkbox"
