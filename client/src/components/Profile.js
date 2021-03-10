@@ -3,7 +3,11 @@ import axios from "axios";
 import UpdateProfile from "./UpdateProfile";
 
 export default function Profile() {
-	const [profileInfo, setProfileInfo] = useState({});
+	const [profileInfo, setProfileInfo] = useState({
+		name: "",
+		username: "",
+		email: "",
+	});
 
 	useEffect(() => {
 		getProfile();
@@ -39,7 +43,7 @@ export default function Profile() {
 				<div>{profileInfo.email}</div>
 			</div>
 			<div>
-				<UpdateProfile profileInfo={profileInfo} />
+				<UpdateProfile profileInfo={profileInfo} onUpdateProfile={getProfile} />
 			</div>
 		</div>
 	);

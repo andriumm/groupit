@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function UpdateProfile({ profileInfo }) {
+export default function UpdateProfile({ profileInfo, onUpdateProfile }) {
 	const [update, setUpdate] = useState({
-		name: profileInfo.name,
-		username: profileInfo.username,
-		email: profileInfo.email,
+		name: "",
+		username: "",
+		email: "",
 	});
+
+	useEffect(() => {
+		setUpdate(profileInfo);
+	}, [profileInfo]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -29,6 +33,7 @@ export default function UpdateProfile({ profileInfo }) {
 					"x-access-token": localStorage.getItem("token"),
 				},
 			});
+			onUpdateProfile();
 			console.log("Your profile has been updated!", update);
 		} catch (error) {
 			console.log(error);
