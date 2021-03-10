@@ -44,7 +44,7 @@ router.get("/:id", userShouldBeLoggedIn, function (req, res, next) {
 
 
 /* POST one topic. */
-router.post("/:user_id", userShouldBeLoggedIn, function (req, res, next) {
+router.post("/", userShouldBeLoggedIn, function (req, res, next) {
 	const { user_id } = req.params;
 	const { topic_name, priority, parent } = req.body;
 	models.Topics.create({ user_id, topic_name, priority, parent })

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 //import SkipButton from './SkipButton'
 
 const InsertTopics = () => {
@@ -11,7 +11,7 @@ const InsertTopics = () => {
     subtopic: '',
   })
 
-  const history = useHistory();
+  //const history = useHistory();
 
   const handleChange = (event) => {
     const target = event.target;
@@ -33,18 +33,24 @@ const InsertTopics = () => {
 
 
   const addTopic = async () => {
-    const { topic_name, priority, parent } = newTopic;
+    //const { topic_name, priority, parent } = newTopic;
     try {
-      const newTopic = await axios.post("/topics/:user_id", {
-        topic_name, 
-        priority, 
-        parent
+      //const newTopic = await axios.post("/topics/:user_id", { 
+      await axios.post("/topics", newTopic, {
+        // topic_name, 
+        // priority, 
+        // parent
+
+        headers: {
+					"x-access-token": localStorage.getItem("token"),
+				},
+
     });
     
     // if (newTopic.subtopic !== null) {
     //   return newTopic.subtopic = newTopic[0]
     // }
-      history.push("/login");
+      //history.push("/login");
       console.log("New Topic added", newTopic);
       //console.log(newTopic.data)
 
