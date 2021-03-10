@@ -7,7 +7,7 @@ const InsertTopics = () => {
   const [ newTopic, setNewTopic ] = useState({
     topic: '',
     isPriority: false,
-    subtopic: null,
+    subtopic: '',
   })
 
   const handleChange = (event) => {
@@ -39,31 +39,22 @@ const InsertTopics = () => {
   const addTopic = () => {
     
     axios
-    .post("/:user_id", newTopic, {
+    .post("/topics/:user_id", newTopic, {
       headers: {
         "x-access-token": localStorage.getItem("token"),
       },
     });
+    
+    
 
-      console.log(newTopic);
-      console.log(newTopic.data)
+    // if (newTopic.subtopic !== null) {
+    //   return newTopic.subtopic = newTopic[0]
+    // }
+
+      console.log("New Topic added", newTopic);
+      //console.log(newTopic.data)
 
 }
-
-  // const addTopic = () => {
-  //   fetch("/:user_id", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({ topic, priority, subtopic }),
-  //   })
-  //   .then(() => setNewTopic(newTopic))
-  //   .catch((error => {
-  //     return error;
-  //   }));
-    
-  // }
 
   return (
 
