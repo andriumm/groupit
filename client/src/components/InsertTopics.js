@@ -4,11 +4,11 @@ import React, { useState } from "react";
 
 const InsertTopics = () => {
 
-  const [ newTopic, setNewTopic ] = useState([]);
-  const [ topic, setTopic ] = useState('');
-  const [ priority, setPriority ] = useState(false);
-  const [ subtopic, setSubtopic ] = useState(null);
-  
+  const [ newTopic, setNewTopic ] = useState({
+    topic: '',
+    isPriority: false,
+    subtopic: null,
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,8 +19,20 @@ const InsertTopics = () => {
     // setPriority(false)
     // setSubtopic(null)
 
-    addTopic();
+    // addTopic();
 
+
+  }
+
+  const handleChange = (event) => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    setNewTopic((state) => ({
+      ...state,
+      [name]: value
+    }));
   }
 
   const addTopic = () => {
@@ -60,10 +72,10 @@ const InsertTopics = () => {
 				<label htmlFor="topic">
 					Topic name
 					<input
-						onChange={(e) => setTopic(e.target.value)}
             type="text"
 						name="topic"
-						value={topic}
+						value={newTopic.topic}
+            onChange={handleChange}
 						id="topic"
 					/>
 				</label>
@@ -71,11 +83,11 @@ const InsertTopics = () => {
         <label htmlFor="priority">
           Set it as a priority
           <input
-            onChange={(e) => setPriority(e.currentTarget.checked)}
             type="checkbox"
-            checked={priority}
-            name="priority"
-            value={priority}
+            checked={newTopic.isPriority}
+            name="isPriority"
+            onChange={handleChange}
+            value={newTopic.isPriority}
             id="priority"
           />
         </label>
@@ -83,10 +95,10 @@ const InsertTopics = () => {
 				<label htmlFor="subtopic">
 					Any subtopic in mind?
 					<input
-						onChange={(e) => setSubtopic(e.target.value)}
             type="text"
 						name="subtopic"
-						value={subtopic}
+						value={newTopic.subtopic}
+            onChange={handleChange}
 						id="subtopic"
 					/>
 				</label>
