@@ -33,7 +33,6 @@ export default function UpdateProfile({ profileInfo, onUpdateProfile }) {
 					"x-access-token": localStorage.getItem("token"),
 				},
 			});
-			onUpdateProfile();
 			console.log("Your profile has been updated!", update);
 		} catch (error) {
 			console.log(error);
