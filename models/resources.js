@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       priority: DataTypes.INTEGER,
       complete: DataTypes.BOOLEAN,
       reminder: DataTypes.BOOLEAN,
+      created_date: DataTypes.DATE
     },
     {
       sequelize,
