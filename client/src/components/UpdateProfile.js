@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function UpdateProfile({ profileInfo }) {
-	const details = { profileInfo };
 	const [update, setUpdate] = useState({
-		name: "",
-		username: "",
-		email: "",
+		name: profileInfo.name,
+		username: profileInfo.username,
+		email: profileInfo.email,
 	});
 
 	const handleSubmit = (e) => {
@@ -25,22 +24,17 @@ export default function UpdateProfile({ profileInfo }) {
 	// DON'T KNOW HOW TO PASS THE INFO IN THE AXIOS REQUEST TOGETHER WITH THE HEADERS
 	const updateProfile = async () => {
 		try {
-			console.log("update", update);
-			await axios.put(
-				`/users/profile_update`,
-				{ update },
-				{
-					headers: {
-						"x-access-token": localStorage.getItem("token"),
-					},
-				}
-			);
+			await axios.put(`/users/profile_update`, update, {
+				headers: {
+					"x-access-token": localStorage.getItem("token"),
+				},
+			});
 			console.log("Your profile has been updated!", update);
 		} catch (error) {
 			console.log(error);
 		}
 	};
-
+	//console.log("details", details);
 	return (
 		<div>
 			<div>

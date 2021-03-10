@@ -18,12 +18,18 @@ export default function Profile() {
 			});
 
 			setProfileInfo(profile.data);
-			console.log("profile", profile.data);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
+	// const sentProfileToUpdate = () => {
+	// 	let details = profileInfo;
+	// 	console.log("details from parent", details);
+	// 	return details;
+	// };
+
+	console.log("profileInfo", profileInfo);
 	return (
 		<div>
 			<div>
@@ -33,7 +39,7 @@ export default function Profile() {
 				<div>{profileInfo.email}</div>
 			</div>
 			<div>
-				<UpdateProfile currentUser={profileInfo} />
+				<UpdateProfile profileInfo={profileInfo} />
 			</div>
 		</div>
 	);
