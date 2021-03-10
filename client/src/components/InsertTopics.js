@@ -10,20 +10,6 @@ const InsertTopics = () => {
     subtopic: null,
   })
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    /* To fix if time allows <- does not clear up input except for priority*/
-
-    // setTopic('')
-    // setPriority(false)
-    // setSubtopic(null)
-
-    // addTopic();
-
-
-  }
-
   const handleChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -35,15 +21,33 @@ const InsertTopics = () => {
     }));
   }
 
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    /* To fix if time allows <- does not clear up input except for priority*/
+    // setTopic('')
+    // setPriority(false)
+    // setSubtopic(null)
+
+   addTopic();
+
+
+  }
+
+
   const addTopic = () => {
     
     axios
-    .post("/:user_id", newTopic)
-    .then(result => {
+    .post("/:user_id", newTopic, {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    });
 
-      console.log(result);
-      console.log(result.data)
-  })
+      console.log(newTopic);
+      console.log(newTopic.data)
+
 }
 
   // const addTopic = () => {
