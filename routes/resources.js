@@ -27,28 +27,25 @@ router.get("/:id", userShouldBeLoggedIn, function (req, res, next) {
 });
 /* POST one resource. */
 router.post(
-	"/:user_id/:topic_id",
+	"/:topic_id",
 	userShouldBeLoggedIn,
 	function (req, res, next) {
 		console.log("here");
-		const { user_id, topic_id } = req.params;
+		const { topic_id } = req.params;
 		const {
 			resource_name,
 			url,
 			format,
-			subcategory_id,
 			priority,
 			complete,
 			reminder,
 			created_date,
 		} = req.body;
 		models.Resources.create({
-			user_id,
 			topic_id,
 			resource_name,
 			url,
 			format,
-			subcategory_id,
 			priority,
 			complete,
 			reminder,
@@ -64,10 +61,10 @@ router.post(
 /* PUT one resource. */
 router.put("/:id", userShouldBeLoggedIn, function (req, res, next) {
 	const {
+		topic_id,
 		resource_name,
 		url,
 		format,
-		subcategory,
 		priority,
 		complete,
 		reminder,
@@ -76,10 +73,10 @@ router.put("/:id", userShouldBeLoggedIn, function (req, res, next) {
 	const { id } = req.params;
 	models.Resources.update(
 		{
+			topic_id,
 			resource_name,
 			url,
 			format,
-			subcategory,
 			priority,
 			complete,
 			reminder,
