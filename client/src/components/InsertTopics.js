@@ -52,7 +52,7 @@ const InsertTopics = () => {
     // }
       //history.push("/login");
       console.log("New Topic added", newTopic);
-      //console.log(newTopic.data)
+      //console.log(newTopic)
 
     } catch (error) {
 			console.log(error);

@@ -43,7 +43,7 @@ router.get("/:id", userShouldBeLoggedIn, function (req, res, next) {
 });
 
 
-/* POST one topic. */
+/* POST one topic. Removed the user_id from url */
 router.post("/", userShouldBeLoggedIn, function (req, res, next) {
 	const { user_id } = req.params;
 	const { topic_name, priority, parent } = req.body;
