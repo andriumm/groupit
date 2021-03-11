@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-//import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 //import SkipButton from './SkipButton'
 
 const InsertTopics = () => {
@@ -9,9 +9,20 @@ const InsertTopics = () => {
     topic: '',
     isPriority: false,
     subtopic: '',
-  })
+  });
 
-  //const history = useHistory();
+  const history = useHistory();
+
+  useEffect(() => {
+    addTopic();
+
+    let token = localStorage.getItem("token");
+    if (!token) {
+      history.push("/login");
+    }
+    console.log(token);
+  }, []);
+
 
   const handleChange = (event) => {
     const target = event.target;
@@ -22,7 +33,7 @@ const InsertTopics = () => {
       ...state,
       [name]: value
     }));
-  }
+  };
 
 
   const handleSubmit = (e) => {
@@ -49,10 +60,6 @@ const InsertTopics = () => {
 
     });
     
-    // if (newTopic.subtopic !== null) {
-    //   return newTopic.subtopic = newTopic[0]
-    // }
-      //history.push("/login");
       console.log("New Topic added", newTopic);
       //console.log(newTopic)
 
