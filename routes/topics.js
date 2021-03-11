@@ -8,11 +8,13 @@ const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 router.get("/", userShouldBeLoggedIn, function (req, res, next) {
 	// const { parent } = req.body;
 
-	models.Topics.findAll({
+	models.Topics.findAll(
+    // {
 		// where: {
 		// 	parent,
 		// },
-	})
+	  // }
+  )
 		.then((data) => res.send(data))
 		.catch((error) => {
 			res.status(500).send(error);
@@ -44,8 +46,9 @@ router.get("/:id", userShouldBeLoggedIn, function (req, res, next) {
 
 
 /* POST one topic. Removed the user_id from url */
+
 router.post("/", userShouldBeLoggedIn, function (req, res, next) {
-	const { user_id } = req.params;
+	const user_id = req.user_id;
 	const { topic_name, priority, parent } = req.body;
 	models.Topics.create({ user_id, topic_name, priority, parent })
 		.then(() => res.send({ message: "new topic added succesfully!" }))
@@ -53,6 +56,20 @@ router.post("/", userShouldBeLoggedIn, function (req, res, next) {
 			res.status(500).send(error);
 		});
 });
+
+
+// router.post("/", userShouldBeLoggedIn, function (req, res, next) {
+// 	//const id = req.user_id;
+//   const { user_id } = req.params;
+//   console.log(user_id)
+// 	const { topic_name, priority, parent } = req.body;
+//   console.log(topic_name, priority, parent)
+// 	models.Topics.create({ user_id, topic_name, priority, parent })
+// 		.then(() => res.send({ message: "new topic added succesfully!" }))
+// 		.catch((error) => {
+// 			res.status(500).send(error);
+// 		});
+// });
 
 /* PUT one topic. */
 router.put("/:id", userShouldBeLoggedIn, function (req, res, next) {

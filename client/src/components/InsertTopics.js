@@ -6,16 +6,18 @@ import { useHistory, Link } from "react-router-dom";
 const InsertTopics = () => {
 
   const [ newTopic, setNewTopic ] = useState({
-    topic: '',
-    isPriority: false,
-    subtopic: '',
+    //user_id: 1,
+    topic_name: '',
+    priority: false,
+    parent: '',
   });
 
   const history = useHistory();
 
   useEffect(() => {
     addTopic();
-
+    // let token
+    // let user_id = token
     let token = localStorage.getItem("token");
     if (!token) {
       history.push("/login");
@@ -31,6 +33,7 @@ const InsertTopics = () => {
 
     setNewTopic((state) => ({
       ...state,
+      // [user_id]: 1,
       [name]: value
     }));
   };
@@ -80,8 +83,8 @@ const InsertTopics = () => {
 					Topic name
 					<input
             type="text"
-						name="topic"
-						value={newTopic.topic}
+						name="topic_name"
+						value={newTopic.topic_name}
             onChange={handleChange}
 						id="topic"
 					/>
@@ -91,22 +94,22 @@ const InsertTopics = () => {
           Set it as a priority
           <input
             type="checkbox"
-            checked={newTopic.isPriority}
-            name="isPriority"
+            checked={newTopic.priority}
+            name="priority"
             onChange={handleChange}
-            value={newTopic.isPriority}
+            value={newTopic.priority}
             id="priority"
           />
         </label>
 
-				<label htmlFor="subtopic">
+				<label htmlFor="parent">
 					Any subtopic in mind?
 					<input
             type="text"
-						name="subtopic"
-						value={newTopic.subtopic}
+						name="parent"
+						value={newTopic.parent}
             onChange={handleChange}
-						id="subtopic"
+						id="parent"
 					/>
 				</label>
 
