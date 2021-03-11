@@ -10,6 +10,14 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Topics.hasMany(models.Resources, { foreignKey: "topic_id" });
       Topics.belongsTo(models.Users, { foreignKey: "user_id" });
+      Topics.belongsTo(models.Topics, {
+        as: "Parent",
+        foreignKey: "parent",
+      });
+      Topics.hasMany(models.Topics, {
+        as: "Subtopics",
+        foreignKey: "parent",
+      });
     }
   }
   Topics.init(
