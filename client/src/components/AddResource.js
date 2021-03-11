@@ -5,6 +5,7 @@ export default function AddResource() {
 
     const [topics, setTopics] = useState([]);
     const [resource, setResource] = useState({
+        topic_id: "",
         resource_name: "",
         url: "",
         format: "",
@@ -18,10 +19,13 @@ export default function AddResource() {
         getTopics();
     }, []);
 
-    //user is hardcoded - need to decide where the info is coming from!
     const getTopics = async () => {
         try {
-            const response = await axios.get("/topics/1/parent");
+            const response = await axios.get("/topics/", {
+                headers: {
+                    "x-access-token" : localStorage.getItem("token")
+                }
+            });
             setTopics(response.data);
         } catch (error) {
             console.log(error);
@@ -42,24 +46,45 @@ export default function AddResource() {
     };
 
     const addResource = async () => {
+        console.log(localStorage.getItem("token"))
         try {
-            const response = await axios.post("/resources/3", {
-                ...resource
+            await axios.post("/resources/", resource, {
+                headers: {
+                    "x-access-token" : localStorage.getItem("token"),
+                },              
             });
         } catch (error) {
             console.log(error);
         }
     };
 
+    // const updateProfile = async () => {
+	// 	try {
+	// 		await axios.put(`/users/profile_update`, update, {
+	// 			headers: {
+	// 				“x-access-token”: localStorage.getItem(“token”),
+	// 			},
+	// 		});
+	// 		console.log(“Your profile has been updated!“, update);
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	}
+	// };
+
     return (
         <div>
             <p>============</p>
             <form onSubmit={handleSubmit}>
-                Choose your category
-                <select> 
-                    {topics.map((topic, i) => {
-                        return <option key={i}>{topic.topic_name}</option>
-                    })}
+                Choose your Topic
+                <select 
+                    id="topic_id" 
+                    name="topic_id" 
+                    value={resource.topic_id} 
+                    onChange={handleChange}
+                    > 
+                        {topics.map((topic, i) => {
+                            return <option key={topic.id} value={topic.id}>{topic.topic_name}</option>
+                        })}
                 </select>
 
 				<label htmlFor="resource_name">

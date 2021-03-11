@@ -3,6 +3,8 @@ import { useState } from "react";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
+import AddResource from "./components/AddResource";
+
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
@@ -25,6 +27,9 @@ function App() {
 					</Route>
 					<Route path="/profile">
 						<Profile />
+					</Route>
+					<Route path="/resource">
+						<AddResource />
 					</Route>
 				</Switch>
 			</div>

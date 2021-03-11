@@ -4,23 +4,36 @@ var router = express.Router();
 const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 
 /* GET topics based on parent */
-
 router.get("/", userShouldBeLoggedIn, function (req, res, next) {
-  //  const { parent } = req.body;
 
-  models.Topics.findAll({
-    where: {
-      parent: null,
-    },
-    include: {
-      model: models.Topics,
-      as: "Subtopics",
-    },
-  })
-    .then((data) => res.send(data))
-    .catch((error) => {
-      res.status(500).send(error);
-    });
+	console.log("here tada")
+	const  user_id  = req.user_id;
+	console.log(user_id)
+	models.Topics.findAll({
+		where: {
+			user_id,
+		},
+	})
+		.then((data) => res.send(data))
+		.catch((error) => {
+			res.status(500).send(error);
+		});
+});
+
+// This solution does not take the user_id into account
+//   models.Topics.findAll({
+//     where: {
+//       parent: null,
+//     },
+//     include: {
+//       model: models.Topics,
+//       as: "Subtopics",
+//     },
+//   })
+//     .then((data) => res.send(data))
+//     .catch((error) => {
+//       res.status(500).send(error);
+//     });
 
 
 /* GET all topics and subcategories. */
@@ -33,17 +46,31 @@ router.get("/", userShouldBeLoggedIn, function (req, res, next) {
 // });
 
 /* GET one topic. */
-router.get("/:id", userShouldBeLoggedIn, function (req, res, next) {
+// router.get("/:id", userShouldBeLoggedIn, function (req, res, next) {
+//   const { id } = req.params;
+//   models.Topics.findOne({
+//     where: {
+//       id,
+//     },
+//   })
+//     .then((data) => res.send(data))
+//     .catch((error) => {
+//       res.status(500).send(error);
+//     });
+// });
+
+router.get("/:id", userShouldBeLoggedIn, async function (req, res, next) {
   const { id } = req.params;
-  models.Topics.findOne({
+  try{
+  const data = await models.Topics.findOne({
     where: {
       id,
     },
-  })
-    .then((data) => res.send(data))
-    .catch((error) => {
+  });
+   res.send(data);
+  }catch(error) {
       res.status(500).send(error);
-    });
+  };
 });
 
 /* POST one topic. */

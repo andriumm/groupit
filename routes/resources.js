@@ -27,12 +27,14 @@ router.get("/:id", userShouldBeLoggedIn, function (req, res, next) {
 });
 /* POST one resource. */
 router.post(
-	"/:topic_id",
+	// "/:topic_id",
+	"/",
 	userShouldBeLoggedIn,
 	function (req, res, next) {
 		console.log("here");
-		const { topic_id } = req.params;
+		// const { topic_id } = req.params;
 		const {
+			topic_id,
 			resource_name,
 			url,
 			format,
