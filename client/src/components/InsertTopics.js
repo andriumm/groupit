@@ -36,12 +36,14 @@ const InsertTopics = () => {
     //const { topic_name, priority, parent } = newTopic;
     try {
       //const newTopic = await axios.post("/topics/:user_id", { 
+      // const userId = {} <- figure this out (how do I recognise my user?)
       await axios.post("/topics", newTopic, {
         // topic_name, 
         // priority, 
         // parent
 
         headers: {
+          "Content-Type": "application/json",
 					"x-access-token": localStorage.getItem("token"),
 				},
 
