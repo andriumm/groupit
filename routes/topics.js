@@ -4,13 +4,13 @@ var router = express.Router();
 const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 
 /* GET topics based on parent */
-
 router.get("/", userShouldBeLoggedIn, function (req, res, next) {
-	const { parent } = req.body;
-
+	console.log("here tada")
+	const  user_id  = req.user_id;
+	console.log(user_id)
 	models.Topics.findAll({
 		where: {
-			parent,
+			user_id,
 		},
 	})
 		.then((data) => res.send(data))
@@ -20,16 +20,17 @@ router.get("/", userShouldBeLoggedIn, function (req, res, next) {
 });
 
 /* GET all topics and subcategories. */
-router.get("/all", userShouldBeLoggedIn, function (req, res, next) {
-	models.Topics.findAll()
-		.then((data) => res.send(data))
-		.catch((error) => {
-			res.status(500).send(error);
-		});
-});
+// router.get("/all", userShouldBeLoggedIn, function (req, res, next) {
+// 	models.Topics.findAll()
+// 		.then((data) => res.send(data))
+// 		.catch((error) => {
+// 			res.status(500).send(error);
+// 		});
+// });
 
 /* GET one topic. */
 router.get("/:id", userShouldBeLoggedIn, function (req, res, next) {
+	console.log("here tada")
 	const { id } = req.params;
 	models.Topics.findOne({
 		where: {
@@ -41,6 +42,7 @@ router.get("/:id", userShouldBeLoggedIn, function (req, res, next) {
 			res.status(500).send(error);
 		});
 });
+
 /* POST one topic. */
 router.post("/:user_id", userShouldBeLoggedIn, function (req, res, next) {
 	const { user_id } = req.params;
