@@ -43,7 +43,7 @@ export default function Register() {
 
 	return (
 		<div>
-			<form onSubmit={handleSubmit}>
+			<form method="post" onSubmit={handleSubmit}>
 				<label htmlFor="name">
 					Name
 					<input

@@ -4,6 +4,8 @@ var router = express.Router();
 const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 
 /* GET resources listing. */
+
+//we need to take the topic_id into account (trying snippet below)
 router.get("/", userShouldBeLoggedIn, function (req, res, next) {
 	models.Resources.findAll()
 		.then((data) => res.send(data))
@@ -11,6 +13,19 @@ router.get("/", userShouldBeLoggedIn, function (req, res, next) {
 			res.status(500).send(error);
 		});
 });
+// router.get("/", userShouldBeLoggedIn, async function (req, res, next) {
+// 	const user_id = req.user_id;
+// 	try {
+// 		const data = await models.Resources.findAll({
+// 			where: {
+// 				user_id,
+// 			},
+// 		});
+// 		res.send(data);
+// 	} catch (error) {
+// 		res.status(500).send(error);
+// 	}
+// });
 
 /* GET one resource. */
 router.get("/:id", userShouldBeLoggedIn, function (req, res, next) {
@@ -27,12 +42,14 @@ router.get("/:id", userShouldBeLoggedIn, function (req, res, next) {
 });
 /* POST one resource. */
 router.post(
-	"/:topic_id",
+	// "/:topic_id",
+	"/",
 	userShouldBeLoggedIn,
 	function (req, res, next) {
 		console.log("here");
-		const { topic_id } = req.params;
+		// const { topic_id } = req.params;
 		const {
+			topic_id,
 			resource_name,
 			url,
 			format,

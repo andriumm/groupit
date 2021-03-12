@@ -3,7 +3,12 @@ import { useState } from "react";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
+<<<<<<< HEAD
 import InsertTopics from "./components/InsertTopics.js"
+=======
+import AddResource from "./components/AddResource";
+
+>>>>>>> master
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
@@ -13,6 +18,8 @@ function App() {
 		setSignedIn(localStorage.getItem("token"));
 		setSignedIn(true);
 	};
+
+  // add your route again
 
 	return (
 		<Router>
@@ -27,9 +34,9 @@ function App() {
 					<Route path="/profile">
 						<Profile />
 					</Route>
-          <Route path="/topics">
-            <InsertTopics />
-          </Route>
+					<Route path="/resource">
+						<AddResource />
+					</Route>
 				</Switch>
 			</div>
 		</Router>
