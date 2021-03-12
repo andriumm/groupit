@@ -4,35 +4,42 @@ var router = express.Router();
 const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 
 /* GET topics based on parent */
-router.get("/", userShouldBeLoggedIn, function (req, res, next) {
-	console.log("here tada");
+router.get("/", userShouldBeLoggedIn, async function (req, res, next) {
+	//console.log("here tada");
+	//WE can have both, the complete user and the user_id from the guard! YEAAAAHHHH
+	//console.log(req.user);
+	//console.log(req.user_id);
 	const user_id = req.user_id;
-	console.log(user_id);
-	models.Topics.findAll({
-		where: {
-			user_id,
-		},
-	})
-		.then((data) => res.send(data))
-		.catch((error) => {
-			res.status(500).send(error);
-		});
-});
+	const user = req.user;
+	// try {
+	// 	const data = await models.Topics.findAll({
+	// 		where: {
+	// 			user_id,
+	// 		},
+	// 	});
+	// 	res.send(data);
+	// } catch (error) {
+	// 	res.status(500).send(error);
+	// }
 
-// This solution does not take the user_id into account
-//   models.Topics.findAll({
-//     where: {
-//       parent: null,
-//     },
-//     include: {
-//       model: models.Topics,
-//       as: "Subtopics",
-//     },
-//   })
-//     .then((data) => res.send(data))
-//     .catch((error) => {
-//       res.status(500).send(error);
-//     });
+	// This solution does not take the user_id into account
+	try {
+		const data = await models.Topics.findAll({
+			where: {
+				parent: null,
+				user_id,
+			},
+			include: {
+				model: models.Topics,
+				as: "Subtopics",
+			},
+		});
+
+		res.send(data);
+	} catch (error) {
+		res.status(500).send(error);
+	}
+});
 
 /* GET all topics and subcategories. */
 // router.get("/all", userShouldBeLoggedIn, function (req, res, next) {
