@@ -3,12 +3,9 @@ import { useState } from "react";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
-<<<<<<< HEAD
-import InsertTopics from "./components/InsertTopics.js"
-=======
 import AddResource from "./components/AddResource";
+import InsertTopics from "./components/InsertTopics";
 
->>>>>>> master
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
@@ -36,6 +33,9 @@ function App() {
 					</Route>
 					<Route path="/resource">
 						<AddResource />
+					</Route>
+          <Route path="/topics">
+						<InsertTopics />
 					</Route>
 				</Switch>
 			</div>
