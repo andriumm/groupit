@@ -3,7 +3,7 @@ var express = require("express");
 var router = express.Router();
 const userShouldBeLoggedIn = require("../guards/userShouldBeLoggedIn");
 
-/* GET topics based on parent */
+/* GET topics based on parent (inlcuding subtopics) */
 router.get("/", userShouldBeLoggedIn, async function (req, res, next) {
 	//console.log("here tada");
 	//WE can have both, the complete user and the user_id from the guard! YEAAAAHHHH
@@ -27,7 +27,7 @@ router.get("/", userShouldBeLoggedIn, async function (req, res, next) {
 		const data = await models.Topics.findAll({
 			where: {
 				parent: null,
-				user_id,
+				user_id: user.id,
 			},
 			include: {
 				model: models.Topics,

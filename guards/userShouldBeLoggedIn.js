@@ -13,16 +13,13 @@ function userShouldBeLoggedIn(req, res, next) {
 			else {
 				//everything is awesome
 				req.user_id = decoded.user_id;
-				//console.log("req.user_id", req.user_id);
 				const user = await models.Users.findOne({
 					where: { id: req.user_id },
 				});
 				if (!user) {
 					return res.status(401).send({ message: "Log in again" });
 				}
-
 				req.user = user;
-				//console.log("user", req.user);
 				next();
 			}
 		});
