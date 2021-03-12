@@ -74,7 +74,7 @@ const InsertTopics = () => {
   return (
 
     <div>
-
+      {/* Redo to add dropdown menu */}
       <h1>Add Topics</h1>
 
 

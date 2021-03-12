@@ -16,7 +16,7 @@ function userShouldBeLoggedIn(req, res, next) {
 			}
 		});
 	}
-  console.log("here")
+  //console.log("here")
 }
 
 module.exports = userShouldBeLoggedIn;

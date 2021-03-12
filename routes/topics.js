@@ -49,12 +49,12 @@ router.get("/:id", userShouldBeLoggedIn, function (req, res, next) {
 /* POST one topic. */
 router.post("/", userShouldBeLoggedIn, function (req, res, next) {
  // const user_id = req.user_id;
-  const { topic_name } = req.body;
+  const { topic_name, priority, parent } = req.body;
   //const { user_id } = req.params;
   // const { topic_name, priority, parent } = req.body;
   //GERMINAL'S CODE:
   req.user
-    .createTopic({ topic_name })
+    .createTopic({ user_id, topic_name, priority, parent })
     .then((data) => res.send(data))
     .catch((error) => {
       res.status(500).send(error);
@@ -71,14 +71,14 @@ router.post("/", userShouldBeLoggedIn, function (req, res, next) {
 /*POST one subtopic.*/
 router.post("/:id/subtopics", userShouldBeLoggedIn, async (req, res) => {
   const { id } = req.params;
-  const { topic_name } = req.body;
+  const { topic_name, priority, parent } = req.body;
   try {
     const topic = await models.Topics.findOne({
       where: {
         id,
       },
     });
-    const subtopic = await topic.createSubtopic({ topic_name });
+    const subtopic = await topic.createSubtopic({ user_id, topic_name,  priority, parent });
     res.send(subtopic);
   } catch (error) {
     res.status(500).send(error);
