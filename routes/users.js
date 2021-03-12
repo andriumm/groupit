@@ -63,43 +63,43 @@ router.get("/myprofile", userShouldBeLoggedIn, async function (req, res, next) {
 	}
 });
 
-router.put(
-	"/profile_update",
+router.put("/myprofile", userShouldBeLoggedIn, async function (req, res, next) {
+	const { name, username, email, password } = req.body;
+	const id = req.user_id;
+	try {
+		await models.Users.update(
+			{ name, username, email, password },
+			{
+				where: {
+					id,
+				},
+			}
+		);
+
+		res.send({ message: "user updated succesfully!" });
+	} catch (error) {
+		res.status(500).send(error);
+	}
+});
+
+/* DELETE one user. */
+router.delete(
+	"/myprofile",
 	userShouldBeLoggedIn,
 	async function (req, res, next) {
-		const { name, username, email, password } = req.body;
-		const id = req.user_id;
+		//const { id } = req.params;
 		try {
-			await models.Users.update(
-				{ name, username, email, password },
-				{
-					where: {
-						id,
-					},
-				}
-			);
-
-			res.send({ message: "user updated succesfully!" });
+			const id = req.user_id;
+			models.Users.destroy({
+				where: {
+					id,
+				},
+			});
+			res.send({ message: "user deleted!" });
 		} catch (error) {
 			res.status(500).send(error);
 		}
 	}
 );
-
-/* DELETE one user. */
-router.delete("/", userShouldBeLoggedIn, async function (req, res, next) {
-	//const { id } = req.params;
-	try {
-		const id = req.user_id;
-		models.Users.destroy({
-			where: {
-				id,
-			},
-		});
-		res.send({ message: "user deleted!" });
-	} catch (error) {
-		res.status(500).send(error);
-	}
-});
 
 module.exports = router;
