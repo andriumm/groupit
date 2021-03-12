@@ -39,7 +39,7 @@ router.post("/login", async function (req, res, next) {
 	}
 });
 
-/* GET users listing. */
+/* GET users listing. We don't need this so far.*/
 router.get("/", userShouldBeLoggedIn, function (req, res, next) {
 	models.Users.findAll()
 		.then((data) => res.send(data))
@@ -48,55 +48,58 @@ router.get("/", userShouldBeLoggedIn, function (req, res, next) {
 		});
 });
 
-/* GET  users profile. */
-router.get("/myprofile", userShouldBeLoggedIn, function (req, res, next) {
+/* GET user's profile. */
+router.get("/myprofile", userShouldBeLoggedIn, async function (req, res, next) {
 	const id = req.user_id;
-	models.Users.findOne({
-		where: {
-			id,
-		},
-	})
-		.then((data) => res.send(data))
-		.catch((error) => {
-			res.status(500).send(error);
+	try {
+		const user = await models.Users.findOne({
+			where: {
+				id,
+			},
 		});
+		res.send(user);
+	} catch (error) {
+		res.status(500).send(error);
+	}
 });
 
-router.put(
-	"/profile_update",
+router.put("/myprofile", userShouldBeLoggedIn, async function (req, res, next) {
+	const { name, username, email, password } = req.body;
+	const id = req.user_id;
+	try {
+		await models.Users.update(
+			{ name, username, email, password },
+			{
+				where: {
+					id,
+				},
+			}
+		);
+
+		res.send({ message: "user updated succesfully!" });
+	} catch (error) {
+		res.status(500).send(error);
+	}
+});
+
+/* DELETE one user. */
+router.delete(
+	"/myprofile",
 	userShouldBeLoggedIn,
 	async function (req, res, next) {
+		//const { id } = req.params;
 		try {
-			const { name, username, email, password } = req.body;
 			const id = req.user_id;
-			await models.Users.update(
-				{ name, username, email, password },
-				{
-					where: {
-						id,
-					},
-				}
-			);
-
-			res.send({ message: "user updated succesfully!" });
+			models.Users.destroy({
+				where: {
+					id,
+				},
+			});
+			res.send({ message: "user deleted!" });
 		} catch (error) {
 			res.status(500).send(error);
 		}
 	}
 );
-
-/* DELETE one user. */
-router.delete("/:id", userShouldBeLoggedIn, function (req, res, next) {
-	const { id } = req.params;
-	models.Users.destroy({
-		where: {
-			id,
-		},
-	})
-		.then(() => res.send({ message: "user deleted!" }))
-		.catch((error) => {
-			res.status(500).send(error);
-		});
-});
 
 module.exports = router;

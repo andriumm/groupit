@@ -4,6 +4,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Dashboard from "./components/Dashboard";
+import AddResource from "./components/AddResource";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
@@ -24,11 +25,14 @@ function App() {
           <Route path="/login">
             <Login handleLogin={handleLogin} />
           </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/resource">
+            <AddResource />
+          </Route>
           <Route path="/dashboard">
             <Dashboard />
-            <Route path="/profile">
-              <Profile />
-            </Route>
           </Route>
         </Switch>
       </div>
