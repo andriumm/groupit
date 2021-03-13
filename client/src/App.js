@@ -3,9 +3,8 @@ import { useState } from "react";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
-//import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Dashboard";
 import AddResource from "./components/AddResource";
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
@@ -27,7 +26,7 @@ function App() {
           <Link to="/login" className="text-dark ms-3 me-1">
             Sign In
           </Link>
-          {/* <Link to="/dashboard">Your Dashboard</Link> */}
+          <Link to="/dashboard">Your Dashboard</Link>
         </nav>
         <Switch>
           <Route path="/register">
@@ -42,9 +41,9 @@ function App() {
           <Route path="/resource">
             <AddResource />
           </Route>
-          {/* <Route path="/dashboard">
+          <Route path="/dashboard">
             <Dashboard />
-          </Route> */}
+          </Route>
         </Switch>
       </div>
     </Router>
