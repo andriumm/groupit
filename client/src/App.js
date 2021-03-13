@@ -3,38 +3,41 @@ import { useState } from "react";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
+import Dashboard from "./components/Dashboard";
 import AddResource from "./components/AddResource";
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
-	let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
+  let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
 
-	const handleLogin = () => {
-		setSignedIn(localStorage.getItem("token"));
-		setSignedIn(true);
-	};
+  const handleLogin = () => {
+    setSignedIn(localStorage.getItem("token"));
+    setSignedIn(true);
+  };
 
-	return (
-		<Router>
-			<div className="App">
-				<Switch>
-					<Route path="/register">
-						<Register />
-					</Route>
-					<Route path="/login">
-						<Login handleLogin={handleLogin} />
-					</Route>
-					<Route path="/profile">
-						<Profile />
-					</Route>
-					<Route path="/resource">
-						<AddResource />
-					</Route>
-				</Switch>
-			</div>
-		</Router>
-	);
+  return (
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/login">
+            <Login handleLogin={handleLogin} />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/resource">
+            <AddResource />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
