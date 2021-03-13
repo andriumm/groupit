@@ -18,6 +18,18 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <h1 align="center">GROUP B</h1>
+        <nav align="center">
+          <Link to="/register" className="text-dark ms-3 me-1">
+            Sign Up
+          </Link>
+          <Link to="/login" className="text-dark ms-3 me-1">
+            Sign In
+          </Link>
+          <Link to="/dashboard" className="text-dark ms-3 me-1">
+            Your Dashboard
+          </Link>
+        </nav>
         <Switch>
           <Route path="/register">
             <Register />
