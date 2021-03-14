@@ -94,7 +94,9 @@ export default function Dasboard() {
 										<h3>{topic.topic_name}</h3>
 									</Link> */}
 										{/* <span onClick={() => displayResources(subtopic.id)}> */}
-										<h6 className="d-inline">{subtopic.topic_name}</h6>
+										<h6 className="d-inline text-success">
+											{subtopic.topic_name}
+										</h6>
 										{/* </span> */}
 									</li>
 								))}
