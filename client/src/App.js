@@ -6,14 +6,22 @@ import Profile from "./components/Profile";
 import Dashboard from "./components/Dashboard";
 import AddResource from "./components/AddResource";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import ResourcesDashboard from "./components/ResourcesDashboard";
 
 function App() {
 	let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
+	const [subtopicID, setSubtopicID] = useState(null);
 
 	const handleLogin = () => {
 		setSignedIn(localStorage.getItem("token"));
 		setSignedIn(true);
 	};
+
+	const setSubtopic = (id) => {
+		setSubtopicID(id);
+	};
+
+	console.log("app subtopic", subtopicID);
 
 	return (
 		<Router>
@@ -47,10 +55,13 @@ function App() {
 						<AddResource />
 					</Route>
 					<Route path="/dashboard">
-						<Dashboard />
+						<Dashboard onUpdateSubtopic={setSubtopic} />
 					</Route>
 					<Route path="/myprofile">
 						<Profile />
+					</Route>
+					<Route path="/resources">
+						<ResourcesDashboard subtopicID={subtopicID} />
 					</Route>
 				</Switch>
 			</div>
