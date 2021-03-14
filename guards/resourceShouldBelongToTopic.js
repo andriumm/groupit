@@ -10,7 +10,7 @@ async function resourceShouldBelongToTopic(req, res, next) {
   if (!topic)
     return res
       .status(404)
-      .send({ message: "Resource does not belong to this topic!!" });
+      .send({ message: "Resource either does not belong to this topic or to this user!!" });
 
   next();
 }
