@@ -20,14 +20,11 @@ export default function topicsDashboard() {
     console.log(token);
   }, []);
 
-  const getSubtopics = async () => {
+  const getSubtopics = async (id) => {
     try {
-      const subtopic = await axios.get(
-        "/topics",
-        (body = {
-          parent: "",
-        })
-      );
+      const subtopic = await axios.get(`/topics/${id}/subtopics`, {
+        headers: { "x-access-token": localStorage.getItem("token") },
+      });
       setSubtopics(subtopic);
     } catch (error) {
       console.log(error);
