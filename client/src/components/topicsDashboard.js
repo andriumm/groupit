@@ -31,13 +31,33 @@ export default function topicsDashboard() {
     }
   };
 
-  const getResources = async () => {
+  const getResources = async (id) => {
     try {
-      const resource = await axios.get("/resources");
+      const resource = await axios.get(`/resources/user/${id}`, {
+        headers: { "x-access-token": localStorage.getItem("token") },
+      });
       setResources(resource);
     } catch (error) {
       console.log(error);
     }
   };
-  return <div></div>;
+
+  return (
+    <div>
+      <h2>*topic's name*</h2>
+      {/* What could be added: link on the name of the subtopic to redirect to the Resources Dashboard */}
+      <div>
+        {subtopics.map((subtopics) => (
+          <div key={subtopics.id}>
+            <h3>{subtopics.topic_name}</h3>
+            {resources.map((resource) => (
+              <div key={resource.id}>
+                <h4>---{resource.resource_name}</h4>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
