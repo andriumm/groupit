@@ -9,8 +9,11 @@ const InsertTopics = () => {
     //user_id: 1,
     topic_name: '',
     priority: false,
-    parent: '',
+    parent: null, // got to stay by default null otherwise does not pass on to db
+    //parent: 0,
   });
+
+  // const [ topicList, setTopicList] = useState([]);
 
   const history = useHistory();
 
@@ -42,6 +45,7 @@ const InsertTopics = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addTopic();
+    //getTopics();
 
   };
 
@@ -70,6 +74,20 @@ const InsertTopics = () => {
 			console.log(error);
 		}
 };
+
+/*
+const addSubtopic
+GET for exverything which will be in the dropdown menu
+*/
+// const getTopics = async () => {
+//     try {
+//       const newTopic = await axios("/topics/:id");
+//       setNewTopic(newTopic);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+
 
   return (
 
@@ -102,7 +120,18 @@ const InsertTopics = () => {
           />
         </label>
 
-				<label htmlFor="parent">
+        {/* <label>
+
+        <div>Is this a subtopic of any below topic? If yes, select the appropriate one: </div>
+              <select  id="parent" name="parent" value={newTopic.parent} onChange={handleSubmit}>
+                <option value="empty"></option>
+                <option value={newTopic.parent}></option>
+              </select>
+
+        </label> */}
+
+
+				{/* <label htmlFor="parent">
 					Any subtopic in mind?
 					<input
             type="text"
@@ -111,7 +140,7 @@ const InsertTopics = () => {
             onChange={handleChange}
 						id="parent"
 					/>
-				</label>
+				</label> */}
 
 				<input type="submit" value="Add Topic" />
 			</form>
