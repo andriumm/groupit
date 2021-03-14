@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory, Link } from "react-router-dom";
-import TopicsList from "./TopicsList";
+import { useHistory, useLocation } from "react-router-dom";
+//import TopicsList from "./TopicsList";
 //import TopicsList from './TopicsList'
 //import SkipButton from './SkipButton'
 
@@ -10,7 +10,7 @@ const InsertTopics = () => {
   const [ newTopic, setNewTopic ] = useState({
     topic_name: '',
     priority: false,
-    parent: null, // got to stay by default null otherwise does not pass on to db
+    parent: null, // got to stay null by default otherwise does not pass on to db
   });
 
   console.log(newTopic)
@@ -18,14 +18,20 @@ const InsertTopics = () => {
   const [ topicList, setTopicList] = useState([]);
   console.log(topicList)
 
+  const filterParent = topicList.filter(function(topic) {
+    return topic.parent === null ? topic.topic_name : null // to prevent bug due to form sent to db without data
+    //return topic.parent === null 
+  })
+  
+  console.log(filterParent)
+
   const history = useHistory();
+  // const location = useLocation();
 
   useEffect(() => {
-    addTopic();
+    //addTopic();
     getTopics();
 
-    // let token
-    // let user_id = token
     let token = localStorage.getItem("token");
     if (!token) {
       history.push("/login");
@@ -80,16 +86,14 @@ const InsertTopics = () => {
 				},
 			});
 
-      setTopicList(listing);
-      const filterParent = Object.values(listing).filter(topic => topic.parent === null)
-      console.log(filterParent)
+      console.log(listing.data)
+      setTopicList(listing.data);
+      
     } catch (error) {
       console.log(error);
     }
+    
   };
-
-  //const filterParent = topicList.filter(topic => topic.parent === null)
-  // console.log(filterParent)
 
 
 
@@ -137,8 +141,14 @@ const InsertTopics = () => {
 				<input type="submit" value="Add Topic" />
 			</form>
 
-        <h2>Parent Topics</h2>
-        <div>{topicList.topic_name}</div>
+
+      {}
+      <select id={topicList.id}>
+      {filterParent.map((topicName) => (         
+              <option key={topicName.id} value={topicName.id}>{topicName.topic_name}</option>
+        ))}
+        </select>
+      
 
     </div>
 
