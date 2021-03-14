@@ -9,40 +9,54 @@ const topicBelongsToUser = require("../guards/topicBelongsToUser");
 const resourceShouldBelongToTopic = require("../guards/resourceShouldBelongToTopic");
 /* GET resources listing. */
 
-//we need to take the topic_id into account (trying snippet below)
-router.get("/", userShouldBeLoggedIn, function (req, res, next) {
-  models.Resources.findAll({
-    where: {
-      topic_id: topic.id,
-    },
-  })
-    .then((data) => res.send(data))
-    .catch((error) => {
-      res.status(500).send(error);
-    });
+/* 
+  get all resources belonging to one user 
+  this returns a nested object  
+*/
+router.get("/", userShouldBeLoggedIn, async function (req, res, next) {
+	const id = req.user_id;
+  try {
+		const data = await models.Topics.findAll({
+			where: {
+				user_id : id,
+			},
+      attributes: ["id"],
+      include: {
+        model: models.Resources,
+      },
+		});
+		res.send(data);
+	} catch (error) {
+		res.status(500).send(error);
+	}
 });
-// router.get("/", userShouldBeLoggedIn, async function (req, res, next) {
-// 	const user_id = req.user_id;
-// 	try {
-// 		const data = await models.Resources.findAll({
-// 			where: {
-// 				user_id,
-// 			},
-// 		});
-// 		res.send(data);
-// 	} catch (error) {
-// 		res.status(500).send(error);
-// 	}
-// });
+
+/* get all resources belonging to one topic */
+router.get("/user/:id", [userShouldBeLoggedIn, topicBelongsToUser] , async function (req, res, next) {
+  const { id } = req.params; // this is the topic ID
+  console.log("mimi")
+  try {
+		const data = await models.Topics.findOne({
+			where: {
+			  id,
+			},
+      attributes: ["id"],
+      include: {
+        model: models.Resources,
+      },
+		});
+		res.send(data);
+	} catch (error) {
+		res.status(500).send(error);
+	}
+});
 
 /* GET one resource. */
 router.get(
-  "/:id",
+  "/:id", //this is the resource ID
   [
     userShouldBeLoggedIn,
     resourceShouldExist,
-    // topicShouldExist,
-    // topicBelongsToUser,
     resourceShouldBelongToTopic,
   ],
   function (req, res, next) {
@@ -58,16 +72,15 @@ router.get(
       });
   }
 );
+
 /* POST one resource. */
 router.post(
-  // "/:topic_id",
-  "/",
-  userShouldBeLoggedIn,
+  "/:id", //this is the topic ID
+  [userShouldBeLoggedIn, 
+    topicShouldExist,topicBelongsToUser],
   function (req, res, next) {
-    console.log("here");
-    // const { topic_id } = req.params;
+    const topic_id = req.params.id;
     const {
-      topic_id,
       resource_name,
       url,
       format,
@@ -90,11 +103,15 @@ router.post(
       .catch((error) => {
         res.status(500).send(error);
       });
+  res.end();
   }
 );
 
-/* PUT one resource. */
-router.put("/:id", userShouldBeLoggedIn, function (req, res, next) {
+router.put("/:id", [
+  userShouldBeLoggedIn,
+  resourceShouldExist,
+  resourceShouldBelongToTopic,
+], function (req, res, next) {
   const {
     topic_id,
     resource_name,
@@ -105,7 +122,7 @@ router.put("/:id", userShouldBeLoggedIn, function (req, res, next) {
     reminder,
     created_date,
   } = req.body;
-  const { id } = req.params;
+  const { id } = req.params; //this is the resource ID
   models.Resources.update(
     {
       topic_id,
@@ -130,9 +147,10 @@ router.put("/:id", userShouldBeLoggedIn, function (req, res, next) {
 });
 
 /* DELETE one resource. */
-
-router.delete("/:id", userShouldBeLoggedIn, function (req, res, next) {
-  const { id } = req.params;
+router.delete("/:id", [userShouldBeLoggedIn,
+resourceShouldExist,
+resourceShouldBelongToTopic], function (req, res, next) {
+  const { id } = req.params; //this is the resource ID
   models.Resources.destroy({
     where: {
       id,
