@@ -1,9 +1,8 @@
 import axios from "axios";
-import React from "react";
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 
-export default function topicsDashboard() {
+export default function TopicsDashboard() {
   const [subtopics, setSubtopics] = useState([]);
   const [resources, setResources] = useState([]);
   let history = useHistory();
