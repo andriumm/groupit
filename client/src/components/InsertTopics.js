@@ -10,7 +10,7 @@ const InsertTopics = () => {
   const [ newTopic, setNewTopic ] = useState({
     topic_name: '',
     priority: false,
-    parent: null, // got to stay null by default otherwise does not pass on to db
+    parent: '', // got to stay null by default otherwise does not pass on to db
   });
 
   console.log(newTopic)
@@ -19,14 +19,14 @@ const InsertTopics = () => {
   console.log(topicList)
 
   const filterParent = topicList.filter(function(topic) {
-    return topic.parent === null ? topic.topic_name : null // to prevent bug due to form sent to db without data
-    //return topic.parent === null 
+    //return topic.parent === '' ? topic.topic_name : null // to prevent bug due to form sent to db without data
+    return topic.parent === '' // If topic's name were not empty, this one should be used
   })
   
   console.log(filterParent)
 
   const history = useHistory();
-  // const location = useLocation();
+  const location = useLocation();
 
   useEffect(() => {
     //addTopic();
@@ -57,7 +57,14 @@ const InsertTopics = () => {
     e.preventDefault();
     addTopic();
     getTopics();
+    addSubtopic();
   };
+
+  const handleSubtopic = (event) => {
+    
+    const target = event.target;
+    const name = target.name;
+  }
 
 
   const addTopic = async () => {
@@ -87,7 +94,7 @@ const InsertTopics = () => {
 			});
 
       console.log(listing.data)
-      setTopicList(listing.data);
+      setTopicList(`This is the List of Parent Topics ${listing.data}`);
       
     } catch (error) {
       console.log(error);
@@ -95,6 +102,21 @@ const InsertTopics = () => {
     
   };
 
+  const addSubtopic = async () => {
+    
+      try {
+        await axios.post("/:id/subtopics", newTopic, {
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-token": localStorage.getItem("token"),
+          },
+      });   
+        console.log("New Subtopic added", newTopic);
+        //console.log(newTopic)
+      } catch (error) {
+        console.log(error);
+      }
+  };
 
 
   return (
@@ -104,6 +126,16 @@ const InsertTopics = () => {
 
 
       <form onSubmit={handleSubmit}>
+
+      <label htmlFor="topicsListed"> Does this topic belongs to any of the following ones? </label>
+        <select id={topicList.id} value={newTopic.parent} onChange={handleSubtopic}> 
+          <option value="empty"></option>
+          {filterParent.map((topicName) => (         
+          <option key={topicName.id} value={topicName.id}>{topicName.topic_name}</option>
+          ))}
+        </select>
+
+
 				<label htmlFor="topic">
 					Topic name
 					<input
@@ -127,28 +159,24 @@ const InsertTopics = () => {
           />
         </label>
 
-				{/* <label htmlFor="parent">
-					Any subtopic in mind?
-					<input
-            type="text"
-						name="parent"
-						value={newTopic.parent}
-            onChange={handleChange}
-						id="parent"
-					/>
-				</label> */}
-
 				<input type="submit" value="Add Topic" />
 			</form>
 
+      
+      {/* {location.pathname !== 'users/register' && (
 
-      {}
-      <select id={topicList.id}>
-      {filterParent.map((topicName) => (         
-              <option key={topicName.id} value={topicName.id}>{topicName.topic_name}</option>
-        ))}
+      <div> 
+      <label htmlFor="topicsListed"> Does this topic belongs to any of the following ones? </label>
+        <select id={topicList.id}> 
+          <option value="empty"></option>
+          {filterParent.map((topicName) => (         
+          <option key={topicName.id} value={topicName.id}>{topicName.topic_name}</option>
+          ))}
         </select>
       
+      </div>
+      )} */}
+
 
     </div>
 
