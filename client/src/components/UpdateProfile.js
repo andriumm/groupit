@@ -28,7 +28,7 @@ export default function UpdateProfile({ profileInfo, onUpdateProfile }) {
 	// DON'T KNOW HOW TO PASS THE INFO IN THE AXIOS REQUEST TOGETHER WITH THE HEADERS
 	const updateProfile = async () => {
 		try {
-			await axios.put(`/users/profile_update`, update, {
+			await axios.put(`/users/myprofile`, update, {
 				headers: {
 					"x-access-token": localStorage.getItem("token"),
 				},
