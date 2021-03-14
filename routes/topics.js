@@ -46,6 +46,32 @@ router.get(
 	}
 );
 
+/* GET list of subtopics. */
+router.get(
+	"/:id/subtopics",
+	userShouldBeLoggedIn,
+	async function (req, res, next) {
+		const user = req.user;
+		const { id } = req.params;
+		try {
+			const data = await models.Topics.findAll({
+				where: {
+					parent: id,
+					user_id: user.id,
+				},
+				include: {
+					model: models.Topics,
+					as: "Subtopics",
+				},
+			});
+
+			res.send(data);
+		} catch (error) {
+			res.status(500).send(error);
+		}
+	}
+);
+
 /* POST one topic. */
 router.post("/", userShouldBeLoggedIn, async function (req, res, next) {
 	const user_id = req.user_id;

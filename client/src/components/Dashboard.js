@@ -72,7 +72,7 @@ export default function Dasboard() {
 							{topics.map((topic) => (
 								<li key={topic.id}>
 									{/*
-                  BEA'S WAY TO DISPLAY THE LIST, WE CAN REFACTOR IT IF YOU PREFER THAT WAY
+                  BEA'S WAY TO DISPLAY THE LIST, WE CAN REFACTOR
                   <Link to={`/topics/${topic.id}`}>
 										<h3>{topic.topic_name}</h3>
 									</Link> */}
