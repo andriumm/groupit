@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory, Link } from "react-router-dom";
+import TopicsList from "./TopicsList";
 //import TopicsList from './TopicsList'
 //import SkipButton from './SkipButton'
 
@@ -12,12 +13,16 @@ const InsertTopics = () => {
     parent: null, // got to stay by default null otherwise does not pass on to db
   });
 
-  
+  console.log(newTopic)
+
+  const [ topicList, setTopicList] = useState([]);
+  console.log(topicList)
 
   const history = useHistory();
 
   useEffect(() => {
     addTopic();
+    getTopics();
 
     // let token
     // let user_id = token
@@ -45,7 +50,7 @@ const InsertTopics = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addTopic();
-
+    getTopics();
   };
 
 
@@ -64,6 +69,27 @@ const InsertTopics = () => {
 		}
 };
 
+  //   /*
+  // GET exverything to display in the dropdown menu
+  // */
+  const getTopics = async () => {
+    try {
+      const listing = await axios.get("/topics", {
+				headers: {
+					"x-access-token": localStorage.getItem("token"),
+				},
+			});
+
+      setTopicList(listing);
+      const filterParent = Object.values(listing).filter(topic => topic.parent === null)
+      console.log(filterParent)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //const filterParent = topicList.filter(topic => topic.parent === null)
+  // console.log(filterParent)
 
 
 
@@ -110,6 +136,9 @@ const InsertTopics = () => {
 
 				<input type="submit" value="Add Topic" />
 			</form>
+
+        <h2>Parent Topics</h2>
+        <div>{topicList.topic_name}</div>
 
     </div>
 
