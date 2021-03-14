@@ -31,7 +31,10 @@ router.get("/", userShouldBeLoggedIn, async function (req, res, next) {
 	}
 });
 
-/* get all resources belonging to one topic */
+/* 
+  get all resources belonging to one topic 
+  this returns a nested object
+  */
 router.get("/user/:id", [userShouldBeLoggedIn, topicBelongsToUser] , async function (req, res, next) {
   const { id } = req.params; // this is the topic ID
   console.log("mimi")
@@ -53,14 +56,14 @@ router.get("/user/:id", [userShouldBeLoggedIn, topicBelongsToUser] , async funct
 
 /* GET one resource. */
 router.get(
-  "/:id", //this is the resource ID
+  "/:id", 
   [
     userShouldBeLoggedIn,
     resourceShouldExist,
     resourceShouldBelongToTopic,
   ],
   function (req, res, next) {
-    const { id } = req.params;
+    const { id } = req.params; //this is the resource ID
     models.Resources.findOne({
       where: {
         id,
@@ -75,11 +78,11 @@ router.get(
 
 /* POST one resource. */
 router.post(
-  "/:id", //this is the topic ID
+  "/:id", 
   [userShouldBeLoggedIn, 
     topicShouldExist,topicBelongsToUser],
   function (req, res, next) {
-    const topic_id = req.params.id;
+    const topic_id = req.params.id; //this is the topic ID
     const {
       resource_name,
       url,
