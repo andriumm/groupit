@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "fs11groupb",
+    "database": "groupb",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
