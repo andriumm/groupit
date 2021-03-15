@@ -79,14 +79,14 @@ router.post("/", userShouldBeLoggedIn, async function (req, res, next) {
 	const user_id = req.user_id;
 	const { topic_name, priority, parent } = req.body;
 	try {
-		await models.Topics.create({ user_id, topic_name, priority, parent });
+		await models.Topics.create({ user_id, topic_name, priority });
 		res.send({ message: "new topic added succesfully!" });
 	} catch (error) {
 		res.status(500).send(error);
 	}
 });
 
-/* This endpoint create a new subtopic and associate a subtopic but what we need is to associate only a subtopic with a topic*/
+
 /*POST one subtopic.*/
 router.post(
 	"/:id/subtopics",
@@ -109,54 +109,7 @@ router.post(
 	}
 );
 
-// /*POST one subtopic.*/
-// router.post(
-// 	"/:id/subtopics",
-// 	[userShouldBeLoggedIn, topicShouldExist, topicBelongsToUser],
-// 	async (req, res) => {
-// 		const { id } = req.params;
-// 		const user_id = req.user_id;
-// 		const { topic_name, priority } = req.body;
-// 		try {
-// 			const topic = await models.Topics.findOne({
-// 				where: {
-// 					id,
-// 				},
-// 			});
-// 			await topic.createSubtopic({ user_id, topic_name, priority });
-// 			res.send({ message: "New subtopic added succesfully!" });
-// 		} catch (error) {
-// 			res.status(500).send(error);
-// 		}
-// 	}
-// );
 
-
-/* PUT one topic. */
-// router.put(
-// 	"/:id",
-// 	[userShouldBeLoggedIn, topicShouldExist, topicBelongsToUser],
-// 	function (req, res, next) {
-// 		const { topic_name, priority, parent } = req.body;
-// 		const { id } = req.params;
-// 		models.Topics.update(
-// 			{
-// 				topic_name,
-// 				priority,
-// 				parent,
-// 			},
-// 			{
-// 				where: {
-// 					id,
-// 				},
-// 			}
-// 		)
-// 			.then(() => res.send({ message: "topic updated succesfully!" }))
-// 			.catch((error) => {
-// 				res.status(500).send(error);
-// 			});
-// 	}
-// );
 
 router.put(
 	"/:id",
