@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import UpdateProfile from "./UpdateProfile";
+import { useHistory, Link } from "react-router-dom";
 
 export default function Profile() {
+	let history = useHistory();
+
 	const [profileInfo, setProfileInfo] = useState({
 		name: "",
 		username: "",
@@ -11,6 +14,11 @@ export default function Profile() {
 
 	useEffect(() => {
 		getProfile();
+		let token = localStorage.getItem("token");
+		if (!token) {
+			history.push("/login");
+		}
+		console.log(token);
 	}, []);
 
 	const getProfile = async () => {

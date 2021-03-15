@@ -61,10 +61,10 @@ const InsertTopics = () => {
     e.preventDefault();
     addTopic();
     getTopics();
+    displaySubtopicForm();
   };
 
   //! CREATE PARENT DROPDOWN
-
 
   const [ topicList, setTopicList] = useState([]);
   console.log(topicList)
@@ -76,9 +76,6 @@ const InsertTopics = () => {
   
   console.log(filterParent)
 
-    //   /*
-  // GET exverything to display in the dropdown menu
-  // */
   const getTopics = async () => {
     try {
       const listing = await axios.get("/topics", {
@@ -101,10 +98,10 @@ const InsertTopics = () => {
   const [ subtopic, setSubtopic ] = useState({
     topic_name: '',
     priority: false,
-    parent: 2,
+    parent: 0,
   })
 
-
+  const [subtopicDisplay, setsubtopicDisplay] = useState(null);
 
   const handleSubtopicSubmit = (e) => {
     e.preventDefault();
@@ -120,10 +117,13 @@ const InsertTopics = () => {
 
     setSubtopic((state) => ({
       ...state,
-      // [user_id]: 1,
       [name]: value
     }));
   };
+
+  const displaySubtopicForm = () => {
+    setsubtopicDisplay(subtopic)
+  }
 
 
   const addSubtopics = async () => {
@@ -147,8 +147,8 @@ const InsertTopics = () => {
 
     <div>
       
-      <di>
-      <h1>Add A topic</h1>
+      <div>
+      <h3>Would you like to add a new topic</h3>
 
 
       <form onSubmit={handleSubmit}>
@@ -177,17 +177,20 @@ const InsertTopics = () => {
 
 				<input type="submit" value="Add Topic" />
 			</form>
-      </di>
-
-    <div>
+      </div>
 
     {/* SEPARATION: FORM 1 ABOVE / FORM 2 BELOW  */}
 
-      <h1> Add a subtopic </h1>
+    { subtopicDisplay && (
+
+    <div>
+
+      <h3> Add a subtopic to go along with it </h3>
 
 
     <form onSubmit={handleSubtopicSubmit}>
-				<label htmlFor="subtopic">
+				
+        <label htmlFor="subtopic">
 					Subtopic name
 					<input
             type="text"
@@ -199,12 +202,14 @@ const InsertTopics = () => {
 				</label>
 
         <label htmlFor="parent-dropdown">
-        Which topic does it belong to?
-        <select id={topicList.id} name="parent" onChange={handleSubtopicChange}>
-      {filterParent.map((topicName) => (         
-              <option key={topicName.id} value={topicName.id}> {topicName.topic_name} </option>
-        ))}
+          Which topic does it belong to?
+          <select id={topicList.id} name="parent" onChange={handleSubtopicChange}>
+            <option value="empty"></option>
+            {filterParent.map((topicName) => (         
+            <option key={topicName.id} value={topicName.id}> {topicName.topic_name} </option>
+            ))}
         </select>
+      
       </label>
           
         <label htmlFor="priority">
@@ -219,16 +224,13 @@ const InsertTopics = () => {
           />
         </label>
       
-
-
       <input type="submit" value="Add subtopic" />
 
 </form>
 
     </div>
 
-
-      
+      )}
 
     </div>
 
