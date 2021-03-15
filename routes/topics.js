@@ -27,6 +27,34 @@ router.get("/", userShouldBeLoggedIn, async function (req, res, next) {
   }
 });
 
+// /* GET topics parent topics and subtopics for that parent */
+// router.get(
+// 	"/:id/subtopics",
+// 	[userShouldBeLoggedIn, topicShouldExist, topicBelongsToUser],
+// 	async function (req, res, next) {
+// 		const { id } = req.params;
+// 		const user_id = req.user_id;
+// 		const { topic_name, priority } = req.body;
+		
+//     try {
+// 			const data = await models.Topics.findOne({
+// 				where: {
+// 					id,
+//           parent
+// 				},
+//         include: {
+//           model: models.Topics,
+//           as: "Subtopics",
+//         },
+// 			});
+	
+// 			res.send(data);
+// 		} catch (error) {
+// 			res.status(500).send(error);
+// 		}
+// 	}
+// );
+
 /* GET one topic. */
 router.get(
   "/:id",
@@ -74,6 +102,7 @@ router.get(
 
 /* POST one topic. */
 router.post("/", userShouldBeLoggedIn, async function (req, res, next) {
+
   const user_id = req.user_id;
   const { topic_name, priority, parent } = req.body;
   try {
@@ -83,6 +112,7 @@ router.post("/", userShouldBeLoggedIn, async function (req, res, next) {
     res.status(500).send(error);
   }
 });
+
 
 /*POST one subtopic.*/
 router.post(
@@ -106,31 +136,7 @@ router.post(
   }
 );
 
-/* PUT one topic. */
-// router.put(
-// 	"/:id",
-// 	[userShouldBeLoggedIn, topicShouldExist, topicBelongsToUser],
-// 	function (req, res, next) {
-// 		const { topic_name, priority, parent } = req.body;
-// 		const { id } = req.params;
-// 		models.Topics.update(
-// 			{
-// 				topic_name,
-// 				priority,
-// 				parent,
-// 			},
-// 			{
-// 				where: {
-// 					id,
-// 				},
-// 			}
-// 		)
-// 			.then(() => res.send({ message: "topic updated succesfully!" }))
-// 			.catch((error) => {
-// 				res.status(500).send(error);
-// 			});
-// 	}
-// );
+
 
 router.put(
   "/:id",

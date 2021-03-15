@@ -9,6 +9,7 @@ import TopicPage from "./components/TopicPage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ResourcesDashboard from "./components/ResourcesDashboard";
 import LogOut from "./components/LogOut";
+import InsertTopics from "./components/InsertTopics";
 
 function App() {
   let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
@@ -24,6 +25,7 @@ function App() {
   };
 
   // console.log("app subtopic", subtopic);
+
 
   return (
     <Router>
@@ -65,6 +67,9 @@ function App() {
           <Route path="/topics/:id">
             <TopicPage />
           </Route>
+    <Route path="/topics">
+						<InsertTopics />
+					</Route>
           <Route path="/myprofile">
             <Profile />
           </Route>
@@ -78,6 +83,7 @@ function App() {
       </div>
     </Router>
   );
-}
 
+}    
+					
 export default App;
