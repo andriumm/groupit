@@ -53,6 +53,17 @@ export default function TopicPage() {
   //   }
   // };
 
+  const deleteSubtopic = async (id) => {
+    try {
+      const subtopic = await axios.delete(`/topics/${id}`, {
+        headers: { "x-access-token": localStorage.getItem("token") },
+      });
+      getSubtopics(subtopic.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <h2 className="text-uppercase text-danger">{topic.topic_name}</h2>
@@ -61,6 +72,9 @@ export default function TopicPage() {
         {subtopics.map((subtopic) => (
           <div key={subtopic.id} onClick={() => history.push("/resources")}>
             <h5>{subtopic.topic_name}</h5>
+            <button onClick={() => deleteSubtopic(subtopic.id)}>
+              Delete Subtopic
+            </button>
             {subtopic.Resources.map((resource) => (
               <div key={resource.id}>
                 <h6>---{resource.resource_name}</h6>

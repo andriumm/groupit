@@ -63,6 +63,17 @@ export default function Dashboard(onUpdateSubtopic) {
   //   children: topics.filter((e) => e.parent === parent.id),
   // }));
 
+  const deleteTopic = async (id) => {
+    try {
+      const database = await axios.delete(`/topics/${id}`, {
+        headers: { "x-access-token": localStorage.getItem("token") },
+      });
+      getTopics(database.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <h1>Your Dashboard</h1>
@@ -74,7 +85,7 @@ export default function Dashboard(onUpdateSubtopic) {
             onClick={() => history.push(`/topics/${topic.id}`)}
           >
             <h5 className="text-uppercase text-danger">{topic.topic_name}</h5>
-
+            <button onClick={() => deleteTopic(topic.id)}>Delete Topic</button>
             {topic.Subtopics.map((subtopic) => (
               <div
                 key={subtopic.id}
