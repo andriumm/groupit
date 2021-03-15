@@ -50,7 +50,7 @@ export default function Groupb() {
 							<ResourcesDashboard subtopic={subtopic} />
 						</Route>
 						<Route path="/login">
-							<LogOut />
+							<Login />
 						</Route>
 					</Switch>
 				</div>

@@ -13,16 +13,16 @@ import GroupB from "./components/Groupb";
 
 function App() {
 	let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
-	const [subtopic, setSubtopic] = useState({});
+	// const [subtopic, setSubtopic] = useState({});
 
 	const handleLogin = () => {
 		setSignedIn(localStorage.getItem("token"));
 		setSignedIn(true);
 	};
 
-	const sentSubtopic = (subtopic) => {
-		setSubtopic(subtopic);
-	};
+	// const sentSubtopic = (subtopic) => {
+	// 	setSubtopic(subtopic);
+	// };
 
 	return (
 		<Router>
