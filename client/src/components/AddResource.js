@@ -4,8 +4,10 @@ import axios from "axios";
 export default function AddResource() {
 
     const [topics, setTopics] = useState([]);
+    const [selectedTopic, setSelectedTopic] = useState({
+        topic_id: ""
+    })
     const [resource, setResource] = useState({
-        topic_id: "",
         resource_name: "",
         url: "",
         format: "",
@@ -26,6 +28,8 @@ export default function AddResource() {
                     "x-access-token" : localStorage.getItem("token")
                 }
             });
+            console.log(response.data);
+            //this only lists the parent topics
             setTopics(response.data);
         } catch (error) {
             console.log(error);
@@ -39,6 +43,14 @@ export default function AddResource() {
         }));
     };
 
+    const selectTopic = (e) => {
+        const { value} = e.target;
+        console.log(value)
+        setSelectedTopic({
+            "topic_id": value
+        })
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(resource.created_date)
@@ -48,7 +60,7 @@ export default function AddResource() {
     const addResource = async () => {
         console.log(localStorage.getItem("token"))
         try {
-            await axios.post("/resources/", resource, {
+            await axios.post(`/resources/${selectedTopic.topic_id}`, resource, {
                 headers: {
                     "x-access-token" : localStorage.getItem("token"),
                 },              
@@ -58,19 +70,6 @@ export default function AddResource() {
         }
     };
 
-    // const updateProfile = async () => {
-	// 	try {
-	// 		await axios.put(`/users/profile_update`, update, {
-	// 			headers: {
-	// 				“x-access-token”: localStorage.getItem(“token”),
-	// 			},
-	// 		});
-	// 		console.log(“Your profile has been updated!“, update);
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-	// };
-
     return (
         <div>
             <p>============</p>
@@ -79,11 +78,17 @@ export default function AddResource() {
                 <select 
                     id="topic_id" 
                     name="topic_id" 
-                    value={resource.topic_id} 
-                    onChange={handleChange}
-                    > 
+                    value={selectedTopic.topic_id} 
+                    onChange={selectTopic}
+                    >   
+                        <option value="" disabled>Select One</option>
                         {topics.map((topic, i) => {
                             return <option key={topic.id} value={topic.id}>{topic.topic_name}</option>
+                        })}
+                        {topics.map((topic, i) => {
+                            return topic.Subtopics.map((subtopic, id) =>{
+                                return <option key={subtopic.id} value={subtopic.id}>{subtopic.topic_name}</option>
+                            })
                         })}
                 </select>
 
