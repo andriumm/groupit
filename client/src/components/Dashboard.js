@@ -2,29 +2,16 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 
-export default function Dashboard({ onUpdateSubtopic }) {
+export default function Dashboard({ onUpdateTopic, onUpdateSubtopic }) {
   const [topics, setTopics] = useState([]);
   const [subtopics, setSubtopics] = useState([]);
   //const [subtopicID, setSubtopicID] = useState(null);
-
-  // const database = [
-  //   { id: 1, topic_name: "topic 1", parent: null },
-  //   { id: 2, topic_name: "topic 2", parent: null },
-  //   { id: 3, topic_name: "topic 3", parent: null },
-  //   { id: 4, topic_name: "topic 4", parent: null },
-  //   { id: 5, topic_name: "subtopic 1", parent: 1 },
-  //   { id: 6, topic_name: "subtopic 2", parent: 1 },
-  //   { id: 7, topic_name: "subtopic 3", parent: 2 },
-  //   { id: 8, topic_name: "subtopic 4", parent: 3 },
-  //   { id: 9, topic_name: "subtopic 5", parent: 3 },
-  //   { id: 10, topic_name: "subtopic 6", parent: 3 },
-  //   { id: 11, topic_name: "subtopic 7", parent: 4 },
-  // ];
 
   let history = useHistory();
 
   useEffect(() => {
     getTopics();
+    // getSubtopics();
 
     let token = localStorage.getItem("token");
     if (!token) {
@@ -45,15 +32,21 @@ export default function Dashboard({ onUpdateSubtopic }) {
   };
   //console.log("topics", topics);
 
-  const displaySubtopics = async (id) => {
-    try {
-      const subtopics = await axios.get(`/topics/${id}/subtopics`, {
-        headers: { "x-access-token": localStorage.getItem("token") },
-      });
-      setSubtopics(subtopics.data);
-    } catch (error) {
-      console.log(error);
-    }
+  // const getSubtopics = async (id) => {
+  //   try {
+  //     const subtopics = await axios.get(`/topics`, {
+  //       headers: { "x-access-token": localStorage.getItem("token") },
+  //     });
+  //     setSubtopics(subtopics.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const goToTopicsDashboard = async (topic) => {
+    // onUpdateTopic(topic);
+
+    history.push(`/topics/${topic.id}`);
   };
 
   const goToResourcesDashboard = async (subtopic) => {
@@ -78,16 +71,29 @@ export default function Dashboard({ onUpdateSubtopic }) {
       <h1>Your Dashboard</h1>
 
       <div>
+        {topics.map((topic) => (
+          <div key={topic.id} onClick={() => goToTopicsDashboard(topic)}>
+            <h5>{topic.topic_name}</h5>
+
+            {topic.Subtopics.map((subtopic) => (
+              <div
+                key={subtopic.id}
+                onClick={() => goToResourcesDashboard(subtopic)}
+              >
+                <h6>---{subtopic.topic_name}</h6>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+
+      {/* <div>
         {topics.length ? (
           <div>
             <ul>
               {topics.map((topic) => (
                 <li key={topic.id}>
-                  {/*
-                  BEA'S WAY TO DISPLAY THE LIST, WE CAN REFACTOR
-                  <Link to={`/topics/${topic.id}`}>
-										<h3>{topic.topic_name}</h3>
-									</Link> */}
+                
                   <span onClick={() => displaySubtopics(topic.id)}>
                     <h6 className="d-inline">{topic.topic_name}</h6>
                   </span>
@@ -102,9 +108,7 @@ export default function Dashboard({ onUpdateSubtopic }) {
               <ul>
                 {subtopics.map((subtopic) => (
                   <li key={subtopic.id}>
-                    {/* <Link to={`/topics/${topic.id}`}>
-										<h3>{topic.topic_name}</h3>
-									</Link> */}
+                   
                     <span onClick={() => goToResourcesDashboard(subtopic)}>
                       <h6 className="d-inline text-success">
                         {subtopic.topic_name}
@@ -116,7 +120,7 @@ export default function Dashboard({ onUpdateSubtopic }) {
             </div>
           ) : null}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

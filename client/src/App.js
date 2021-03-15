@@ -59,7 +59,7 @@ function App() {
           <Route path="/dashboard">
             <Dashboard onUpdateSubtopic={sentSubtopic} />
           </Route>
-          <Route path="/topics">
+          <Route path="/topics/:id">
             <TopicsDashboard />
           </Route>
           <Route path="/myprofile">
