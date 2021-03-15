@@ -127,13 +127,13 @@ const InsertTopics = () => {
 
       <form onSubmit={handleSubmit}>
 
-      <label htmlFor="topicsListed"> Does this topic belongs to any of the following ones? </label>
+      {/* <label htmlFor="topicsListed"> Does this topic belongs to any of the following ones? </label>
         <select id={topicList.id} value={newTopic.parent} onChange={handleSubtopic}> 
           <option value="empty"></option>
           {filterParent.map((topicName) => (         
           <option key={topicName.id} value={topicName.id}>{topicName.topic_name}</option>
           ))}
-        </select>
+        </select> */}
 
 
 				<label htmlFor="topic">
