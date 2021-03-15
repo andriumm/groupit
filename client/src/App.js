@@ -8,6 +8,7 @@ import AddResource from "./components/AddResource";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ResourcesDashboard from "./components/ResourcesDashboard";
 import LogOut from "./components/LogOut";
+import InsertTopics from "./components/InsertTopics";
 
 function App() {
 	let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
@@ -54,6 +55,9 @@ function App() {
 					</Route>
 					<Route path="/profile">
 						<Profile />
+					</Route>
+          <Route path="/topics">
+						<InsertTopics />
 					</Route>
 					<Route path="/resource">
 						<AddResource />
