@@ -89,7 +89,7 @@ router.post(
 	"/:id/subtopics",
 	[userShouldBeLoggedIn, topicShouldExist, topicBelongsToUser],
 	async (req, res) => {
-		const { id } = req.params;
+		const { id } = req.params; //this will be the parent id
 		const user_id = req.user_id;
 		const { topic_name, priority } = req.body;
 		try {
