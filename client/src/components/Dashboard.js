@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 
-export default function Dasboard() {
+export default function Dashboard({ onUpdateSubtopic }) {
 	const [topics, setTopics] = useState([]);
 	const [subtopics, setSubtopics] = useState([]);
+	//const [subtopicID, setSubtopicID] = useState(null);
 
 	// const database = [
 	//   { id: 1, topic_name: "topic 1", parent: null },
@@ -54,7 +55,18 @@ export default function Dasboard() {
 			console.log(error);
 		}
 	};
-	console.log("subtopics", subtopics);
+
+	const goToResourcesDashboard = async (subtopic) => {
+		console.log("subtopic got to res", subtopic);
+		onUpdateSubtopic(subtopic);
+		//onUpdateSubtopic()
+		history.push("/resources");
+		//await setSubtopicID(id);
+
+		console.log("subtopicID 2", subtopic);
+	};
+	//console.log("subtopics", subtopics);
+
 	// const parents = topics.filter((e) => e.parent === null);
 	// const tree = parents.map((parent) => ({
 	//   ...parent,
@@ -93,11 +105,11 @@ export default function Dasboard() {
 										{/* <Link to={`/topics/${topic.id}`}>
 										<h3>{topic.topic_name}</h3>
 									</Link> */}
-										{/* <span onClick={() => displayResources(subtopic.id)}> */}
-										<h6 className="d-inline text-success">
-											{subtopic.topic_name}
-										</h6>
-										{/* </span> */}
+										<span onClick={() => goToResourcesDashboard(subtopic)}>
+											<h6 className="d-inline text-success">
+												{subtopic.topic_name}
+											</h6>
+										</span>
 									</li>
 								))}
 							</ul>
