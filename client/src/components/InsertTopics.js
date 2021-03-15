@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory, useLocation } from "react-router-dom";
-//import TopicsList from './TopicsList'
+import { useHistory } from "react-router-dom";
+
 //import SkipButton from './SkipButton'
 
 const InsertTopics = () => {
 
   const history = useHistory();
-  // const location = useLocation();
+
 
   useEffect(() => {
     //addTopic();
@@ -38,7 +38,6 @@ const InsertTopics = () => {
 
     setNewTopic((state) => ({
       ...state,
-      // [user_id]: 1,
       [name]: value
     }));
   };
@@ -102,7 +101,7 @@ const InsertTopics = () => {
   const [ subtopic, setSubtopic ] = useState({
     topic_name: '',
     priority: false,
-    // parent: 0,
+    parent: 2,
   })
 
 
@@ -118,6 +117,7 @@ const InsertTopics = () => {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
+
     setSubtopic((state) => ({
       ...state,
       // [user_id]: 1,
@@ -125,9 +125,10 @@ const InsertTopics = () => {
     }));
   };
 
+
   const addSubtopics = async () => {
     try {
-      await axios.post("/:id/subtopics", subtopic, {
+      await axios.post(`/topics/${subtopic.parent}/subtopics`, subtopic, {
         headers: {
           "Content-Type": "application/json",
 					"x-access-token": localStorage.getItem("token"),
@@ -180,7 +181,7 @@ const InsertTopics = () => {
 
     <div>
 
-    {/* SEPARATION */}
+    {/* SEPARATION: FORM 1 ABOVE / FORM 2 BELOW  */}
 
       <h1> Add a subtopic </h1>
 
@@ -199,7 +200,7 @@ const InsertTopics = () => {
 
         <label htmlFor="parent-dropdown">
         Which topic does it belong to?
-        <select id={topicList.id}>
+        <select id={topicList.id} name="parent" onChange={handleSubtopicChange}>
       {filterParent.map((topicName) => (         
               <option key={topicName.id} value={topicName.id}> {topicName.topic_name} </option>
         ))}
