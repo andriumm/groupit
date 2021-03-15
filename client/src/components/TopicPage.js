@@ -2,18 +2,17 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams, Link } from "react-router-dom";
 
-export default function TopicsDashboard() {
+export default function TopicPage() {
   const [topic, setTopic] = useState({});
   const [subtopics, setSubtopics] = useState([]);
-  // const [resources, setResources] = useState([]);
+
   let history = useHistory();
   const { id } = useParams();
-  //fetch from topics the topics with parents
-  // fetch from resources the resources per subtopic
+
   useEffect(() => {
     getTopicName(id);
     getSubtopics(id);
-    // getResources(id);
+
     let token = localStorage.getItem("token");
     if (!token) {
       history.push("/login");
@@ -56,15 +55,15 @@ export default function TopicsDashboard() {
 
   return (
     <div>
-      <h2>{topic.topic_name}</h2>
+      <h2 className="text-uppercase text-danger">{topic.topic_name}</h2>
       {/* What could be added: link on the name of the subtopic to redirect to the Resources Dashboard */}
       <div>
         {subtopics.map((subtopic) => (
-          <div key={subtopic.id}>
-            <h3>{subtopic.topic_name}</h3>
+          <div key={subtopic.id} onClick={() => history.push("/resources")}>
+            <h5>{subtopic.topic_name}</h5>
             {subtopic.Resources.map((resource) => (
               <div key={resource.id}>
-                <h4>---{resource.resource_name}</h4>
+                <h6>---{resource.resource_name}</h6>
               </div>
             ))}
           </div>

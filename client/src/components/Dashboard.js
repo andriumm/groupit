@@ -2,16 +2,13 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 
-export default function Dashboard({ onUpdateTopic, onUpdateSubtopic }) {
+export default function Dashboard() {
   const [topics, setTopics] = useState([]);
-  const [subtopics, setSubtopics] = useState([]);
-  //const [subtopicID, setSubtopicID] = useState(null);
 
   let history = useHistory();
 
   useEffect(() => {
     getTopics();
-    // getSubtopics();
 
     let token = localStorage.getItem("token");
     if (!token) {
@@ -43,21 +40,21 @@ export default function Dashboard({ onUpdateTopic, onUpdateSubtopic }) {
   //   }
   // };
 
-  const goToTopicsDashboard = async (topic) => {
-    // onUpdateTopic(topic);
+  // const goToTopicsDashboard = async (topic) => {
+  //   // onUpdateTopic(topic);
 
-    history.push(`/topics/${topic.id}`);
-  };
+  //   history.push(`/topics/${topic.id}`);
+  // };
 
-  const goToResourcesDashboard = async (subtopic) => {
-    console.log("subtopic got to res", subtopic);
-    onUpdateSubtopic(subtopic);
-    //onUpdateSubtopic()
-    history.push("/resources");
-    //await setSubtopicID(id);
+  // const goToResourcesDashboard = async (subtopic) => {
+  //   console.log("subtopic got to res", subtopic);
+  //   onUpdateSubtopic(subtopic);
+  //   //onUpdateSubtopic()
+  //   history.push("/resources");
+  //   //await setSubtopicID(id);
 
-    console.log("subtopicID 2", subtopic);
-  };
+  //   console.log("subtopicID 2", subtopic);
+  // };
   //console.log("subtopics", subtopics);
 
   // const parents = topics.filter((e) => e.parent === null);
@@ -72,14 +69,14 @@ export default function Dashboard({ onUpdateTopic, onUpdateSubtopic }) {
 
       <div>
         {topics.map((topic) => (
-          <div key={topic.id} onClick={() => goToTopicsDashboard(topic)}>
-            <h5>{topic.topic_name}</h5>
+          <div
+            key={topic.id}
+            onClick={() => history.push(`/topics/${topic.id}`)}
+          >
+            <h5 className="text-uppercase text-danger">{topic.topic_name}</h5>
 
             {topic.Subtopics.map((subtopic) => (
-              <div
-                key={subtopic.id}
-                onClick={() => goToResourcesDashboard(subtopic)}
-              >
+              <div key={subtopic.id} onClick={() => history.push("/resources")}>
                 <h6>---{subtopic.topic_name}</h6>
               </div>
             ))}

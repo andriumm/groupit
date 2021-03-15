@@ -5,7 +5,7 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Dashboard from "./components/Dashboard";
 import AddResource from "./components/AddResource";
-import TopicsDashboard from "./components/topicsDashboard";
+import TopicPage from "./components/TopicPage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ResourcesDashboard from "./components/ResourcesDashboard";
 
@@ -60,7 +60,7 @@ function App() {
             <Dashboard onUpdateSubtopic={sentSubtopic} />
           </Route>
           <Route path="/topics/:id">
-            <TopicsDashboard />
+            <TopicPage />
           </Route>
           <Route path="/myprofile">
             <Profile />
