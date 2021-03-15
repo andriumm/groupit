@@ -10,7 +10,7 @@ import ResourcesDashboard from "./components/ResourcesDashboard";
 import LogOut from "./components/LogOut";
 
 function App() {
-	let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
+	let [signedIn, setSignedIn] = useState(!!localStorage.getItem("token"));
 	const [subtopic, setSubtopic] = useState({});
 
 	const handleLogin = () => {
@@ -27,17 +27,24 @@ function App() {
 	return (
 		<Router>
 			<div className="App">
-				<div>
-					<LogOut />
-				</div>
+				{signedIn && (
+					<div>
+						<LogOut />
+					</div>
+				)}
+				
 				<h1 align="center">GROUP B</h1>
 				<nav align="center">
+					{!signedIn && (
 					<Link to="/register" className="text-dark ms-3 me-1">
 						Sign Up
 					</Link>
+					)}
+					{!signedIn && (
 					<Link to="/login" className="text-dark ms-3 me-1">
 						Sign In
 					</Link>
+					)}
 					<Link to="/dashboard" className="text-dark ms-3 me-1">
 						Your Dashboard
 					</Link>
