@@ -2,15 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-//import SkipButton from './SkipButton'
-
 const InsertTopics = () => {
 
   const history = useHistory();
 
 
   useEffect(() => {
-    //addTopic();
     getTopics();
 
     let token = localStorage.getItem("token");
@@ -44,6 +41,8 @@ const InsertTopics = () => {
 
     
   };
+
+  // POST TOPICS
 
   const addTopic = async () => {
     try {
@@ -84,6 +83,8 @@ const InsertTopics = () => {
   })
   
   console.log(filterParent)
+
+  // GET TOPICS OBJECT
 
   const getTopics = async () => {
     try {
@@ -131,6 +132,7 @@ const [subtopicConfirmation, setSubtopicConfirmation] = useState(null);
     }));
   };
 
+  // POST SUBTOPIC
 
   const addSubtopics = async () => {
     try {
@@ -200,54 +202,52 @@ const [subtopicConfirmation, setSubtopicConfirmation] = useState(null);
       <h3> Or/and add a subtopic to any of your topics </h3>
 
 
-    <form onSubmit={handleSubtopicSubmit}>
-				
-        <label htmlFor="subtopic">
-					Subtopic name
-					<input
-            type="text"
-						name="topic_name"
-						value={subtopic.topic_name}
-            onChange={handleSubtopicChange}
-						id="subtopic"
-					/>
-				</label>
-
-        <label htmlFor="parent-dropdown">
-          Which topic does it belong to?
-          <select id={topicList.id} name="parent" onChange={handleSubtopicChange}>
-            <option value="empty"></option>
-            {filterParent.map((topicName) => (         
-            <option key={topicName.id} value={topicName.id}> {topicName.topic_name} </option>
-            ))}
-        </select>
-      
-      </label>
+      <form onSubmit={handleSubtopicSubmit}>
           
-        <label htmlFor="priority">
-          Set it as a priority
-          <input
-            type="checkbox"
-            checked={subtopic.priority}
-            name="priority"
-            onChange={handleSubtopicChange}
-            value={subtopic.priority}
-            id="priority"
-          />
-        </label>
-      
-      <input type="submit" value="Add subtopic" />
+          <label htmlFor="subtopic">
+            Subtopic name
+            <input
+              type="text"
+              name="topic_name"
+              value={subtopic.topic_name}
+              onChange={handleSubtopicChange}
+              id="subtopic"
+            />
+          </label>
 
-    </form>
+          <label htmlFor="parent-dropdown">
+            Which topic does it belong to?
+            <select id={topicList.id} name="parent" onChange={handleSubtopicChange}>
+              <option value="empty"></option>
+                {filterParent.map((topicName) => (         
+              <option key={topicName.id} value={topicName.id}> {topicName.topic_name} </option>
+                ))}
+            </select>
+        
+          </label>
+              
+            <label htmlFor="priority">
+              Set it as a priority
+              <input
+                type="checkbox"
+                checked={subtopic.priority}
+                name="priority"
+                onChange={handleSubtopicChange}
+                value={subtopic.priority}
+                id="priority"
+              />
+            </label>
+        
+        <input type="submit" value="Add subtopic" />
+
+       </form>
 
     </div>
     
-
     { subtopicConfirmation && (
       <div> New subtopic added! </div>
-    )}
+    )} 
 
-    
     </div>
 
   )
