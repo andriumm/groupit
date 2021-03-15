@@ -20,7 +20,6 @@ const InsertTopics = () => {
     console.log(token);
   }, []);
 
-
   //! PARENT TOPIC AREA
 
   const [ newTopic, setNewTopic ] = useState({
@@ -31,6 +30,8 @@ const InsertTopics = () => {
 
   console.log(newTopic)
 
+  const [topicConfirmation, setTopicConfirmation] = useState(null)
+
   const handleChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -40,18 +41,21 @@ const InsertTopics = () => {
       ...state,
       [name]: value
     }));
+
+    
   };
 
   const addTopic = async () => {
     try {
       await axios.post("/topics", newTopic, {
         headers: {
-          "Content-Type": "application/json",
+          // "Content-Type": "application/json",
 					"x-access-token": localStorage.getItem("token"),
 				},
     });   
       console.log("New Topic added", newTopic);
       //console.log(newTopic)
+      getTopics();
     } catch (error) {
 			console.log(error);
 		}
@@ -61,17 +65,22 @@ const InsertTopics = () => {
     e.preventDefault();
     addTopic();
     getTopics();
-    displaySubtopicForm();
+    displayTopicConfirmation();
   };
+
+  const displayTopicConfirmation = () => {
+    setTopicConfirmation(newTopic);
+  }
+
 
   //! CREATE PARENT DROPDOWN
 
-  const [ topicList, setTopicList] = useState([]);
+  const [ topicList, setTopicList] = useState([]); 
   console.log(topicList)
 
   const filterParent = topicList.filter(function(topic) {
-    return topic.parent === null ? topic.topic_name : null // to prevent bug due to form sent to db without data
-    // return topic.parent === null 
+    // return topic.parent === null ? topic.topic_name : null // to prevent bug due to form sent to db without data
+    return topic.parent === null 
   })
   
   console.log(filterParent)
@@ -101,12 +110,13 @@ const InsertTopics = () => {
     parent: 0,
   })
 
-  const [subtopicDisplay, setsubtopicDisplay] = useState(null);
+const [subtopicConfirmation, setSubtopicConfirmation] = useState(null);
+
 
   const handleSubtopicSubmit = (e) => {
     e.preventDefault();
     addSubtopics();
-
+    displaySubtopicConfirmation()
   }
 
   const handleSubtopicChange = (event) => {
@@ -120,10 +130,6 @@ const InsertTopics = () => {
       [name]: value
     }));
   };
-
-  const displaySubtopicForm = () => {
-    setsubtopicDisplay(subtopic)
-  }
 
 
   const addSubtopics = async () => {
@@ -141,6 +147,9 @@ const InsertTopics = () => {
 		}
   };
 
+  const displaySubtopicConfirmation = () => {
+    setSubtopicConfirmation(subtopic)
+  }
 
 
   return (
@@ -148,7 +157,7 @@ const InsertTopics = () => {
     <div>
       
       <div>
-      <h3>Would you like to add a new topic</h3>
+      <h3>Add a new topic</h3>
 
 
       <form onSubmit={handleSubmit}>
@@ -181,11 +190,14 @@ const InsertTopics = () => {
 
     {/* SEPARATION: FORM 1 ABOVE / FORM 2 BELOW  */}
 
-    { subtopicDisplay && (
-
+    
+    {topicConfirmation && (
+    <div> New topic added!</div>
+    )}
+    
     <div>
 
-      <h3> Add a subtopic to go along with it </h3>
+      <h3> Or/and add a subtopic to any of your topics </h3>
 
 
     <form onSubmit={handleSubtopicSubmit}>
@@ -226,12 +238,16 @@ const InsertTopics = () => {
       
       <input type="submit" value="Add subtopic" />
 
-</form>
+    </form>
 
     </div>
+    
 
-      )}
+    { subtopicConfirmation && (
+      <div> New subtopic added! </div>
+    )}
 
+    
     </div>
 
   )
