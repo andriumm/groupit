@@ -1,15 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 const axios = require("axios");
 
 export default function ResourcesDashboard({ subtopic }) {
   let history = useHistory();
+
   const [resources, setResources] = useState([]);
-  const { id } = useParams();
 
   useEffect(() => {
-    getResources(id);
+    getResources(subtopic);
+
     let token = localStorage.getItem("token");
     if (!token) {
       history.push("/login");
@@ -17,9 +18,9 @@ export default function ResourcesDashboard({ subtopic }) {
     //console.log(token);
   }, []);
 
-  const getResources = async (id) => {
+  const getResources = async (subtopic) => {
     try {
-      const resources = await axios.get(`/user/${id}`, {
+      const resources = await axios.get(`/resources/user/${subtopic.id}`, {
         headers: { "x-access-token": localStorage.getItem("token") },
       });
       setResources(resources.data);

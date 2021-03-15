@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 
-export default function Dashboard() {
+export default function Dashboard(onUpdateSubtopic) {
   const [topics, setTopics] = useState([]);
 
   let history = useHistory();
@@ -46,15 +46,15 @@ export default function Dashboard() {
   //   history.push(`/topics/${topic.id}`);
   // };
 
-  // const goToResourcesDashboard = async (subtopic) => {
-  //   console.log("subtopic got to res", subtopic);
-  //   onUpdateSubtopic(subtopic);
-  //   //onUpdateSubtopic()
-  //   history.push("/resources");
-  //   //await setSubtopicID(id);
+  const goToResourcesDashboard = async (subtopic) => {
+    console.log("subtopic got to res", subtopic);
+    onUpdateSubtopic(subtopic);
+    //onUpdateSubtopic()
+    history.push("/resources");
+    //await setSubtopicID(id);
 
-  //   console.log("subtopicID 2", subtopic);
-  // };
+    console.log("subtopicID 2", subtopic);
+  };
   //console.log("subtopics", subtopics);
 
   // const parents = topics.filter((e) => e.parent === null);
@@ -76,7 +76,10 @@ export default function Dashboard() {
             <h5 className="text-uppercase text-danger">{topic.topic_name}</h5>
 
             {topic.Subtopics.map((subtopic) => (
-              <div key={subtopic.id} onClick={() => history.push("/resources")}>
+              <div
+                key={subtopic.id}
+                onClick={() => goToResourcesDashboard(subtopic)}
+              >
                 <h6>---{subtopic.topic_name}</h6>
               </div>
             ))}

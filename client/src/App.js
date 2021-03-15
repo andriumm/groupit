@@ -8,10 +8,10 @@ import AddResource from "./components/AddResource";
 import TopicPage from "./components/TopicPage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ResourcesDashboard from "./components/ResourcesDashboard";
+import LogOut from "./components/LogOut";
 
 function App() {
   let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
-  //const [subtopicID, setSubtopicID] = useState(null);
   const [subtopic, setSubtopic] = useState({});
 
   const handleLogin = () => {
@@ -23,11 +23,14 @@ function App() {
     setSubtopic(subtopic);
   };
 
-  console.log("app subtopic", subtopic);
+  // console.log("app subtopic", subtopic);
 
   return (
     <Router>
       <div className="App">
+        <div>
+          <LogOut />
+        </div>
         <h1 align="center">GROUP B</h1>
         <nav align="center">
           <Link to="/register" className="text-dark ms-3 me-1">
@@ -67,6 +70,9 @@ function App() {
           </Route>
           <Route path="/resources">
             <ResourcesDashboard subtopic={subtopic} />
+          </Route>
+          <Route path="/login">
+            <LogOut />
           </Route>
         </Switch>
       </div>
