@@ -4,24 +4,29 @@ import { useHistory, Link } from "react-router-dom";
 const axios = require("axios");
 
 export default function ResourcesDashboard({ subtopic }) {
-	let history = useHistory();
-	const [resources, setResources] = useState([]);
 
-	useEffect((id) => {
+	let history = useHistory();
+	console.log("subtopic1", subtopic);
+	const [resources, setResources] = useState([]);
+	//const [id, setID] = useState(null);
+
+	useEffect(() => {
 		getResources(subtopic.id);
 		let token = localStorage.getItem("token");
 		if (!token) {
 			history.push("/login");
 		}
 		//console.log(token);
+		console.log("id", subtopic.id);
 	}, []);
 
 	const getResources = async (id) => {
 		try {
-			const resources = await axios.get(`/user/${subtopic.id}`, {
+			const resources = await axios.get(`/resources/user/${id}`, {
 				headers: { "x-access-token": localStorage.getItem("token") },
 			});
-			setResources(resources.data);
+			console.log("resources", resources.data.Resources);
+			setResources(resources.data.Resources);
 		} catch (error) {
 			console.log(error);
 		}
@@ -47,4 +52,5 @@ export default function ResourcesDashboard({ subtopic }) {
 			</div>
 		</div>
 	);
+
 }
