@@ -70,7 +70,7 @@ function App() {
           <Route path="/profile">
             <Profile />
           </Route>
-          <Route path="/resource">
+          <Route path="/addresource">
             <AddResource />
           </Route>
           <Route path="/dashboard">
@@ -79,7 +79,7 @@ function App() {
           <Route path="/topics/:id">
             <TopicPage />
           </Route>
-    <Route path="/topics">
+          <Route path="/topics">
 						<InsertTopics />
 					</Route>
           <Route path="/myprofile">
