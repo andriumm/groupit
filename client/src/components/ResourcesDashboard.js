@@ -1,17 +1,24 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useHistory, Link } from "react-router-dom";
 const axios = require("axios");
 
-export default function ResourcesDashboard({ subtopicID }) {
+export default function ResourcesDashboard({ subtopic }) {
+	let history = useHistory();
 	const [resources, setResources] = useState([]);
 
 	useEffect((id) => {
-		getResources(subtopicID);
+		getResources(subtopic.id);
+		let token = localStorage.getItem("token");
+		if (!token) {
+			history.push("/login");
+		}
+		//console.log(token);
 	}, []);
 
 	const getResources = async (id) => {
 		try {
-			const resources = await axios.get(`/user/${id}`, {
+			const resources = await axios.get(`/user/${subtopic.id}`, {
 				headers: { "x-access-token": localStorage.getItem("token") },
 			});
 			setResources(resources.data);
@@ -19,10 +26,10 @@ export default function ResourcesDashboard({ subtopicID }) {
 			console.log(error);
 		}
 	};
-	console.log("resources id", subtopicID);
+	//console.log("resources id", subtopic.id);
 	return (
 		<div>
-			<h3> SUBTOPIC: {subtopicID}</h3>
+			<h3> {subtopic.topic_name}</h3>
 			<div>
 				{resources.length ? (
 					<div>

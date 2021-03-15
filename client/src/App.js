@@ -10,18 +10,19 @@ import ResourcesDashboard from "./components/ResourcesDashboard";
 
 function App() {
 	let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
-	const [subtopicID, setSubtopicID] = useState(null);
+	//const [subtopicID, setSubtopicID] = useState(null);
+	const [subtopic, setSubtopic] = useState({});
 
 	const handleLogin = () => {
 		setSignedIn(localStorage.getItem("token"));
 		setSignedIn(true);
 	};
 
-	const setSubtopic = (id) => {
-		setSubtopicID(id);
+	const sentSubtopic = (subtopic) => {
+		setSubtopic(subtopic);
 	};
 
-	console.log("app subtopic", subtopicID);
+	console.log("app subtopic", subtopic);
 
 	return (
 		<Router>
@@ -55,13 +56,13 @@ function App() {
 						<AddResource />
 					</Route>
 					<Route path="/dashboard">
-						<Dashboard onUpdateSubtopic={setSubtopic} />
+						<Dashboard onUpdateSubtopic={sentSubtopic} />
 					</Route>
 					<Route path="/myprofile">
 						<Profile />
 					</Route>
 					<Route path="/resources">
-						<ResourcesDashboard subtopicID={subtopicID} />
+						<ResourcesDashboard subtopic={subtopic} />
 					</Route>
 				</Switch>
 			</div>

@@ -56,13 +56,14 @@ export default function Dashboard({ onUpdateSubtopic }) {
 		}
 	};
 
-	const goToResourcesDashboard = async (id) => {
-		onUpdateSubtopic(id);
+	const goToResourcesDashboard = async (subtopic) => {
+		console.log("subtopic got to res", subtopic);
+		onUpdateSubtopic(subtopic);
 		//onUpdateSubtopic()
 		history.push("/resources");
 		//await setSubtopicID(id);
 
-		console.log("subtopicID", id);
+		console.log("subtopicID 2", subtopic);
 	};
 	//console.log("subtopics", subtopics);
 
@@ -104,7 +105,7 @@ export default function Dashboard({ onUpdateSubtopic }) {
 										{/* <Link to={`/topics/${topic.id}`}>
 										<h3>{topic.topic_name}</h3>
 									</Link> */}
-										<span onClick={() => goToResourcesDashboard(subtopic.id)}>
+										<span onClick={() => goToResourcesDashboard(subtopic)}>
 											<h6 className="d-inline text-success">
 												{subtopic.topic_name}
 											</h6>
