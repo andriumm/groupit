@@ -18,6 +18,11 @@ function App() {
 		setSignedIn(true);
 	};
 
+	const handleLogout = () => {
+		localStorage.clear("token");
+		setSignedIn(false);
+	  }
+
 	const sentSubtopic = (subtopic) => {
 		setSubtopic(subtopic);
 	};
@@ -29,7 +34,7 @@ function App() {
 			<div className="App">
 				{signedIn && (
 					<div>
-						<LogOut />
+						<LogOut handleLogout={handleLogout} />
 					</div>
 				)}
 				
