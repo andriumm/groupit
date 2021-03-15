@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-//import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "../App.css";
 
 export default function Login({ handleLogin }) {
@@ -8,7 +8,7 @@ export default function Login({ handleLogin }) {
 		email: "",
 		password: "",
 	});
-	//let history = useHistory();
+	let history = useHistory();
 
 	const handleChange = (e) => {
 		e.persist();
@@ -22,7 +22,7 @@ export default function Login({ handleLogin }) {
 				//store it locally
 				localStorage.setItem("token", result.data.token);
 				handleLogin();
-				//   history.push("/dashboard");
+				history.push("/groupb");
 				console.log(result.data.message, result.data.token);
 			})
 			.catch((error) => console.log(error));

@@ -8,6 +8,8 @@ import AddResource from "./components/AddResource";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ResourcesDashboard from "./components/ResourcesDashboard";
 import LogOut from "./components/LogOut";
+import LoginButton from "./components/LoginButton";
+import GroupB from "./components/Groupb";
 
 function App() {
 	let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
@@ -22,12 +24,11 @@ function App() {
 		setSubtopic(subtopic);
 	};
 
-	console.log("app subtopic", subtopic);
-
 	return (
 		<Router>
 			<div className="App">
-				<div>
+				<div className="text-end">
+					<LoginButton />
 					<LogOut />
 				</div>
 				<h1 align="center">GROUP B</h1>
@@ -35,15 +36,15 @@ function App() {
 					<Link to="/register" className="text-dark ms-3 me-1">
 						Sign Up
 					</Link>
-					<Link to="/login" className="text-dark ms-3 me-1">
+					{/* <Link to="/login" className="text-dark ms-3 me-1">
 						Sign In
-					</Link>
-					<Link to="/dashboard" className="text-dark ms-3 me-1">
+					</Link> */}
+					{/* <Link to="/dashboard" className="text-dark ms-3 me-1">
 						Your Dashboard
 					</Link>
 					<Link to="/myprofile" className="text-dark ms-3 me-1">
 						Your Profile
-					</Link>
+					</Link> */}
 				</nav>
 				<Switch>
 					<Route path="/register">
@@ -52,7 +53,10 @@ function App() {
 					<Route path="/login">
 						<Login handleLogin={handleLogin} />
 					</Route>
-					<Route path="/profile">
+					<Route path="/groupb">
+						<GroupB />
+					</Route>
+					{/* <Route path="/profile">
 						<Profile />
 					</Route>
 					<Route path="/resource">
@@ -69,7 +73,7 @@ function App() {
 					</Route>
 					<Route path="/login">
 						<LogOut />
-					</Route>
+					</Route> */}
 				</Switch>
 			</div>
 		</Router>
