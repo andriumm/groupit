@@ -32,21 +32,26 @@ export default function Home() {
 					organized and make sure you can easily access them at any time you
 					want
 				</h5>
-				<Link
-					to="/register"
-					onClick={() => history.push("/register")}
-					className="text-dark ms-3 me-1"
-				>
-					<h2>Sign Up</h2>
-				</Link>
-				<h6>If you have an account</h6>
-				<Link
-					to="/login"
-					onClick={() => history.push("/login")}
-					className="text-dark ms-3 me-1"
-				>
-					<h4>Log In</h4>
-				</Link>
+				<div>
+					<h6>CREATE A NEW ACCOUNT</h6>
+					<Link
+						to="/register"
+						onClick={() => history.push("/register")}
+						className="text-dark ms-3 me-1"
+					>
+						<h2>Sign Up</h2>
+					</Link>
+				</div>
+				<div>
+					<h6>If you have an account</h6>
+					<Link
+						to="/login"
+						onClick={() => history.push("/login")}
+						className="text-dark ms-3 me-1"
+					>
+						<h4>Log In</h4>
+					</Link>
+				</div>
 			</div>
 		</Router>
 	);
