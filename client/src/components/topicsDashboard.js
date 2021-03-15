@@ -5,7 +5,7 @@ import { useHistory, useParams, Link } from "react-router-dom";
 export default function TopicsDashboard() {
   const [topic, setTopic] = useState({});
   const [subtopics, setSubtopics] = useState([]);
-  const [resources, setResources] = useState([]);
+  // const [resources, setResources] = useState([]);
   let history = useHistory();
   const { id } = useParams();
   //fetch from topics the topics with parents
@@ -13,7 +13,7 @@ export default function TopicsDashboard() {
   useEffect(() => {
     getTopicName(id);
     getSubtopics(id);
-    getResources(id);
+    // getResources(id);
     let token = localStorage.getItem("token");
     if (!token) {
       history.push("/login");
@@ -43,16 +43,16 @@ export default function TopicsDashboard() {
     }
   };
 
-  const getResources = async (id) => {
-    try {
-      const resource = await axios.get(`/resources/user/${id}`, {
-        headers: { "x-access-token": localStorage.getItem("token") },
-      });
-      setResources(resource.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getResources = async (id) => {
+  //   try {
+  //     const resource = await axios.get(`/resources/user/${id}`, {
+  //       headers: { "x-access-token": localStorage.getItem("token") },
+  //     });
+  //     setResources(resource.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <div>
@@ -62,7 +62,7 @@ export default function TopicsDashboard() {
         {subtopics.map((subtopic) => (
           <div key={subtopic.id}>
             <h3>{subtopic.topic_name}</h3>
-            {resources.map((resource) => (
+            {subtopic.Resources.map((resource) => (
               <div key={resource.id}>
                 <h4>---{resource.resource_name}</h4>
               </div>
