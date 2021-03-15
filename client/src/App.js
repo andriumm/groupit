@@ -10,32 +10,31 @@ import ResourcesDashboard from "./components/ResourcesDashboard";
 import LogOut from "./components/LogOut";
 import LoginButton from "./components/LoginButton";
 import GroupB from "./components/Groupb";
+import Home from "./components/Home";
 
 function App() {
 	let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
-	// const [subtopic, setSubtopic] = useState({});
+	const [subtopic, setSubtopic] = useState({});
 
 	const handleLogin = () => {
 		setSignedIn(localStorage.getItem("token"));
 		setSignedIn(true);
 	};
 
-	// const sentSubtopic = (subtopic) => {
-	// 	setSubtopic(subtopic);
-	// };
+	const sentSubtopic = (subtopic) => {
+		setSubtopic(subtopic);
+	};
 
 	return (
 		<Router>
 			<div className="App">
 				<div className="text-end">
-					<LoginButton />
+					<Link to="/login">Log In</Link>
 					<LogOut />
+					<Link to="/myprofile">Profile</Link>
 				</div>
 				<h1 align="center">GROUP B</h1>
 				<nav align="center">
-					<Link to="/register" className="text-dark ms-3 me-1">
-						Sign Up
-					</Link>
 					{/* <Link to="/login" className="text-dark ms-3 me-1">
 						Sign In
 					</Link> */}
@@ -56,7 +55,7 @@ function App() {
 					<Route path="/groupb">
 						<GroupB />
 					</Route>
-					{/* <Route path="/profile">
+					<Route path="/profile">
 						<Profile />
 					</Route>
 					<Route path="/resource">
@@ -73,7 +72,10 @@ function App() {
 					</Route>
 					<Route path="/login">
 						<LogOut />
-					</Route> */}
+					</Route>
+					<Route path="/">
+						<Home />
+					</Route>
 				</Switch>
 			</div>
 		</Router>

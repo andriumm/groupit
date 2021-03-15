@@ -5,13 +5,13 @@ import { useHistory } from "react-router-dom";
 export default function LoginButton() {
 	let history = useHistory();
 
-	function handleClick() {
-		history.push("/login");
-	}
+	// function handleClick() {
+	// 	history.push("/login");
+	// }
 
 	return (
 		<div>
-			<Link onClick={handleClick}>Log In</Link>
+			<Link onClick={() => history.push("/login")}>Log In</Link>
 		</div>
 	);
 }
