@@ -80,11 +80,13 @@ export default function Dashboard(onUpdateSubtopic) {
 
       <div>
         {topics.map((topic) => (
-          <div
-            key={topic.id}
-            onClick={() => history.push(`/topics/${topic.id}`)}
-          >
-            <h5 className="text-uppercase text-danger">{topic.topic_name}</h5>
+          <div key={topic.id}>
+            <h5
+              className="text-uppercase text-danger"
+              onClick={() => history.push(`/topics/${topic.id}`)}
+            >
+              {topic.topic_name}
+            </h5>
             <button onClick={() => deleteTopic(topic.id)}>Delete Topic</button>
             {topic.Subtopics.map((subtopic) => (
               <div

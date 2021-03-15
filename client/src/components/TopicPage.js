@@ -70,8 +70,10 @@ export default function TopicPage() {
       {/* What could be added: link on the name of the subtopic to redirect to the Resources Dashboard */}
       <div>
         {subtopics.map((subtopic) => (
-          <div key={subtopic.id} onClick={() => history.push("/resources")}>
-            <h5>{subtopic.topic_name}</h5>
+          <div key={subtopic.id}>
+            <h5 onClick={() => history.push("/resources")}>
+              {subtopic.topic_name}
+            </h5>
             <button onClick={() => deleteSubtopic(subtopic.id)}>
               Delete Subtopic
             </button>
