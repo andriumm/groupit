@@ -4,6 +4,7 @@ import { useHistory, Link } from "react-router-dom";
 const axios = require("axios");
 
 export default function ResourcesDashboard({ subtopic }) {
+
 	let history = useHistory();
 	console.log("subtopic1", subtopic);
 	const [resources, setResources] = useState([]);
@@ -51,4 +52,5 @@ export default function ResourcesDashboard({ subtopic }) {
 			</div>
 		</div>
 	);
+
 }

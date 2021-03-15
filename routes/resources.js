@@ -14,6 +14,7 @@ const resourceShouldBelongToTopic = require("../guards/resourceShouldBelongToTop
   this returns a nested object  
 */
 router.get("/", userShouldBeLoggedIn, async function (req, res, next) {
+
 	const id = req.user_id;
 	try {
 		const data = await models.Topics.findAll({
@@ -29,6 +30,7 @@ router.get("/", userShouldBeLoggedIn, async function (req, res, next) {
 	} catch (error) {
 		res.status(500).send(error);
 	}
+
 });
 
 /* 
@@ -36,6 +38,7 @@ router.get("/", userShouldBeLoggedIn, async function (req, res, next) {
   this returns a nested object
   */
 router.get(
+
 	"/user/:id",
 	[userShouldBeLoggedIn, topicBelongsToUser],
 	async function (req, res, next) {
@@ -60,24 +63,26 @@ router.get(
 
 /* GET one resource. */
 router.get(
-	"/:id",
-	[userShouldBeLoggedIn, resourceShouldExist, resourceShouldBelongToTopic],
-	function (req, res, next) {
-		const { id } = req.params; //this is the resource ID
-		models.Resources.findOne({
-			where: {
-				id,
-			},
-		})
-			.then((data) => res.send(data))
-			.catch((error) => {
-				res.status(500).send(error);
-			});
-	}
+
+  "/:id",
+  [userShouldBeLoggedIn, resourceShouldExist, resourceShouldBelongToTopic],
+  function (req, res, next) {
+    const { id } = req.params; //this is the resource ID
+    models.Resources.findOne({
+      where: {
+        id,
+      },
+    })
+      .then((data) => res.send(data))
+      .catch((error) => {
+        res.status(500).send(error);
+      });
+  }
 );
 
 /* POST one resource. */
 router.post(
+
 	"/:id",
 	[userShouldBeLoggedIn, topicShouldExist, topicBelongsToUser],
 	function (req, res, next) {
@@ -150,6 +155,7 @@ router.put(
 
 /* DELETE one resource. */
 router.delete(
+
 	"/:id",
 	[userShouldBeLoggedIn, resourceShouldExist, resourceShouldBelongToTopic],
 	function (req, res, next) {
@@ -164,6 +170,7 @@ router.delete(
 				res.status(500).send(error);
 			});
 	}
+
 );
 
 module.exports = router;
