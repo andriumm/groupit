@@ -14,54 +14,58 @@ const resourceShouldBelongToTopic = require("../guards/resourceShouldBelongToTop
   this returns a nested object  
 */
 router.get("/", userShouldBeLoggedIn, async function (req, res, next) {
+
 	const id = req.user_id;
-  try {
+	try {
 		const data = await models.Topics.findAll({
 			where: {
-				user_id : id,
+				user_id: id,
 			},
-      attributes: ["id"],
-      include: {
-        model: models.Resources,
-      },
+			attributes: ["id"],
+			include: {
+				model: models.Resources,
+			},
 		});
 		res.send(data);
 	} catch (error) {
 		res.status(500).send(error);
 	}
+
 });
 
 /* 
   get all resources belonging to one topic 
   this returns a nested object
   */
-router.get("/user/:id", [userShouldBeLoggedIn, topicBelongsToUser] , async function (req, res, next) {
-  const { id } = req.params; // this is the topic ID
-  console.log("mimi")
-  try {
-		const data = await models.Topics.findOne({
-			where: {
-			  id,
-			},
-      attributes: ["id"],
-      include: {
-        model: models.Resources,
-      },
-		});
-		res.send(data);
-	} catch (error) {
-		res.status(500).send(error);
+router.get(
+
+	"/user/:id",
+	[userShouldBeLoggedIn, topicBelongsToUser],
+	async function (req, res, next) {
+		const { id } = req.params; // this is the topic ID
+		console.log("mimi");
+		try {
+			const data = await models.Topics.findOne({
+				where: {
+					id,
+				},
+				attributes: ["id"],
+				include: {
+					model: models.Resources,
+				},
+			});
+			res.send(data);
+		} catch (error) {
+			res.status(500).send(error);
+		}
 	}
-});
+);
 
 /* GET one resource. */
 router.get(
-  "/:id", 
-  [
-    userShouldBeLoggedIn,
-    resourceShouldExist,
-    resourceShouldBelongToTopic,
-  ],
+
+  "/:id",
+  [userShouldBeLoggedIn, resourceShouldExist, resourceShouldBelongToTopic],
   function (req, res, next) {
     const { id } = req.params; //this is the resource ID
     models.Resources.findOne({
@@ -78,91 +82,95 @@ router.get(
 
 /* POST one resource. */
 router.post(
-  "/:id", 
-  [userShouldBeLoggedIn, 
-    topicShouldExist,topicBelongsToUser],
-  function (req, res, next) {
-    const topic_id = req.params.id; //this is the topic ID
-    const {
-      resource_name,
-      url,
-      format,
-      priority,
-      complete,
-      reminder,
-      created_date,
-    } = req.body;
-    models.Resources.create({
-      topic_id,
-      resource_name,
-      url,
-      format,
-      priority,
-      complete,
-      reminder,
-      created_date,
-    })
-      .then(() => res.send({ message: "new resource added succesfully!" }))
-      .catch((error) => {
-        res.status(500).send(error);
-      });
-  res.end();
-  }
+
+	"/:id",
+	[userShouldBeLoggedIn, topicShouldExist, topicBelongsToUser],
+	function (req, res, next) {
+		const topic_id = req.params.id; //this is the topic ID
+		const {
+			resource_name,
+			url,
+			format,
+			priority,
+			complete,
+			reminder,
+			created_date,
+		} = req.body;
+		models.Resources.create({
+			topic_id,
+			resource_name,
+			url,
+			format,
+			priority,
+			complete,
+			reminder,
+			created_date,
+		})
+			.then(() => res.send({ message: "new resource added succesfully!" }))
+			.catch((error) => {
+				res.status(500).send(error);
+			});
+		//res.end();
+	}
 );
 
-router.put("/:id", [
-  userShouldBeLoggedIn,
-  resourceShouldExist,
-  resourceShouldBelongToTopic,
-], function (req, res, next) {
-  const {
-    topic_id,
-    resource_name,
-    url,
-    format,
-    priority,
-    complete,
-    reminder,
-    created_date,
-  } = req.body;
-  const { id } = req.params; //this is the resource ID
-  models.Resources.update(
-    {
-      topic_id,
-      resource_name,
-      url,
-      format,
-      priority,
-      complete,
-      reminder,
-      created_date,
-    },
-    {
-      where: {
-        id,
-      },
-    }
-  )
-    .then(() => res.send({ message: "resource updated succesfully!" }))
-    .catch((error) => {
-      res.status(500).send(error);
-    });
-});
+router.put(
+	"/:id",
+	[userShouldBeLoggedIn, resourceShouldExist, resourceShouldBelongToTopic],
+	function (req, res, next) {
+		const {
+			topic_id,
+			resource_name,
+			url,
+			format,
+			priority,
+			complete,
+			reminder,
+			created_date,
+		} = req.body;
+		const { id } = req.params; //this is the resource ID
+		models.Resources.update(
+			{
+				topic_id,
+				resource_name,
+				url,
+				format,
+				priority,
+				complete,
+				reminder,
+				created_date,
+			},
+			{
+				where: {
+					id,
+				},
+			}
+		)
+			.then(() => res.send({ message: "resource updated succesfully!" }))
+			.catch((error) => {
+				res.status(500).send(error);
+			});
+	}
+);
 
 /* DELETE one resource. */
-router.delete("/:id", [userShouldBeLoggedIn,
-resourceShouldExist,
-resourceShouldBelongToTopic], function (req, res, next) {
-  const { id } = req.params; //this is the resource ID
-  models.Resources.destroy({
-    where: {
-      id,
-    },
-  })
-    .then(() => res.send({ message: "resource deleted!" }))
-    .catch((error) => {
-      res.status(500).send(error);
-    });
-});
+router.delete(
+
+	"/:id",
+	[userShouldBeLoggedIn, resourceShouldExist, resourceShouldBelongToTopic],
+	function (req, res, next) {
+		const { id } = req.params; //this is the resource ID
+		models.Resources.destroy({
+			where: {
+				id,
+			},
+		})
+			.then(() => res.send({ message: "resource deleted!" }))
+			.catch((error) => {
+				res.status(500).send(error);
+			});
+	}
+
+);
 
 module.exports = router;

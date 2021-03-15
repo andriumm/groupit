@@ -5,12 +5,14 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Dashboard from "./components/Dashboard";
 import AddResource from "./components/AddResource";
+import TopicPage from "./components/TopicPage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ResourcesDashboard from "./components/ResourcesDashboard";
 import LogOut from "./components/LogOut";
 import LoginButton from "./components/LoginButton";
 import GroupB from "./components/Groupb";
 import Home from "./components/Home";
+import InsertTopics from "./components/InsertTopics";
 
 function App() {
 	let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
