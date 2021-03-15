@@ -23,7 +23,7 @@ function App() {
 	const handleLogout = () => {
 		localStorage.clear("token");
 		setSignedIn(false);
-	  }
+	}
 
 	const sentSubtopic = (subtopic) => {
 		setSubtopic(subtopic);
@@ -35,17 +35,24 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <div>
-          <LogOut />
-        </div>
+        {signedIn && (
+          <div>
+            <LogOut handleLogout={handleLogout} />
+          </div>
+        )}
+        
         <h1 align="center">GROUP B</h1>
         <nav align="center">
-          <Link to="/register" className="text-dark ms-3 me-1">
-            Sign Up
-          </Link>
-          <Link to="/login" className="text-dark ms-3 me-1">
-            Sign In
-          </Link>
+          {!signedIn && (
+            <Link to="/register" className="text-dark ms-3 me-1">
+              Sign Up
+            </Link>
+          )}
+          {!signedIn && (
+            <Link to="/login" className="text-dark ms-3 me-1">
+              Sign In
+            </Link>
+          )}
           <Link to="/dashboard" className="text-dark ms-3 me-1">
             Your Dashboard
           </Link>
