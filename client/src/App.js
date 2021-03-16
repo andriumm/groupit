@@ -95,11 +95,17 @@ function App() {
 					<Route path="/profile">
 						<Profile />
 					</Route>
-					<Route path="/resource">
+					<Route path="/addresource">
 						<AddResource />
 					</Route>
 					<Route path="/dashboard">
 						<Dashboard onUpdateSubtopic={sentSubtopic} />
+					</Route>
+					<Route path="/topics/:id" onUpdateSubtopic={sentSubtopic}>
+						<TopicPage />
+					</Route>
+					<Route path="/topics">
+						<InsertTopics />
 					</Route>
 					<Route path="/myprofile">
 						<Profile />
@@ -107,49 +113,10 @@ function App() {
 					<Route path="/resources">
 						<ResourcesDashboard subtopic={subtopic} />
 					</Route>
-					<Route path="/topics/:id">
-						<TopicPage />
-					</Route>
-					<Route path="/topics">
-						<InsertTopics />
-					</Route>
-
-					<Route path="/login">
-						<LogOut />
-					</Route>
 					<Route path="/">
 						<Home />
 					</Route>
 				</Switch>
-
-				{/* return (
-    <Router>
-      <div className="App">
-        {signedIn && (
-          <div>
-            <LogOut handleLogout={handleLogout} />
-          </div>
-        )}
-        
-        <h1 align="center">GROUP B</h1>
-        <nav align="center">
-          {!signedIn && (
-            <Link to="/register" className="text-dark ms-3 me-1">
-              Sign Up
-            </Link>
-          )}
-          {!signedIn && (
-            <Link to="/login" className="text-dark ms-3 me-1">
-              Sign In
-            </Link>
-          )}
-          <Link to="/dashboard" className="text-dark ms-3 me-1">
-            Your Dashboard
-          </Link>
-          <Link to="/myprofile" className="text-dark ms-3 me-1">
-            Your Profile
-          </Link>
-        </nav> */}
 			</div>
 		</Router>
 	);

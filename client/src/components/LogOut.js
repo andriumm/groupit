@@ -13,7 +13,7 @@ export default function LogOut({ handleLogout }) {
 
 	return (
 		<div>
-			<button onClick={() => handleLogout()}>Log out</button>
+			<button onClick={() => handleLogout(history)}>Log out</button>
 		</div>
 	);
 }
