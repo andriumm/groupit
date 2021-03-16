@@ -21,8 +21,7 @@ import Home from "./components/Home";
 import InsertTopics from "./components/InsertTopics";
 
 function App() {
-	let history = useHistory();
-	let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
+	let [signedIn, setSignedIn] = useState(!!localStorage.getItem("token"));
 	const [subtopic, setSubtopic] = useState({});
 
 	const handleLogin = () => {
@@ -33,7 +32,6 @@ function App() {
 	const handleLogout = () => {
 		localStorage.clear("token");
 		setSignedIn(false);
-		//history.push("/");
 	};
 
 	const sentSubtopic = (subtopic) => {
