@@ -8,6 +8,7 @@ export default function ResourcesDashboard({ subtopic }) {
 	console.log("subtopic1", subtopic);
 	const [resources, setResources] = useState([]);
 	const [completed, setCompleted] = useState(false);
+	const [priority, setPriority] = useState();
 	//const [id, setID] = useState(null);
 
 	useEffect(() => {
@@ -44,7 +45,7 @@ export default function ResourcesDashboard({ subtopic }) {
 	};
 
 	const updateCompleted = async (id) => {
-		console.log("completed1", completed);
+		//console.log("completed1", completed);
 		completed === false ? setCompleted(true) : setCompleted(false);
 		try {
 			await axios.put(
@@ -58,7 +59,24 @@ export default function ResourcesDashboard({ subtopic }) {
 			console.log(error);
 		}
 	};
-	console.log("completed2", completed);
+	//console.log("completed2", completed);
+
+	const updatePriority = async (id) => {
+		//console.log("completed1", completed);
+		completed === false ? setCompleted(true) : setCompleted(false);
+		try {
+			await axios.put(
+				`/resources/${id}`,
+				{ complete: completed },
+				{
+					headers: { "x-access-token": localStorage.getItem("token") },
+				}
+			);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	//console.log("resources id", subtopic.id);
 	return (
 		<div>
@@ -139,11 +157,39 @@ export default function ResourcesDashboard({ subtopic }) {
 												{resource.format}
 											</td>
 											<td scope="col" className="col-1">
-												{resource.priority}
+												<div class="dropdown">
+													<button
+														class="btn btn-secondary dropdown-toggle"
+														type="button"
+														id="priority"
+														data-bs-toggle="dropdown"
+														aria-expanded="false"
+													>
+														{resource.priority}
+													</button>
+													<ul class="dropdown-menu" aria-labelledby="priority">
+														<li>
+															<button class="dropdown-item" type="button">
+																1
+															</button>
+														</li>
+														<li>
+															<button class="dropdown-item" type="button">
+																2
+															</button>
+														</li>
+														<li>
+															<button class="dropdown-item" type="button">
+																3
+															</button>
+														</li>
+													</ul>
+												</div>
 											</td>
 											<td scope="col" className="col-1">
 												<input
 													type="checkbox"
+													name="completed"
 													onClick={() => updateCompleted(resource.id)}
 												></input>
 												{resource.complete}
