@@ -1,3 +1,4 @@
+import "../App.css";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";

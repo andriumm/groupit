@@ -7,11 +7,11 @@ import Dashboard from "./components/Dashboard";
 import AddResource from "./components/AddResource";
 import TopicPage from "./components/TopicPage";
 import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Link,
-	useHistory,
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory,
 } from "react-router-dom";
 import ResourcesDashboard from "./components/ResourcesDashboard";
 import LogOut from "./components/LogOut";
@@ -21,105 +21,105 @@ import Home from "./components/Home";
 import InsertTopics from "./components/InsertTopics";
 
 function App() {
-	let [signedIn, setSignedIn] = useState(!!localStorage.getItem("token"));
-	const [subtopic, setSubtopic] = useState({});
+  let [signedIn, setSignedIn] = useState(!!localStorage.getItem("token"));
+  const [subtopic, setSubtopic] = useState({});
 
-	const handleLogin = () => {
-		setSignedIn(localStorage.getItem("token"));
-		setSignedIn(true);
-	};
+  const handleLogin = () => {
+    setSignedIn(localStorage.getItem("token"));
+    setSignedIn(true);
+  };
 
-	const handleLogout = () => {
-		localStorage.clear("token");
-		setSignedIn(false);
-	};
+  const handleLogout = () => {
+    localStorage.clear("token");
+    setSignedIn(false);
+  };
 
-	const sentSubtopic = (subtopic) => {
-		setSubtopic(subtopic);
-	};
+  const sentSubtopic = (subtopic) => {
+    setSubtopic(subtopic);
+  };
 
-	return (
-		<Router>
-			<div className="App">
-				<div className="text-end">
-					{signedIn && (
-						<div>
-							<LogOut handleLogout={handleLogout} />
-						</div>
-					)}
-					{signedIn && (
-						<div>
-							<Link to="/myprofile" className="text-dark ms-3 me-1">
-								Profile
-							</Link>
-						</div>
-					)}
+  return (
+    <Router>
+      <div className="App">
+        <div className="text-end">
+          {signedIn && (
+            <div>
+              <LogOut handleLogout={handleLogout} />
+            </div>
+          )}
+          {signedIn && (
+            <div>
+              <Link to="/myprofile" className="text-dark ms-3 me-1">
+                Profile
+              </Link>
+            </div>
+          )}
 
-					{!signedIn && (
-						<Link to="/register" className="text-dark ms-3 me-1">
-							Sign Up
-						</Link>
-					)}
-					{!signedIn && (
-						<Link to="/login" className="text-dark ms-3 me-1">
-							Sign In
-						</Link>
-					)}
+          {!signedIn && (
+            <Link to="/register" className="text-dark ms-3 me-1">
+              Sign Up
+            </Link>
+          )}
+          {!signedIn && (
+            <Link to="/login" className="text-dark ms-3 me-1">
+              Sign In
+            </Link>
+          )}
 
-					{/* <Link to="/login">Log In</Link>
+          {/* <Link to="/login">Log In</Link>
 					{/* <LogOut /> 
 					<Link to="/myprofile">Profile</Link> */}
-				</div>
-				<h1 align="center">groupIT!</h1>
-				<nav align="center">
-					{/* <Link to="/login" className="text-dark ms-3 me-1">
+        </div>
+        <h1 align="center">groupIT!</h1>
+        <nav align="center">
+          {/* <Link to="/login" className="text-dark ms-3 me-1">
 						Sign In
 					</Link> */}
-					{/* <Link to="/dashboard" className="text-dark ms-3 me-1">
+          {/* <Link to="/dashboard" className="text-dark ms-3 me-1">
 						Your Dashboard
 					</Link>
 					<Link to="/myprofile" className="text-dark ms-3 me-1">
 						Your Profile
 					</Link> */}
-				</nav>
-				<Switch>
-					<Route path="/register">
-						<Register />
-					</Route>
-					<Route path="/login">
-						<Login handleLogin={handleLogin} />
-					</Route>
-					<Route path="/groupb">
-						<GroupB />
-					</Route>
-					<Route path="/profile">
-						<Profile />
-					</Route>
-					<Route path="/addresource">
-						<AddResource />
-					</Route>
-					<Route path="/dashboard">
-						<Dashboard onUpdateSubtopic={sentSubtopic} />
-					</Route>
-					<Route path="/topics/:id" onUpdateSubtopic={sentSubtopic}>
-						<TopicPage />
-					</Route>
-					<Route path="/topics">
-						<InsertTopics />
-					</Route>
-					<Route path="/myprofile">
-						<Profile />
-					</Route>
-					<Route path="/resources">
-						<ResourcesDashboard subtopic={subtopic} />
-					</Route>
-					<Route path="/">
-						<Home />
-					</Route>
-				</Switch>
-			</div>
-		</Router>
-	);
+        </nav>
+        <Switch>
+          <Route path="/register">
+            <Register />
+          </Route>
+          <Route path="/login">
+            <Login handleLogin={handleLogin} />
+          </Route>
+          <Route path="/groupb">
+            <GroupB />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/addresource">
+            <AddResource />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard onUpdateSubtopic={sentSubtopic} />
+          </Route>
+          <Route path="/topics/:id">
+            <TopicPage onUpdateSubtopic={sentSubtopic} />
+          </Route>
+          <Route path="/topics">
+            <InsertTopics />
+          </Route>
+          <Route path="/myprofile">
+            <Profile />
+          </Route>
+          <Route path="/resources">
+            <ResourcesDashboard subtopic={subtopic} />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default App;
