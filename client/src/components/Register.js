@@ -45,7 +45,7 @@ export default function Register() {
   return (
     <div>
       <form method="post" onSubmit={handleSubmit}>
-        <label htmlFor="name">
+        <label className="form-label" htmlFor="name">
           Name
           <input
             onChange={handleChange}
@@ -53,10 +53,11 @@ export default function Register() {
             value={user.name}
             type="text"
             id="name"
+            className="form-control"
           />
         </label>
-
-        <label htmlFor="username">
+        <br />
+        <label className="form-label" htmlFor="username">
           Username
           <input
             onChange={handleChange}
@@ -64,10 +65,11 @@ export default function Register() {
             value={user.username}
             type="text"
             id="username"
+            className="form-control"
           />
         </label>
-
-        <label htmlFor="email">
+        <br />
+        <label className="form-label" htmlFor="email">
           Email
           <input
             onChange={handleChange}
@@ -75,10 +77,11 @@ export default function Register() {
             value={user.email}
             type="text"
             id="email"
+            className="form-control"
           />
         </label>
-
-        <label htmlFor="password">
+        <br />
+        <label className="form-label" htmlFor="password">
           Password
           <input
             onChange={handleChange}
@@ -86,10 +89,11 @@ export default function Register() {
             value={user.password}
             type="password"
             id="password"
+            className="form-control"
           />
         </label>
-
-        <button>Register</button>
+        <br />
+        <button className="loginButton btn">Register</button>
       </form>
     </div>
   );

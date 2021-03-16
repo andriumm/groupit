@@ -45,11 +45,11 @@ export default function Profile() {
   console.log("profileInfo", profileInfo);
   return (
     <div>
-      <div>
+      <div className="profile">
         <h2>Profile</h2>
-        <div>{profileInfo.name}</div>
-        <div>{profileInfo.username}</div>
-        <div>{profileInfo.email}</div>
+        <div>Name: {profileInfo.name}</div>
+        <div>Username: {profileInfo.username}</div>
+        <div>Email: {profileInfo.email}</div>
       </div>
       <div>
         <UpdateProfile profileInfo={profileInfo} onUpdateProfile={getProfile} />

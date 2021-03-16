@@ -45,7 +45,7 @@ export default function UpdateProfile({ profileInfo, onUpdateProfile }) {
       <div>
         <h3>Update your profile</h3>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="name">
+          <label className="form-label" htmlFor="name">
             Name
             <input
               type="text"
@@ -53,9 +53,10 @@ export default function UpdateProfile({ profileInfo, onUpdateProfile }) {
               value={update.name}
               onChange={handleChange}
               id="name"
+              className="form-control"
             />
           </label>
-          <label htmlFor="username">
+          <label className="form-label" htmlFor="username">
             Username
             <input
               type="text"
@@ -63,9 +64,10 @@ export default function UpdateProfile({ profileInfo, onUpdateProfile }) {
               value={update.username}
               onChange={handleChange}
               id="username"
+              className="form-control"
             />
           </label>
-          <label htmlFor="email">
+          <label className="form-label" htmlFor="email">
             Email
             <input
               type="text"
@@ -73,9 +75,10 @@ export default function UpdateProfile({ profileInfo, onUpdateProfile }) {
               value={update.email}
               onChange={handleChange}
               id="email"
+              className="form-control"
             />
           </label>
-          <button>Update</button>
+          <button className="loginButton btn">Update</button>
         </form>
       </div>
     </div>
