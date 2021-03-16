@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams, Link } from "react-router-dom";
 
-export default function TopicPage() {
+export default function TopicPage({ onUpdateSubtopic }) {
   const [topic, setTopic] = useState({});
   const [subtopics, setSubtopics] = useState([]);
 
@@ -64,6 +64,16 @@ export default function TopicPage() {
     }
   };
 
+  const goToResourcesDashboard = async (subtopic) => {
+    console.log("subtopic got to res", subtopic);
+    onUpdateSubtopic(subtopic);
+
+    history.push("/resources");
+    //await setSubtopicID(id);
+
+    console.log("subtopicID 2", subtopic);
+  };
+
   return (
     <div>
       <h2 className="text-uppercase text-danger">{topic.topic_name}</h2>
@@ -71,7 +81,7 @@ export default function TopicPage() {
       <div>
         {subtopics.map((subtopic) => (
           <div key={subtopic.id}>
-            <h5 onClick={() => history.push("/resources")}>
+            <h5 onClick={() => goToResourcesDashboard(subtopic)}>
               {subtopic.topic_name}
             </h5>
             <button onClick={() => deleteSubtopic(subtopic.id)}>
