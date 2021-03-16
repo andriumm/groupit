@@ -30,6 +30,7 @@ router.post('/', async function(req, res) {
       }
     
       const secret = `${user.password}-${user.createdAt.getTime()}`;
+      console.log("secret", secret);
     
       const token = jwt.sign({payload}, secret); //example says encode() but that doesn't work
       console.log(token)
@@ -60,8 +61,9 @@ router.post('/', async function(req, res) {
         throw new Error( "User not found. Can't reset password")
       } else {
         const secret = `${user.password}-${user.createdAt.getTime()}`;
-        const payload = jwt.decode(token, secret);
-        console.log(payload) //this corresponds to the payload object in the /resetpassword endpoint
+        console.log("secret", secret)
+        const payload = jwt.verify(token, secret);
+        console.log("payload", payload) //this corresponds to the payload object in the /resetpassword endpoint
   
         if(!payload){
           throw new Error("Incorrect token. Not allowed to reset password")
@@ -91,7 +93,7 @@ router.post('/', async function(req, res) {
         throw new Error( "User not found. Can't reset password")
       } else {
         const secret = `${user.password}-${user.createdAt.getTime()}`;
-        const payload = jwt.decode(token, secret);
+        const payload = jwt.verify(token, secret);
   
         if(!payload){
           throw new Error("Incorrect token. Not allowed to reset password")

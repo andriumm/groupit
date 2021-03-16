@@ -16,7 +16,7 @@ export default function ResetPassword() {
     useEffect(() => {
         console.log(pathname)
         verifyToken()
-    });
+    }, []);
 
     const verifyToken = async () => {
         const response = await axios.get(`${pathname}`)
