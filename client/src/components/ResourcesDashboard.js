@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
+
 const axios = require("axios");
 
 export default function ResourcesDashboard({ subtopic }) {
@@ -62,12 +63,12 @@ export default function ResourcesDashboard({ subtopic }) {
 	//console.log("completed2", completed);
 
 	const updatePriority = async (id) => {
-		//console.log("completed1", completed);
-		completed === false ? setCompleted(true) : setCompleted(false);
+		setPriority();
+
 		try {
 			await axios.put(
 				`/resources/${id}`,
-				{ complete: completed },
+				{ priority: priority },
 				{
 					headers: { "x-access-token": localStorage.getItem("token") },
 				}
@@ -157,33 +158,17 @@ export default function ResourcesDashboard({ subtopic }) {
 												{resource.format}
 											</td>
 											<td scope="col" className="col-1">
-												<div class="dropdown">
-													<button
-														class="btn btn-secondary dropdown-toggle"
-														type="button"
-														id="priority"
-														data-bs-toggle="dropdown"
-														aria-expanded="false"
-													>
-														{resource.priority}
-													</button>
-													<ul class="dropdown-menu" aria-labelledby="priority">
-														<li>
-															<button class="dropdown-item" type="button">
-																1
-															</button>
-														</li>
-														<li>
-															<button class="dropdown-item" type="button">
-																2
-															</button>
-														</li>
-														<li>
-															<button class="dropdown-item" type="button">
-																3
-															</button>
-														</li>
-													</ul>
+												<div className="dropdown">
+													<select className="btn btn-secondary dropdown-toggle">
+														<option value="">
+															Current: {resource.priority}
+														</option>
+														<option className="dropdown-item">1</option>
+														<option className="dropdown-item">2</option>
+														<option className="dropdown-item">3</option>
+														<option className="dropdown-item">4</option>
+														<option className="dropdown-item">5</option>
+													</select>
 												</div>
 											</td>
 											<td scope="col" className="col-1">
