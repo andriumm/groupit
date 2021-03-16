@@ -19,6 +19,8 @@ import LoginButton from "./components/LoginButton";
 import GroupB from "./components/Groupb";
 import Home from "./components/Home";
 import InsertTopics from "./components/InsertTopics";
+import SendResetPasswordEmail from "./components/SendResetPasswordEmail";
+import ResetPassword from "./components/ResetPassword";
 
 function App() {
 	let [signedIn, setSignedIn] = useState(!!localStorage.getItem("token"));
@@ -113,6 +115,12 @@ function App() {
 					<Route path="/resources">
 						<ResourcesDashboard subtopic={subtopic} />
 					</Route>
+          <Route path="/resetpassword/:id/*">
+            <ResetPassword />
+          </Route>
+          <Route path="/resetpassword">
+            <SendResetPasswordEmail />
+          </Route>
 					<Route path="/">
 						<Home />
 					</Route>

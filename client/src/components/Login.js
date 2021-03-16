@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "../App.css";
 
 export default function Login({ handleLogin }) {
@@ -52,6 +52,7 @@ export default function Login({ handleLogin }) {
 				</label>
 				<button onClick={login}>Login</button>
 			</div>
+			<Link to="/resetpassword">Forgot your password?</Link>
 		</div>
 	);
 }

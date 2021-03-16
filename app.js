@@ -8,6 +8,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var topicsRouter = require("./routes/topics");
 var resourcesRouter = require("./routes/resources");
+var resetpasswordRouter = require("./routes/resetpassword");
 
 
 
@@ -23,6 +24,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/topics", topicsRouter);
 app.use("/resources", resourcesRouter);
+app.use("/resetpassword", resetpasswordRouter);
 
 
 
