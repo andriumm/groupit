@@ -65,16 +65,6 @@ export default function ResourcesDashboard({ subtopic }) {
 	console.log("completed2", completed);
 
 	const handlePriorityChange = async ({ target }, id) => {
-		console.log("value", target.value);
-		console.log("id", id);
-		// setTest({
-		// 	priority: target.value,
-		// });
-
-		//console.log("id", id);
-		//setTest({ priority:  });
-		console.log("test priority2:");
-
 		try {
 			await axios.put(
 				`/resources/${id}`,
@@ -86,7 +76,6 @@ export default function ResourcesDashboard({ subtopic }) {
 		} catch (error) {
 			console.log(error);
 		}
-		console.log("priority", target.value);
 	};
 
 	//console.log("resources id", subtopic.id);
