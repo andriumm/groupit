@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import "../App.css";
 
 export default function Login({ handleLogin }) {
@@ -33,7 +33,7 @@ export default function Login({ handleLogin }) {
       <h2>Login</h2>
       <div>
         <label className="form-label" htmlFor="email">
-          Email
+          Email:
           <input
             onChange={handleChange}
             name="email"
@@ -44,7 +44,7 @@ export default function Login({ handleLogin }) {
         </label>
         <br />
         <label className="form-label" htmlFor="password">
-          Password
+          Password:
           <input
             onChange={handleChange}
             name="password"
@@ -53,11 +53,11 @@ export default function Login({ handleLogin }) {
             className="form-control"
           />
         </label>
-        <br />
         <button className="loginButton btn" onClick={login}>
           Login
         </button>
       </div>
+      <Link to="/resetpassword">Forgot your password?</Link>
     </div>
   );
 }
