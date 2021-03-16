@@ -121,6 +121,9 @@ export default function Dashboard(onUpdateSubtopic) {
           ) : null}
         </div>
       </div> */}
+    
+    <div> <Link to="/topics">Add a new topic</Link> </div>
+
     </div>
   );
 }

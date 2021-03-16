@@ -69,6 +69,9 @@ export default function TopicPage() {
           </div>
         ))}
       </div>
+
+      <div> <Link to="/topics">Add a new topic</Link> </div>
+
     </div>
   );
 }

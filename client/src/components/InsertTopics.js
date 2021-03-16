@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const InsertTopics = () => {
 
@@ -247,6 +247,9 @@ const [subtopicConfirmation, setSubtopicConfirmation] = useState(null);
     { subtopicConfirmation && (
       <div> New subtopic added! </div>
     )} 
+
+<div> <Link to="/dashboard">Go to Dashboard</Link> </div>
+<div> <Link to="/resource">Add a resource</Link> </div>
 
     </div>
 
