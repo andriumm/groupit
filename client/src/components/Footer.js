@@ -8,7 +8,7 @@ export default function Footer() {
       
       <div><Link to="/topics">Add a new topic</Link></div>
       <div><Link to="/addresource">Add a resource</Link></div>
-      <div><Link to="/">Homepage</Link></div>
+      <div><Link to="/dashboard">Homepage</Link></div>
 
 
     </footer>

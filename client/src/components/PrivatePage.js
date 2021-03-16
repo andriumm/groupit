@@ -54,9 +54,6 @@ export default function PrivatePage() {
 					<Route path="/login">
 						<Login handleLogin={handleLogin} />
 					</Route>
-					<Route path="/privatepage">
-						<PrivatePage />
-					</Route>
 					<Route path="/addresource">
 						<AddResource />
 					</Route>

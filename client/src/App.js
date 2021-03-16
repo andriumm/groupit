@@ -72,55 +72,35 @@ function App() {
 					{/* <LogOut /> 
 					<Link to="/myprofile">Profile</Link> */}
 				</div>
+        
+        {/* <h1 align="center">GroupIt</h1> */}
+        
         <Logo />
 
         <PrivatePage />
 
-				<nav align="center">
-					{/* <Link to="/login" className="text-dark ms-3 me-1">
+				{/* <nav align="center">
+					<Link to="/login" className="text-dark ms-3 me-1">
 						Sign In
-					</Link> */}
-					{/* <Link to="/dashboard" className="text-dark ms-3 me-1">
+					</Link>
+					<Link to="/dashboard" className="text-dark ms-3 me-1">
 						Your Dashboard
 					</Link>
 					<Link to="/myprofile" className="text-dark ms-3 me-1">
 						Your Profile
-					</Link> */}
-				</nav>
-				{/* <Switch>
-					<Route path="/register">
+					</Link>
+				</nav> */}
+        {/* <Switch>
+          <Route path="/register">
 						<Register />
 					</Route>
 					<Route path="/login">
 						<Login handleLogin={handleLogin} />
 					</Route>
-					<Route path="/privatepage">
-						<PrivatePage />
-					</Route>
-					<Route path="/addresource">
-						<AddResource />
-					</Route>
-					<Route path="/dashboard">
-						<Dashboard onUpdateSubtopic={sentSubtopic} />
-					</Route>
-					<Route path="/topics/:id" >
-						<TopicPage onUpdateSubtopic={sentSubtopic}/>
-					</Route>
-					<Route path="/topics">
-						<InsertTopics />
-					</Route>
-					<Route path="/myprofile">
-						<Profile />
-					</Route>
-					<Route path="/resources">
-						<ResourcesDashboard subtopic={subtopic} />
-					</Route>
-					<Route path="/">
-						<Home />
-					</Route>
-				</Switch> */}
+        </Switch> */}
+
 			</div>
-       {/* <Footer /> */}
+
 		</Router>
 	);
 }

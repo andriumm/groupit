@@ -22,7 +22,7 @@ export default function Login({ handleLogin }) {
 				//store it locally
 				localStorage.setItem("token", result.data.token);
 				handleLogin();
-				history.push("/groupb");
+				history.push("/PrivatePage");
 				console.log(result.data.message, result.data.token);
 			})
 			.catch((error) => console.log(error));
