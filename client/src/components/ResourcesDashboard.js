@@ -9,7 +9,7 @@ export default function ResourcesDashboard({ subtopic }) {
 	console.log("subtopic1", subtopic);
 	const [resources, setResources] = useState([]);
 	const [completed, setCompleted] = useState(false);
-	const [priority, setPriority] = useState();
+	const [test, setTest] = useState({ priority: null });
 	//const [id, setID] = useState(null);
 
 	useEffect(() => {
@@ -46,29 +46,39 @@ export default function ResourcesDashboard({ subtopic }) {
 	};
 
 	const updateCompleted = async (id) => {
-		//console.log("completed1", completed);
-		completed === false ? setCompleted(true) : setCompleted(false);
+		console.log("completed1", completed);
+
 		try {
-			await axios.put(
+			completed === false ? setCompleted(true) : setCompleted(false);
+			const completeddb = await axios.put(
 				`/resources/${id}`,
 				{ complete: completed },
 				{
 					headers: { "x-access-token": localStorage.getItem("token") },
 				}
 			);
+			console.log("completeddb", completeddb);
 		} catch (error) {
 			console.log(error);
 		}
 	};
-	//console.log("completed2", completed);
+	console.log("completed2", completed);
 
-	const updatePriority = async (id) => {
-		setPriority();
+	const handlePriorityChange = async ({ target }, id) => {
+		console.log("value", target.value);
+		console.log("id", id);
+		// setTest({
+		// 	priority: target.value,
+		// });
+
+		//console.log("id", id);
+		//setTest({ priority:  });
+		console.log("test priority2:");
 
 		try {
 			await axios.put(
 				`/resources/${id}`,
-				{ priority: priority },
+				{ priority: target.value },
 				{
 					headers: { "x-access-token": localStorage.getItem("token") },
 				}
@@ -76,6 +86,7 @@ export default function ResourcesDashboard({ subtopic }) {
 		} catch (error) {
 			console.log(error);
 		}
+		console.log("priority", target.value);
 	};
 
 	//console.log("resources id", subtopic.id);
@@ -158,7 +169,38 @@ export default function ResourcesDashboard({ subtopic }) {
 												{resource.format}
 											</td>
 											<td scope="col" className="col-1">
-												<div className="dropdown">
+												<select
+													className="custom-select"
+													id="prioritySelect"
+													name="prioritySelect"
+													onChange={(e) => handlePriorityChange(e, resource.id)}
+												>
+													<option selected disabled>
+														{resource.priority}
+													</option>
+													<option value={1}>1</option>
+													<option value={2}>2</option>
+													<option value={3}>3</option>
+													<option value={4}>4</option>
+													<option value={5}>5</option>
+												</select>
+
+												{/* <label htmlFor="priority">
+													Priority (1 to 5)
+													<input
+														// onChange={() =>
+														// 	handlePriorityChange(resource.id)
+														// }
+														name="priority"
+														value={test.priority}
+														type="range"
+														min="1"
+														max="5"
+														id="priority"
+													/>
+												</label> */}
+
+												{/* <div className="dropdown">
 													<select
 														className="btn btn-secondary dropdown-toggle"
 														onSelect={() => updatePriority()}
@@ -173,7 +215,7 @@ export default function ResourcesDashboard({ subtopic }) {
 														<option className="dropdown-item">4</option>
 														<option className="dropdown-item">5</option>
 													</select>
-												</div>
+												</div> */}
 											</td>
 											<td scope="col" className="col-1">
 												<input
