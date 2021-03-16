@@ -19,6 +19,7 @@ import LoginButton from "./components/LoginButton";
 import GroupB from "./components/Groupb";
 import Home from "./components/Home";
 import InsertTopics from "./components/InsertTopics";
+import Footer from "./components/Footer";
 
 function App() {
 	let [signedIn, setSignedIn] = useState(!!localStorage.getItem("token"));
@@ -92,9 +93,6 @@ function App() {
 					<Route path="/groupb">
 						<GroupB />
 					</Route>
-					<Route path="/profile">
-						<Profile />
-					</Route>
 					<Route path="/addresource">
 						<AddResource />
 					</Route>
@@ -118,6 +116,7 @@ function App() {
 					</Route>
 				</Switch>
 			</div>
+      <Footer />
 		</Router>
 	);
 }
