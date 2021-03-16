@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
-export default function LogOut() {
+export default function LogOut({ handleLogout }) {
 	let history = useHistory();
 
 	function handleClick() {
@@ -13,7 +13,12 @@ export default function LogOut() {
 
 	return (
 		<div>
-			<Link onClick={handleClick}>Log out</Link>
+			<Link
+				onClick={() => handleLogout(history)}
+				className="text-dark ms-3 me-1"
+			>
+				Log out
+			</Link>
 		</div>
 	);
 }

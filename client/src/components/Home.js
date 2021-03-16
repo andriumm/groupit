@@ -49,7 +49,7 @@ export default function Home() {
 						onClick={() => history.push("/login")}
 						className="text-dark ms-3 me-1"
 					>
-						<h4>Log In</h4>
+						<h4>Sign In</h4>
 					</Link>
 				</div>
 			</div>

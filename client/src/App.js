@@ -6,7 +6,13 @@ import Profile from "./components/Profile";
 import Dashboard from "./components/Dashboard";
 import AddResource from "./components/AddResource";
 import TopicPage from "./components/TopicPage";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	useHistory,
+} from "react-router-dom";
 import ResourcesDashboard from "./components/ResourcesDashboard";
 import LogOut from "./components/LogOut";
 import LoginButton from "./components/LoginButton";
@@ -15,12 +21,17 @@ import Home from "./components/Home";
 import InsertTopics from "./components/InsertTopics";
 
 function App() {
-	let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
+	let [signedIn, setSignedIn] = useState(!!localStorage.getItem("token"));
 	const [subtopic, setSubtopic] = useState({});
 
 	const handleLogin = () => {
 		setSignedIn(localStorage.getItem("token"));
 		setSignedIn(true);
+	};
+
+	const handleLogout = () => {
+		localStorage.clear("token");
+		setSignedIn(false);
 	};
 
 	const sentSubtopic = (subtopic) => {
@@ -31,11 +42,35 @@ function App() {
 		<Router>
 			<div className="App">
 				<div className="text-end">
-					<Link to="/login">Log In</Link>
-					<LogOut />
-					<Link to="/myprofile">Profile</Link>
+					{signedIn && (
+						<div>
+							<LogOut handleLogout={handleLogout} />
+						</div>
+					)}
+					{signedIn && (
+						<div>
+							<Link to="/myprofile" className="text-dark ms-3 me-1">
+								Profile
+							</Link>
+						</div>
+					)}
+
+					{!signedIn && (
+						<Link to="/register" className="text-dark ms-3 me-1">
+							Sign Up
+						</Link>
+					)}
+					{!signedIn && (
+						<Link to="/login" className="text-dark ms-3 me-1">
+							Sign In
+						</Link>
+					)}
+
+					{/* <Link to="/login">Log In</Link>
+					{/* <LogOut /> 
+					<Link to="/myprofile">Profile</Link> */}
 				</div>
-				<h1 align="center">GROUP B</h1>
+				<h1 align="center">groupIT!</h1>
 				<nav align="center">
 					{/* <Link to="/login" className="text-dark ms-3 me-1">
 						Sign In
@@ -60,20 +95,23 @@ function App() {
 					<Route path="/profile">
 						<Profile />
 					</Route>
-					<Route path="/resource">
+					<Route path="/addresource">
 						<AddResource />
 					</Route>
 					<Route path="/dashboard">
 						<Dashboard onUpdateSubtopic={sentSubtopic} />
+					</Route>
+					<Route path="/topics/:id" onUpdateSubtopic={sentSubtopic}>
+						<TopicPage />
+					</Route>
+					<Route path="/topics">
+						<InsertTopics />
 					</Route>
 					<Route path="/myprofile">
 						<Profile />
 					</Route>
 					<Route path="/resources">
 						<ResourcesDashboard subtopic={subtopic} />
-					</Route>
-					<Route path="/login">
-						<LogOut />
 					</Route>
 					<Route path="/">
 						<Home />

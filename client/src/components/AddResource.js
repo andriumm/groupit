@@ -55,7 +55,20 @@ export default function AddResource() {
         e.preventDefault();
         console.log(resource.created_date)
         addResource();
+        clear()
     };
+
+    const clear = () => {
+        setResource({
+            resource_name: "",
+            url: "",
+            format: "",
+            priority: "1",
+            complete: "",
+            reminder: "",
+            created_date: "",
+        })
+    }
 
     const addResource = async () => {
         console.log(localStorage.getItem("token"))
