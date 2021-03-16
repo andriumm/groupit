@@ -10,6 +10,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ResourcesDashboard from "./components/ResourcesDashboard";
 import LogOut from "./components/LogOut";
 import InsertTopics from "./components/InsertTopics";
+import SendResetPasswordEmail from "./components/SendResetPasswordEmail";
+import ResetPassword from "./components/ResetPassword";
 
 function App() {
 	let [signedIn, setSignedIn] = useState(!!localStorage.getItem("token"));
@@ -90,6 +92,12 @@ function App() {
           </Route>
           <Route path="/login">
             <LogOut />
+          </Route>
+          <Route path="/resetpassword/:id/*">
+            <ResetPassword />
+          </Route>
+          <Route path="/resetpassword">
+            <SendResetPasswordEmail />
           </Route>
         </Switch>
       </div>
