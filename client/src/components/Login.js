@@ -2,31 +2,47 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useHistory, Link } from "react-router-dom";
 import "../App.css";
+import useAuth from "../hooks/useAuth";
 
 export default function Login({ handleLogin }) {
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
-  let history = useHistory();
+  const history = useHistory();
+
+  const auth = useAuth();
 
   const handleChange = (e) => {
     e.persist();
     setUser((state) => ({ ...state, [e.target.name]: e.target.value }));
+    
   };
 
   const login = () => {
-    axios
-      .post("/users/login", user)
-      .then((result) => {
-        //store it locally
-        localStorage.setItem("token", result.data.token);
-        handleLogin();
-        history.push("/groupb");
-        console.log(result.data.message, result.data.token);
-      })
-      .catch((error) => console.log(error));
+    auth.signin(user);
+    // sendToDashboard()
   };
+
+  // const sendToDashboard = () => {
+  //   history.push("/dashboard");
+  // }
+
+
+// Deleting based on Germinal's lecture
+
+  // const login = () => {
+  //   axios
+  //     .post("/users/login", user)
+  //     .then((result) => {
+  //       //store it locally
+  //       localStorage.setItem("token", result.data.token);
+  //       handleLogin();
+  //       history.push("/groupb");
+  //       console.log(result.data.message, result.data.token);
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
 
   return (
     <div>
