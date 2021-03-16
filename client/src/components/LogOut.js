@@ -13,7 +13,12 @@ export default function LogOut({ handleLogout }) {
 
 	return (
 		<div>
-			<button onClick={() => handleLogout(history)}>Log out</button>
+			<Link
+				onClick={() => handleLogout(history)}
+				className="text-dark ms-3 me-1"
+			>
+				Log out
+			</Link>
 		</div>
 	);
 }

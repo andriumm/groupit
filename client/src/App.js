@@ -51,7 +51,9 @@ function App() {
 					)}
 					{signedIn && (
 						<div>
-							<Link to="/myprofile" className="text-dark ms-3 me-1"></Link>
+							<Link to="/myprofile" className="text-dark ms-3 me-1">
+								Profile
+							</Link>
 						</div>
 					)}
 
