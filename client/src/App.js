@@ -16,10 +16,11 @@ import {
 import ResourcesDashboard from "./components/ResourcesDashboard";
 import LogOut from "./components/LogOut";
 import LoginButton from "./components/LoginButton";
-import GroupB from "./components/Groupb";
+import PrivatePage from "./components/PrivatePage";
 import Home from "./components/Home";
 import InsertTopics from "./components/InsertTopics";
 import Footer from "./components/Footer";
+import Logo from "./components/Logo";
 
 function App() {
 	let [signedIn, setSignedIn] = useState(!!localStorage.getItem("token"));
@@ -71,7 +72,7 @@ function App() {
 					{/* <LogOut /> 
 					<Link to="/myprofile">Profile</Link> */}
 				</div>
-				<h1 align="center">groupIT!</h1>
+        <Logo />
 				<nav align="center">
 					{/* <Link to="/login" className="text-dark ms-3 me-1">
 						Sign In
@@ -90,8 +91,8 @@ function App() {
 					<Route path="/login">
 						<Login handleLogin={handleLogin} />
 					</Route>
-					<Route path="/groupb">
-						<GroupB />
+					<Route path="/privatepage">
+						<PrivatePage />
 					</Route>
 					<Route path="/addresource">
 						<AddResource />
@@ -99,8 +100,8 @@ function App() {
 					<Route path="/dashboard">
 						<Dashboard onUpdateSubtopic={sentSubtopic} />
 					</Route>
-					<Route path="/topics/:id" onUpdateSubtopic={sentSubtopic}>
-						<TopicPage />
+					<Route path="/topics/:id" >
+						<TopicPage onUpdateSubtopic={sentSubtopic}/>
 					</Route>
 					<Route path="/topics">
 						<InsertTopics />

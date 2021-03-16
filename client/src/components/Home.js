@@ -9,7 +9,7 @@ import {
 import Register from "./Register";
 import Login from "./Login";
 import { useState } from "react";
-import GroupB from "./Groupb";
+import PrivatePage from "./PrivatePage";
 
 export default function Home() {
 	let history = useHistory();
