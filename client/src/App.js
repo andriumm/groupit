@@ -12,22 +12,22 @@ import LogOut from "./components/LogOut";
 import InsertTopics from "./components/InsertTopics";
 
 function App() {
-	let [signedIn, setSignedIn] = useState(!!localStorage.getItem("token"));
-	const [subtopic, setSubtopic] = useState({});
+  let [signedIn, setSignedIn] = useState(!!localStorage.getItem("token"));
+  const [subtopic, setSubtopic] = useState({});
 
   const handleLogin = () => {
     setSignedIn(localStorage.getItem("token"));
     setSignedIn(true);
   };
 
-	const handleLogout = () => {
-		localStorage.clear("token");
-		setSignedIn(false);
-	}
+  const handleLogout = () => {
+    localStorage.clear("token");
+    setSignedIn(false);
+  };
 
-	const sentSubtopic = (subtopic) => {
-		setSubtopic(subtopic);
-	};
+  const sentSubtopic = (subtopic) => {
+    setSubtopic(subtopic);
+  };
 
   // console.log("app subtopic", subtopic);
 
@@ -39,7 +39,7 @@ function App() {
             <LogOut handleLogout={handleLogout} />
           </div>
         )}
-        
+
         <h1 align="center">GROUP B</h1>
         <nav align="center">
           {!signedIn && (
@@ -75,8 +75,8 @@ function App() {
           <Route path="/dashboard">
             <Dashboard onUpdateSubtopic={sentSubtopic} />
           </Route>
-          <Route path="/topics/:id" onUpdateSubtopic={sentSubtopic}>
-            <TopicPage />
+          <Route path="/topics/:id">
+            <TopicPage onUpdateSubtopic={sentSubtopic} />
           </Route>
           <Route path="/topics">
             <InsertTopics />
