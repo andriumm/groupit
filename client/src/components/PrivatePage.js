@@ -1,17 +1,30 @@
 import React from "react";
-
 import { useState } from "react";
-import Register from "./Register";
-import Login from "./Login";
-import Profile from "./Profile";
-import Dashboard from "./Dashboard";
-import AddResource from "./AddResource";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import ResourcesDashboard from "./ResourcesDashboard";
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	useHistory,
+} from "react-router-dom";
+
 import LogOut from "./LogOut";
 import LoginButton from "./LoginButton";
 
-export default function Groupb() {
+import Register from "./Register";
+import Login from "./Login";
+
+import Profile from "./Profile";
+import Dashboard from "./Dashboard";
+import AddResource from "./AddResource";
+import TopicPage from "./TopicPage";
+import ResourcesDashboard from "./ResourcesDashboard";
+import Home from "./Home";
+import InsertTopics from "./InsertTopics";
+import Footer from "./Footer";
+import Logo from "./Logo";
+
+export default function PrivatePage() {
 	let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
 	const [subtopic, setSubtopic] = useState({});
 
@@ -23,6 +36,7 @@ export default function Groupb() {
 	const sentSubtopic = (subtopic) => {
 		setSubtopic(subtopic);
 	};
+  
 	return (
 		<Router>
 			<div>
@@ -33,27 +47,40 @@ export default function Groupb() {
 					Your Profile
 				</Link>
 				<div>
-					<Switch>
-						<Route path="/profile">
-							<Profile />
-						</Route>
-						<Route path="/resource">
-							<AddResource />
-						</Route>
-						<Route path="/dashboard">
-							<Dashboard onUpdateSubtopic={sentSubtopic} />
-						</Route>
-						<Route path="/myprofile">
-							<Profile />
-						</Route>
-						<Route path="/resources">
-							<ResourcesDashboard subtopic={subtopic} />
-						</Route>
-						<Route path="/login">
-							<Login />
-						</Route>
-					</Switch>
+				<Switch>
+					<Route path="/register">
+						<Register />
+					</Route>
+					<Route path="/login">
+						<Login handleLogin={handleLogin} />
+					</Route>
+					<Route path="/privatepage">
+						<PrivatePage />
+					</Route>
+					<Route path="/addresource">
+						<AddResource />
+					</Route>
+					<Route path="/dashboard">
+						<Dashboard onUpdateSubtopic={sentSubtopic} />
+					</Route>
+					<Route path="/topics/:id" >
+						<TopicPage onUpdateSubtopic={sentSubtopic}/>
+					</Route>
+					<Route path="/topics">
+						<InsertTopics />
+					</Route>
+					<Route path="/myprofile">
+						<Profile />
+					</Route>
+					<Route path="/resources">
+						<ResourcesDashboard subtopic={subtopic} />
+					</Route>
+					<Route path="/">
+						<Home />
+					</Route>
+				</Switch>
 				</div>
+        <Footer />
 			</div>
 		</Router>
 	);

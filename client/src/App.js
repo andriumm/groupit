@@ -73,6 +73,9 @@ function App() {
 					<Link to="/myprofile">Profile</Link> */}
 				</div>
         <Logo />
+
+        <PrivatePage />
+
 				<nav align="center">
 					{/* <Link to="/login" className="text-dark ms-3 me-1">
 						Sign In
@@ -84,7 +87,7 @@ function App() {
 						Your Profile
 					</Link> */}
 				</nav>
-				<Switch>
+				{/* <Switch>
 					<Route path="/register">
 						<Register />
 					</Route>
@@ -115,9 +118,9 @@ function App() {
 					<Route path="/">
 						<Home />
 					</Route>
-				</Switch>
+				</Switch> */}
 			</div>
-      <Footer />
+       {/* <Footer /> */}
 		</Router>
 	);
 }
