@@ -31,7 +31,6 @@ function App() {
 
   // console.log("app subtopic", subtopic);
 
-
   return (
     <Router>
       <div className="App">
@@ -76,12 +75,13 @@ function App() {
           <Route path="/dashboard">
             <Dashboard onUpdateSubtopic={sentSubtopic} />
           </Route>
-          <Route path="/topics/:id">
+          <Route path="/topics/:id" onUpdateSubtopic={sentSubtopic}>
             <TopicPage />
           </Route>
           <Route path="/topics">
-						<InsertTopics />
-					</Route>
+            <InsertTopics />
+          </Route>
+
           <Route path="/myprofile">
             <Profile />
           </Route>
@@ -95,7 +95,6 @@ function App() {
       </div>
     </Router>
   );
+}
 
-}    
-					
 export default App;
