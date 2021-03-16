@@ -159,8 +159,12 @@ export default function ResourcesDashboard({ subtopic }) {
 											</td>
 											<td scope="col" className="col-1">
 												<div className="dropdown">
-													<select className="btn btn-secondary dropdown-toggle">
-														<option value="">
+													<select
+														className="btn btn-secondary dropdown-toggle"
+														onSelect={() => updatePriority()}
+														value={resource.priority}
+													>
+														<option value={resource.priority}>
 															Current: {resource.priority}
 														</option>
 														<option className="dropdown-item">1</option>
