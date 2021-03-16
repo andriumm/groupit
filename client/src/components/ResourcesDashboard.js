@@ -77,6 +77,19 @@ export default function ResourcesDashboard({ subtopic }) {
 			console.log(error);
 		}
 	};
+	const handleFormatChange = async ({ target }, id) => {
+		try {
+			await axios.put(
+				`/resources/${id}`,
+				{ format: target.value },
+				{
+					headers: { "x-access-token": localStorage.getItem("token") },
+				}
+			);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	//console.log("resources id", subtopic.id);
 	return (
@@ -155,7 +168,21 @@ export default function ResourcesDashboard({ subtopic }) {
 												</a>
 											</td>
 											<td scope="col" className="col-1">
-												{resource.format}
+												<select
+													className="custom-select"
+													id="prioritySelect"
+													name="prioritySelect"
+													onChange={(e) => handleFormatChange(e, resource.id)}
+												>
+													<option selected disabled>
+														{resource.format}
+													</option>
+													<option value={`Course`}>Course</option>
+													<option value={`Podcast`}>Podcast</option>
+													<option value={`Reading`}>Reading</option>
+													<option value={`Video`}>Video</option>
+													<option value={`Website`}>Website</option>
+												</select>
 											</td>
 											<td scope="col" className="col-1">
 												<select
@@ -173,38 +200,6 @@ export default function ResourcesDashboard({ subtopic }) {
 													<option value={4}>4</option>
 													<option value={5}>5</option>
 												</select>
-
-												{/* <label htmlFor="priority">
-													Priority (1 to 5)
-													<input
-														// onChange={() =>
-														// 	handlePriorityChange(resource.id)
-														// }
-														name="priority"
-														value={test.priority}
-														type="range"
-														min="1"
-														max="5"
-														id="priority"
-													/>
-												</label> */}
-
-												{/* <div className="dropdown">
-													<select
-														className="btn btn-secondary dropdown-toggle"
-														onSelect={() => updatePriority()}
-														value={resource.priority}
-													>
-														<option value={resource.priority}>
-															Current: {resource.priority}
-														</option>
-														<option className="dropdown-item">1</option>
-														<option className="dropdown-item">2</option>
-														<option className="dropdown-item">3</option>
-														<option className="dropdown-item">4</option>
-														<option className="dropdown-item">5</option>
-													</select>
-												</div> */}
 											</td>
 											<td scope="col" className="col-1">
 												<input
