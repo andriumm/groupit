@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams, Link } from "react-router-dom";
+import "../App.css";
 
 export default function TopicPage({ onUpdateSubtopic }) {
   const [topic, setTopic] = useState({});
@@ -76,20 +77,26 @@ export default function TopicPage({ onUpdateSubtopic }) {
 
   return (
     <div>
-      <h2 className="text-uppercase text-danger">{topic.topic_name}</h2>
+      <h2 className="text-uppercase">{topic.topic_name}</h2>
       {/* What could be added: link on the name of the subtopic to redirect to the Resources Dashboard */}
-      <div>
+      <div className="dashboardBox">
         {subtopics.map((subtopic) => (
-          <div key={subtopic.id}>
-            <h5 onClick={() => goToResourcesDashboard(subtopic)}>
+          <div className="mainBox" key={subtopic.id}>
+            <h5
+              className="mainTitle text-uppercase"
+              onClick={() => goToResourcesDashboard(subtopic)}
+            >
               {subtopic.topic_name}
             </h5>
-            <button onClick={() => deleteSubtopic(subtopic.id)}>
-              Delete Subtopic
+            <button
+              className="deleteButton btn"
+              onClick={() => deleteSubtopic(subtopic.id)}
+            >
+              x
             </button>
             {subtopic.Resources.map((resource) => (
-              <div key={resource.id}>
-                <h6>---{resource.resource_name}</h6>
+              <div key={resource.id} className="subBox">
+                <h6>{resource.resource_name}</h6>
               </div>
             ))}
           </div>

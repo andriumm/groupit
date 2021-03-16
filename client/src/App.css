@@ -1,0 +1,55 @@
+.App {
+  font-family: "Roboto", sans-serif;
+  margin: 0 1%;
+}
+
+h1 {
+  color: #3a8c7d;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #255954;
+}
+
+.mainBox {
+  border: 2px solid #1e4040;
+  border-radius: 10px;
+  padding-top: 0;
+  margin-bottom: 1%;
+  margin-right: 60%;
+}
+.mainTitle {
+  background-color: #3a8c7d;
+  border-radius: 6px 6px 0 0;
+  padding-left: 2%;
+  color: #f8fafc;
+}
+
+.subBox {
+  border: 2px solid #1e4040;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 1% 3% 3% 3%;
+}
+
+.dashboardBox {
+  background-color: ;
+}
+/* can't pur the fucing botton next to the title */
+.deleteButton {
+  align-items: flex-end;
+  color: 1e4040;
+  padding: 2%;
+}
+.loginButton {
+  background-color: #71d99e;
+  color: #f8fafc;
+}
+
+.profile {
+  margin-bottom: 2%;
+}
