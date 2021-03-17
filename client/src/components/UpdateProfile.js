@@ -56,8 +56,7 @@ export default function UpdateProfile({ profileInfo, onUpdateProfile }) {
               className="form-control"
             />
           </label>
-          <br />
-          <label className="form-label" htmlFor="username">
+          <label className="form-label" id="cellsAm" htmlFor="username">
             Username
             <input
               type="text"
@@ -68,8 +67,7 @@ export default function UpdateProfile({ profileInfo, onUpdateProfile }) {
               className="form-control"
             />
           </label>
-          <br />
-          <label className="form-label" htmlFor="email">
+          <label className="form-label" id="cellsAm" htmlFor="email">
             Email
             <input
               type="text"
@@ -80,7 +78,6 @@ export default function UpdateProfile({ profileInfo, onUpdateProfile }) {
               className="form-control"
             />
           </label>
-          <br />
           <button className="loginButton btn" id="btnAm">Update</button>
         </form>
       </div>

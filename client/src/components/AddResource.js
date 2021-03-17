@@ -87,37 +87,41 @@ export default function AddResource() {
 
   return (
     <div>
-      <p>============</p>
+      <h2>Add a new resource</h2>
       <form onSubmit={handleSubmit}>
-        Choose your Topic
-        <select
-          required
-          id="topic_id"
-          name="topic_id"
-          value={selectedTopic.topic_id}
-          onChange={selectTopic}
-        >
-          <option value="" disabled>
-            Select a subtopic
-          </option>
-          {/* {topics.map((topic, i) => {
+        <label className="form-label">
+          Choose your Topic
+          <select
+            required
+            id="topic_id"
+            name="topic_id"
+            value={selectedTopic.topic_id}
+            onChange={selectTopic}
+            className="form-select"
+          >
+            <option value="" disabled>
+              Select a subtopic
+            </option>
+            {/* {topics.map((topic, i) => {
             return (
               <option key={topic.id} value={topic.id}>
                 {topic.topic_name}
               </option>
             );
           })} */}
-          {topics.map((topic, i) => {
-            return topic.Subtopics.map((subtopic, id) => {
-              return (
-                <option key={subtopic.id} value={subtopic.id}>
-                  {subtopic.topic_name}
-                </option>
-              );
-            });
-          })}
-        </select>
-        <label htmlFor="resource_name">
+            {topics.map((topic, i) => {
+              return topic.Subtopics.map((subtopic, id) => {
+                return (
+                  <option key={subtopic.id} value={subtopic.id}>
+                    {subtopic.topic_name}
+                  </option>
+                );
+              });
+            })}
+          </select>
+        </label>
+        <br />
+        <label htmlFor="resource_name" className="form-label">
           Resource Name
           <input
             onChange={handleChange}
@@ -125,9 +129,11 @@ export default function AddResource() {
             value={resource.resource_name}
             type="text"
             id="resource_name"
+            className="form-control"
           />
         </label>
-        <label htmlFor="url">
+        <br />
+        <label htmlFor="url" className="form-label">
           URL
           <input
             onChange={handleChange}
@@ -135,8 +141,10 @@ export default function AddResource() {
             value={resource.url}
             type="text"
             id="url"
+            className="form-control"
           />
         </label>
+        <br />
         {/* <label htmlFor="format">
           Format
           <input
@@ -147,13 +155,15 @@ export default function AddResource() {
             id="format"
           />
         </label> */}
-        <label htmlFor="format"
+        <label
+          htmlFor="format"
           id="format"
           name="format"
           value={resource.format}
           onChange={handleChange}
-          >
-          <select>
+          className="form-label"
+        >
+          <select className="form-select">
             <option value={`Course`}>Course</option>
             <option value={`Podcast`}>Podcast</option>
             <option value={`Reading`}>Reading</option>
@@ -161,8 +171,8 @@ export default function AddResource() {
             <option value={`Website`}>Website</option>
           </select>
         </label>
-
-        <label htmlFor="priority">
+        <br />
+        <label htmlFor="priority" className="form-label">
           Priority (1 to 5)
           <input
             onChange={handleChange}
@@ -172,10 +182,12 @@ export default function AddResource() {
             min="1"
             max="5"
             id="priority"
+            className="form-range"
           />
         </label>
+        <br />
         Complete?
-        <label htmlFor="completed">
+        <label htmlFor="completed" className="form-label ms-2">
           Yes
           <input
             onChange={handleChange}
@@ -185,7 +197,7 @@ export default function AddResource() {
             value="true"
           />
         </label>
-        <label htmlFor="notCompleted">
+        <label htmlFor="notCompleted" className="form-label ms-2">
           No
           <input
             onChange={handleChange}
@@ -195,6 +207,7 @@ export default function AddResource() {
             value="false"
           />
         </label>
+        <br />
         {/* <label htmlFor="reminder">
                     Reminder
 					<input
@@ -206,7 +219,7 @@ export default function AddResource() {
 					/>
 				</label> */}
         Reminder?
-        <label htmlFor="sendReminder">
+        <label htmlFor="sendReminder" className="form-label ms-2">
           Yes
           <input
             onChange={handleChange}
@@ -216,7 +229,7 @@ export default function AddResource() {
             value="true"
           />
         </label>
-        <label htmlFor="noReminder">
+        <label htmlFor="noReminder" className="form-label ms-2">
           No
           <input
             onChange={handleChange}
@@ -226,7 +239,8 @@ export default function AddResource() {
             value="false"
           />
         </label>
-        <label htmlFor="created_date">
+        <br />
+        <label htmlFor="created_date" className="form-label">
           Created Date
           <input
             onChange={handleChange}
@@ -234,15 +248,14 @@ export default function AddResource() {
             value={resource.created_date}
             type="date"
             id="created_date"
+            className="ms-2"
           />
         </label>
-        <button>Add Resource</button>
+        <br />
+        <button className="topicFormButton btn">Add Resource</button>
       </form>
 
-      {hasBeenAdded && (
-        <p>Resource added successfully</p>
-      )}
-      <p>============</p>
+      {hasBeenAdded && <p>Resource added successfully</p>}
     </div>
   );
 }
