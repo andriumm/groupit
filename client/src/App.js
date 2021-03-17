@@ -32,8 +32,12 @@ function App() {
   };
 
   return (
+
+    <ProvideAuth>
+
+
     <Router>
-      <ProvideAuth>
+      
         <Logo />
         <NavBar />
         <Menu />
@@ -74,8 +78,11 @@ function App() {
             </Route>
           </Switch>
         </div>
-    </ProvideAuth>
+    
   </Router>
+
+
+</ProvideAuth>
 
   );
 }
