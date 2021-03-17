@@ -10,27 +10,27 @@ export default function NavBar() {
   };
 
   return (
-    <div className="navBar">
+    <div className="navBar pb-2 pt-1">
       {!auth.isLoggedIn && (
-        <Link to="/register" className="navBarLink">
+        <Link to="/register" className="navBarLink ms-2 me-2">
           Register
         </Link>
       )}
 
       {!auth.isLoggedIn && (
-        <Link to="/login" className="navBarLink">
+        <Link to="/login" className="navBarLink mt-1 mb-1">
           Login
         </Link>
       )}
 
       {auth.isLoggedIn && (
-        <Link to="/dashboard" className="navBarLink">
+        <Link to="/dashboard" className="navBarLink ms-2 me-2">
           Dashboard
         </Link>
       )}
 
       {auth.isLoggedIn && (
-        <button onClick={logout} className="btn logoutButton">
+        <button onClick={logout} className="btn logoutButton ">
           Logout
         </button>
       )}

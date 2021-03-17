@@ -252,7 +252,7 @@ export default function AddResource() {
           />
         </label>
         <br />
-        <button className="topicFormButton btn">Add Resource</button>
+        <button className="topicFormButton btn mb-5">Add Resource</button>
       </form>
 
       {hasBeenAdded && <p>Resource added successfully</p>}
