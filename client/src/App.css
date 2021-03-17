@@ -3,8 +3,9 @@
   margin: 0 1%;
 }
 
-h1 {
+.logo {
   color: #3a8c7d;
+  text-decoration: none;
 }
 
 h2,
@@ -14,13 +15,18 @@ h5,
 h6 {
   color: #255954;
 }
+h2 {
+  margin-top: 1%;
+}
 
 .mainBox {
+  float: right;
   border: 2px solid #1e4040;
   border-radius: 10px;
   padding-top: 0;
   margin-bottom: 1%;
-  margin-right: 60%;
+
+  width: 100%;
 }
 .mainTitle {
   background-color: #3a8c7d;
@@ -37,7 +43,7 @@ h6 {
 }
 
 .dashboardBox {
-  background-color: ;
+  float: right;
 }
 /* can't pur the fucing botton next to the title */
 .deleteButton {
@@ -52,4 +58,34 @@ h6 {
 
 .profile {
   margin-bottom: 2%;
+}
+
+.navBar {
+  background-color: #3a8c7d;
+}
+
+.logoutButton {
+  background-color: transparent;
+  color: #f8fafc;
+  padding: 1;
+}
+
+.navBarLink {
+  color: #f8fafc;
+  text-decoration: none;
+}
+
+.navMenu {
+  position: sticky;
+  float: left;
+  width: 20%;
+  border-color: #009688;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 25px;
+  margin-left: 0.75%;
+  margin-bottom: 50%;
+}
+.menuList {
+  list-style-type: none;
 }

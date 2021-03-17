@@ -27,7 +27,6 @@ import NavBar from "./components/NavBar";
 import ProvideAuth from "./components/ProvideAuth";
 import PrivateRoute from "./components/PrivateRoute";
 
-
 function App() {
   // let [signedIn, setSignedIn] = useState(!!localStorage.getItem("token"));
   const [subtopic, setSubtopic] = useState({});
@@ -97,7 +96,7 @@ function App() {
               <Register />
             </Route>
             <Route path="/login">
-            <Login />
+              <Login />
               {/* <Login handleLogin={handleLogin} /> */}
             </Route>
             {/* <Route path="/groupb">
