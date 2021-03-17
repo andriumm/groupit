@@ -1,18 +1,20 @@
 import "../App.css";
 import React from "react";
 import { useState, useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const axios = require("axios");
 
 export default function ResourcesDashboard({ subtopic }) {
 	let history = useHistory();
+	const { id } = useParams();
+
 	console.log("subtopic1", subtopic);
 	const [resources, setResources] = useState([]);
 	const [completed, setCompleted] = useState(false);
 
 	useEffect(() => {
-		getResources(subtopic.id);
+		getResources(id);
 		let token = localStorage.getItem("token");
 		if (!token) {
 			history.push("/login");

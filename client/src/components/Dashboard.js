@@ -57,7 +57,7 @@ export default function Dashboard({ onUpdateSubtopic }) {
 		console.log("subtopic got to res", subtopic);
 		onUpdateSubtopic(subtopic);
 		//onUpdateSubtopic()
-		history.push("/resources");
+		history.push(`/resources/user/${subtopic.id}`);
 		//await setSubtopicID(id);
 
 		console.log("subtopicID 2", subtopic);
