@@ -47,8 +47,8 @@ function App() {
   };
 
   return (
-    <ProvideAuth>
-      <Router>
+    <Router>
+      <ProvideAuth>
         <Logo />
         <NavBar />
         <div className="App">
@@ -136,8 +136,8 @@ function App() {
           </Switch>
           <Footer />
         </div>
-      </Router>
     </ProvideAuth>
+  </Router>
   );
 }
 
