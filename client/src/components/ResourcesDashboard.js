@@ -9,8 +9,6 @@ export default function ResourcesDashboard({ subtopic }) {
 	console.log("subtopic1", subtopic);
 	const [resources, setResources] = useState([]);
 	const [completed, setCompleted] = useState(false);
-	const [test, setTest] = useState({ priority: null });
-	//const [id, setID] = useState(null);
 
 	useEffect(() => {
 		getResources(subtopic.id);
@@ -18,7 +16,6 @@ export default function ResourcesDashboard({ subtopic }) {
 		if (!token) {
 			history.push("/login");
 		}
-		//console.log(token);
 		console.log("id", subtopic.id);
 	}, []);
 
@@ -45,24 +42,24 @@ export default function ResourcesDashboard({ subtopic }) {
 		}
 	};
 
-	const updateCompleted = async (id) => {
-		console.log("completed1", completed);
-
+	const handleCompletedChange = async ({ target }, id) => {
+		const { name, checked } = target;
+		setCompleted((state) => ({
+			...state,
+			[name]: checked ? true : false,
+		}));
 		try {
-			completed === false ? setCompleted(true) : setCompleted(false);
 			const completeddb = await axios.put(
 				`/resources/${id}`,
-				{ complete: completed },
+				{ complete: target.checked },
 				{
 					headers: { "x-access-token": localStorage.getItem("token") },
 				}
 			);
-			console.log("completeddb", completeddb);
 		} catch (error) {
 			console.log(error);
 		}
 	};
-	console.log("completed2", completed);
 
 	const handlePriorityChange = async ({ target }, id) => {
 		try {
@@ -125,39 +122,7 @@ export default function ResourcesDashboard({ subtopic }) {
 				</table>
 				{resources.length ? (
 					<div>
-						{/* <ul>
-              {resources.map((resource) => (
-                <li key={resource.id}>
-                  {/* <span onClick={() => displaySubtopics(topic.id)}> */}
-						{/* <h6 className="d-inline">{resource.resource_name}</h6>
-                  <button onClick={() => deleteResource(resource.id)}>
-                    Delete Topic
-                  </button> */}
-						{/* </span> 
-                </li>
-              ))}
-            </ul> */}
-
 						{resources.map((resource) => (
-							// <li key={resource.id}>
-							//     {/* <span onClick={() => displaySubtopics(topic.id)}> */}
-							//     <a href={`${resource.url}`}>
-							//         <h6 className="d-inline">{resource.resource_name}</h6>
-							//     </a>
-							//     <p>{resource.format}</p>
-							//     <p>{resource.priority}</p>
-							//     <p>{resource.complete}</p>
-							//     <p>{resource.reminder}</p>
-							//     <p>{resource.created_date.substring(0, 10)}</p>
-
-							//     {/* <button onClick={() => updateResource(resource.id)}>
-							//         Update Topic
-							//     </button> */}
-							//     <button onClick={() => deleteResource(resource.id)}>
-							//         Delete Resource
-							//     </button>
-							//     {/* </span> */}
-							// </li>
 							<div key={resource.id}>
 								<table className="table table-light table-striped table-bordered">
 									<tbody>
@@ -204,12 +169,18 @@ export default function ResourcesDashboard({ subtopic }) {
 												</select>
 											</td>
 											<td scope="col" className="col-1">
-												<input
-													type="checkbox"
-													name="completed"
-													onClick={() => updateCompleted(resource.id)}
-												></input>
-												{resource.complete}
+												<label htmlFor="complete">
+													<input
+														type="checkbox"
+														//checked={resource.complete}
+														name="completed"
+														onChange={(e) =>
+															handleCompletedChange(e, resource.id)
+														}
+														value={completed}
+														id="priority"
+													/>
+												</label>
 											</td>
 											<td scope="col" className="col-1">
 												{resource.reminder}
@@ -228,7 +199,7 @@ export default function ResourcesDashboard({ subtopic }) {
 														width="16"
 														height="16"
 														fill="currentColor"
-														class="bi bi-trash"
+														className="bi bi-trash"
 														viewBox="0 0 16 16"
 													>
 														<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
