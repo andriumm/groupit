@@ -21,7 +21,8 @@ export default function Login({ handleLogin }) {
 
   const login = () => {
     auth.signin(user);
-    // sendToDashboard()
+    handleLogin();
+    history.push("/groupb");
   };
 
   // const sendToDashboard = () => {

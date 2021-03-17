@@ -7,6 +7,8 @@ export default function Footer() {
   const auth = useAuth();
 
   return (
+
+    // change for menu
     <footer>
       
       <div>{auth.isLoggedIn && <Link to="/topics">Add a topic</Link>}</div>
