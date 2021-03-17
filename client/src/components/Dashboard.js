@@ -1,12 +1,18 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import "../App.css";
 
+//test test
+import useAuth from "../hooks/useAuth";
+import axios from "../utils/axios";
+
 export default function Dashboard({ onUpdateSubtopic }) {
   const [topics, setTopics] = useState([]);
 
-  let history = useHistory();
+  // test test
+  const auth = useAuth();
+  const history = useHistory();
 
   useEffect(() => {
     getTopics();
