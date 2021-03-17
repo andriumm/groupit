@@ -50,7 +50,7 @@ export default function Login() {
           />
         </label>
         <br />
-        <button className="loginButton btn" onClick={login}>
+        <button className="loginButton btn mb-1" onClick={login}>
           Login
         </button>
       </div>
