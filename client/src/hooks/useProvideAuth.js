@@ -3,10 +3,9 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 function useProvideAuth() {
-  const [isLoggedIn, setIsLoggedIn] = useState(!localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
 
   const history = useHistory();
-
 
   const signin = (user, cb = () => {}) => {
     axios("/users/login", {

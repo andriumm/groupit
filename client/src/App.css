@@ -25,13 +25,24 @@ h2 {
   border-radius: 10px;
   padding-top: 0;
   margin-bottom: 1%;
-
   width: 100%;
+  display: inline-block;
 }
 .mainTitle {
+  padding-left: 2%;
+  color: #f8fafc;
+  width: 95%;
+  float: left;
+}
+
+.mainBoxHeader {
   background-color: #3a8c7d;
   border-radius: 6px 6px 0 0;
-  padding-left: 2%;
+  display: block;
+}
+.deleteButton {
+  align-items: flex-end;
+  padding: 0%;
   color: #f8fafc;
 }
 
@@ -46,11 +57,7 @@ h2 {
   float: right;
 }
 /* can't pur the fucing botton next to the title */
-.deleteButton {
-  align-items: flex-end;
-  color: 1e4040;
-  padding: 2%;
-}
+
 .loginButton {
   background-color: #71d99e;
   color: #f8fafc;
