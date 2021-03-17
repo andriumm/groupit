@@ -65,6 +65,9 @@ h2 {
 
 .profile {
   margin-bottom: 2%;
+  width: 100%;
+  /* padding: 50px; */
+  margin: 25px;
 }
 
 .navBar {
@@ -96,3 +99,17 @@ h2 {
 .menuList {
   list-style-type: none;
 }
+
+.separationBoxAm {
+  width: 100%;
+  padding: 50px;
+  margin: 25px;
+}
+
+#btnAm {
+  margin: 0 0 0 0px;
+}
+
+/* .h3Am {
+  color: red;
+} */
