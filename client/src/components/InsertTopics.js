@@ -211,7 +211,7 @@ const InsertTopics = () => {
               className="form-select"
             >
               <option value="empty"></option>
-              {filterParent.map((topicName) => (
+              {filterParent.sort().map((topicName) => (
                 <option key={topicName.id} value={topicName.id}>
                   {" "}
                   {topicName.topic_name}{" "}
