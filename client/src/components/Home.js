@@ -23,33 +23,31 @@ export default function Home() {
 
   return (
     <Router>
-      <div className="text-center my-4">
-        <h4 className="my-4">
-          Don't forget any online resource you are interested in!
-        </h4>
-        <h5 className="my-4">
+      <div>
+        <h2>Don't forget any online resource you are interested in!</h2>
+        <p>
           With this app, keep all your links (readings, videos, podcasts...)
           organized and make sure you can easily access them at any time you
           want
-        </h5>
+        </p>
         <div>
-          <h6>CREATE A NEW ACCOUNT</h6>
+          <p className="text-center my-4">CREATE A NEW ACCOUNT NOW:</p>
           <Link
             to="/register"
             onClick={() => history.push("/register")}
             className="text-dark ms-3 me-1"
           >
-            <h2>Sign Up</h2>
+            <button className="btn homepageButton">Sign Up</button>
           </Link>
         </div>
         <div>
-          <h6>If you have an account</h6>
+          <p className="text-center my-4">If you already have an account:</p>
           <Link
             to="/login"
             onClick={() => history.push("/login")}
             className="text-dark ms-3 me-1"
           >
-            <h4>Sign In</h4>
+            <button className="btn homepageButton">Sign In</button>
           </Link>
         </div>
       </div>
