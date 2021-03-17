@@ -17,7 +17,6 @@ function useProvideAuth() {
         //store it locally
         localStorage.setItem("token", result.data.token);
         setIsLoggedIn(true);
-        // history.push("/dashboard");
         // an open door so we can do anything after logging in
         cb(result);
         history.push("/dashboard");

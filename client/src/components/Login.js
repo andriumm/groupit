@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../App.css";
 import useAuth from "../hooks/useAuth";
 
@@ -9,7 +8,6 @@ export default function Login() {
     email: "",
     password: "",
   });
-  const history = useHistory();
 
   const auth = useAuth();
 
@@ -20,30 +18,7 @@ export default function Login() {
 
   const login = () => {
     auth.signin(user);
-    // history.push("/dashboard");
-    // handleLogin();
-    // sendToDashboard(user)
   };
-
-  // const sendToDashboard = () => {
-  //   history.push("/dashboard");
-  // }
-
-
-// Deleting based on Germinal's lecture
-
-  // const login = () => {
-  //   axios
-  //     .post("/users/login", user)
-  //     .then((result) => {
-  //       //store it locally
-  //       localStorage.setItem("token", result.data.token);
-  //       handleLogin();
-  //       history.push("/groupb");
-  //       console.log(result.data.message, result.data.token);
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
 
   return (
     <div>

@@ -9,18 +9,17 @@ import {
 import Register from "./Register";
 import Login from "./Login";
 import { useState } from "react";
-import GroupB from "./Groupb";
 import "../App.css";
 
 export default function Home() {
   let history = useHistory();
-  let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
+  // let [signedIn, setSignedIn] = useState(localStorage.getItem("token"));
   // const [subtopic, setSubtopic] = useState({});
 
-  const handleLogin = () => {
-    setSignedIn(localStorage.getItem("token"));
-    setSignedIn(true);
-  };
+  // const handleLogin = () => {
+  //   setSignedIn(localStorage.getItem("token"));
+  //   setSignedIn(true);
+  // };
 
   return (
     <Router>
