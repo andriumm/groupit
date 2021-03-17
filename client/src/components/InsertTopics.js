@@ -45,7 +45,6 @@ const InsertTopics = () => {
     try {
       await axios.post("/topics", newTopic, {
         headers: {
-        
           "x-access-token": localStorage.getItem("token"),
         },
       });
@@ -146,10 +145,10 @@ const InsertTopics = () => {
   return (
     <div>
       <div>
-        <h3>Add a new topic</h3>
+        <h2>Add a new topic</h2>
 
         <form onSubmit={handleSubmit}>
-          <label htmlFor="topic">
+          <label htmlFor="topic" className="form-label">
             Topic name
             <input
               type="text"
@@ -157,10 +156,11 @@ const InsertTopics = () => {
               value={newTopic.topic_name}
               onChange={handleChange}
               id="topic"
+              className="form-control"
             />
           </label>
-
-          <label htmlFor="priority">
+          <br />
+          <label htmlFor="priority" className="form-label">
             Set it as a priority
             <input
               type="checkbox"
@@ -169,10 +169,16 @@ const InsertTopics = () => {
               onChange={handleChange}
               value={newTopic.priority}
               id="priority"
+              className="form-check"
             />
           </label>
-
-          <input type="submit" value="Add Topic" />
+          <br />
+          <input
+            type="submit"
+            value="Add Topic"
+            className="topicFormButton btn"
+          />
+          <br />
         </form>
       </div>
 
@@ -181,10 +187,10 @@ const InsertTopics = () => {
       {topicConfirmation && <div> New topic added!</div>}
 
       <div>
-        <h3> Or/and add a subtopic to any of your topics </h3>
+        <h2> Or/and add a subtopic to any of your topics </h2>
 
         <form onSubmit={handleSubtopicSubmit}>
-          <label htmlFor="subtopic">
+          <label htmlFor="subtopic" className="form-label">
             Subtopic name
             <input
               type="text"
@@ -192,15 +198,17 @@ const InsertTopics = () => {
               value={subtopic.topic_name}
               onChange={handleSubtopicChange}
               id="subtopic"
+              className="form-control"
             />
           </label>
-
-          <label htmlFor="parent-dropdown">
+          <br />
+          <label htmlFor="parent-dropdown" className="form-label">
             Which topic does it belong to?
             <select
               id={topicList.id}
               name="parent"
               onChange={handleSubtopicChange}
+              className="form-select"
             >
               <option value="empty"></option>
               {filterParent.map((topicName) => (
@@ -211,8 +219,8 @@ const InsertTopics = () => {
               ))}
             </select>
           </label>
-
-          <label htmlFor="priority">
+          <br />
+          <label htmlFor="priority" className="form-label">
             Set it as a priority
             <input
               type="checkbox"
@@ -221,10 +229,15 @@ const InsertTopics = () => {
               onChange={handleSubtopicChange}
               value={subtopic.priority}
               id="priority"
+              className="form-check"
             />
           </label>
-
-          <input type="submit" value="Add subtopic" />
+          <br />
+          <input
+            type="submit"
+            value="Add subtopic"
+            className="topicFormButton btn"
+          />
         </form>
       </div>
 
