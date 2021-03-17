@@ -164,7 +164,9 @@ export default function ResourcesDashboard({ subtopic }) {
 										<tr>
 											<td className="col-2">
 												<a href={`${resource.url}`}>
-													<h6 className="d-inline">{resource.resource_name}</h6>
+													<h6 className="d-inline">
+														{resource.resource_name.toUpperCase()}
+													</h6>
 												</a>
 											</td>
 											<td scope="col" className="col-1">
