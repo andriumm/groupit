@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../App.css";
 import useAuth from "../hooks/useAuth";
 
@@ -10,6 +10,7 @@ export default function Login() {
   });
 
   const auth = useAuth();
+  let history = useHistory();
 
   const handleChange = (e) => {
     e.persist();
@@ -17,7 +18,10 @@ export default function Login() {
   };
 
   const login = () => {
-    auth.signin(user);
+    // auth.signin(user);
+
+    //test test
+    auth.signin(user, () => history.push("/dashboard"));
   };
 
   return (
