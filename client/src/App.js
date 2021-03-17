@@ -24,7 +24,6 @@ import NavBar from "./components/NavBar";
 import ProvideAuth from "./components/ProvideAuth";
 import PrivateRoute from "./components/PrivateRoute";
 
-
 function App() {
   const [subtopic, setSubtopic] = useState({});
 

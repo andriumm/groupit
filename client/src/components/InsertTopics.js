@@ -45,12 +45,11 @@ const InsertTopics = () => {
     try {
       await axios.post("/topics", newTopic, {
         headers: {
-          // "Content-Type": "application/json",
+        
           "x-access-token": localStorage.getItem("token"),
         },
       });
       console.log("New Topic added", newTopic);
-      //console.log(newTopic)
       getTopics();
     } catch (error) {
       console.log(error);
@@ -74,7 +73,6 @@ const InsertTopics = () => {
   console.log(topicList);
 
   const filterParent = topicList.filter(function (topic) {
-    // return topic.parent === null ? topic.topic_name : null // to prevent bug due to form sent to db without data
     return topic.parent === null;
   });
 
