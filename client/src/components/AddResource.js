@@ -155,6 +155,9 @@ export default function AddResource() {
 					onChange={handleChange}
 				>
 					<select>
+						<option selected disabled>
+							Choose a format
+						</option>
 						<option value={`Course`}>Course</option>
 						<option value={`Podcast`}>Podcast</option>
 						<option value={`Reading`}>Reading</option>
