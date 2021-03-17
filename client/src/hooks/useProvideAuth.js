@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 function useProvideAuth() {
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const [isLoggedIn, setIsLoggedIn] = useState(!localStorage.getItem("token"));
+
+  const history = useHistory();
+
 
   const signin = (user, cb = () => {}) => {
     axios("/users/login", {
@@ -15,6 +19,7 @@ function useProvideAuth() {
         setIsLoggedIn(true);
         // an open door so we can do anything after logging in
         cb(result);
+        history.push("/dashboard");
       })
       .catch((error) => console.log(error));
   };

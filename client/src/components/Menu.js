@@ -9,9 +9,8 @@ export default function Footer() {
     <div className="navMenu">
       <ul className="menuList">
         <li> {auth.isLoggedIn && <Link to="/topics">Add a topic</Link>}</li>
-        <li>{auth.isLoggedIn && <Link to="/topics">Add a resource</Link>}</li>
+        <li>{auth.isLoggedIn && <Link to="/addresource">Add a resource</Link>}</li>
         <li>{auth.isLoggedIn && <Link to="/myprofile">Profile</Link>}</li>
-        <li> {auth.isLoggedIn && <Link to="/dashboard">Homepage</Link>}</li>
       </ul>
     </div>
   );
