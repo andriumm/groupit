@@ -124,12 +124,12 @@ function App() {
             <PrivateRoute path="/resources">
               <ResourcesDashboard subtopic={subtopic} />
             </PrivateRoute>
-            <PrivateRoute path="/resetpassword/:id/*">
+            <Route path="/resetpassword/:id/*">
               <ResetPassword />
-            </PrivateRoute>
-            <PrivateRoute path="/resetpassword">
+            </Route>
+            <Route path="/resetpassword">
               <SendResetPasswordEmail />
-            </PrivateRoute>
+            </Route>
             <Route path="/">
               <Home />
             </Route>
