@@ -16,6 +16,7 @@ export default function AddResource() {
     reminder: "",
     created_date: "",
   });
+  const [hasBeenAdded, setHasBeenAdded] = useState(null);
 
   useEffect(() => {
     getTopics();
@@ -60,13 +61,13 @@ export default function AddResource() {
 
   const clear = () => {
     setResource({
-      resource_name: "",
-      url: "",
-      format: "",
-      priority: "1",
-      complete: "",
-      reminder: "",
-      created_date: "",
+      // resource_name: "",
+      // url: "",
+      // format: "",
+      // priority: "1",
+      // complete: "",
+      // reminder: "",
+      // created_date: "",
     });
   };
 
@@ -78,6 +79,7 @@ export default function AddResource() {
           "x-access-token": localStorage.getItem("token"),
         },
       });
+      setHasBeenAdded(true);
     } catch (error) {
       console.log(error);
     }
@@ -89,21 +91,22 @@ export default function AddResource() {
       <form onSubmit={handleSubmit}>
         Choose your Topic
         <select
+          required
           id="topic_id"
           name="topic_id"
           value={selectedTopic.topic_id}
           onChange={selectTopic}
         >
           <option value="" disabled>
-            Select One
+            Select a subtopic
           </option>
-          {topics.map((topic, i) => {
+          {/* {topics.map((topic, i) => {
             return (
               <option key={topic.id} value={topic.id}>
                 {topic.topic_name}
               </option>
             );
-          })}
+          })} */}
           {topics.map((topic, i) => {
             return topic.Subtopics.map((subtopic, id) => {
               return (
@@ -134,7 +137,7 @@ export default function AddResource() {
             id="url"
           />
         </label>
-        <label htmlFor="format">
+        {/* <label htmlFor="format">
           Format
           <input
             onChange={handleChange}
@@ -143,7 +146,22 @@ export default function AddResource() {
             type="text"
             id="format"
           />
+        </label> */}
+        <label htmlFor="format"
+          id="format"
+          name="format"
+          value={resource.format}
+          onChange={handleChange}
+          >
+          <select>
+            <option value={`Course`}>Course</option>
+            <option value={`Podcast`}>Podcast</option>
+            <option value={`Reading`}>Reading</option>
+            <option value={`Video`}>Video</option>
+            <option value={`Website`}>Website</option>
+          </select>
         </label>
+
         <label htmlFor="priority">
           Priority (1 to 5)
           <input
@@ -220,6 +238,10 @@ export default function AddResource() {
         </label>
         <button>Add Resource</button>
       </form>
+
+      {hasBeenAdded && (
+        <p>Resource added successfully</p>
+      )}
       <p>============</p>
     </div>
   );
