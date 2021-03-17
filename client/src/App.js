@@ -18,7 +18,7 @@ import LogOut from "./components/LogOut";
 import LoginButton from "./components/LoginButton";
 import Home from "./components/Home";
 import InsertTopics from "./components/InsertTopics";
-import Footer from "./components/Footer";
+import Menu from "./components/Menu";
 import Logo from "./components/Logo";
 import SendResetPasswordEmail from "./components/SendResetPasswordEmail";
 import ResetPassword from "./components/ResetPassword";
@@ -51,6 +51,7 @@ function App() {
       <Router>
         <Logo />
         <NavBar />
+        <Menu />
         <div className="App">
           <div className="text-end">
             {/* {signedIn && (
@@ -134,7 +135,6 @@ function App() {
               <Home />
             </Route>
           </Switch>
-          <Footer />
         </div>
       </Router>
     </ProvideAuth>

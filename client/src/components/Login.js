@@ -4,7 +4,7 @@ import { useHistory, Link } from "react-router-dom";
 import "../App.css";
 import useAuth from "../hooks/useAuth";
 
-export default function Login({ handleLogin }) {
+export default function Login() {
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -16,13 +16,13 @@ export default function Login({ handleLogin }) {
   const handleChange = (e) => {
     e.persist();
     setUser((state) => ({ ...state, [e.target.name]: e.target.value }));
-    
   };
 
   const login = () => {
     auth.signin(user);
-    handleLogin();
-    history.push("/groupb");
+    // history.push("/dashboard");
+    // handleLogin();
+    // sendToDashboard(user)
   };
 
   // const sendToDashboard = () => {
