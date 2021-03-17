@@ -12,6 +12,8 @@ export default function ResourcesDashboard({ subtopic }) {
 	console.log("subtopic1", subtopic);
 	const [resources, setResources] = useState([]);
 	const [completed, setCompleted] = useState(false);
+	const [nameInput, setNameInput] = useState(false);
+	const [name, setName] = useState("");
 
 	useEffect(() => {
 		getResources(id);
@@ -93,6 +95,33 @@ export default function ResourcesDashboard({ subtopic }) {
 		}
 	};
 
+	// const handleChange = ({ target }) => {
+	// 	const { name, value } = target;
+	// 	setResource((state) => ({
+	// 		...state,
+	// 		[name]: value,
+	// 	}));
+	// };
+	const handleNameChange = async ({ target }, id) => {
+		const { value } = target;
+		setName(value);
+		console.log("name:", name);
+		try {
+			await axios.put(
+				`/resources/${id}`,
+				{ resource_name: target.value },
+				{
+					headers: { "x-access-token": localStorage.getItem("token") },
+				}
+			);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const createInput = () => {
+		setNameInput(true);
+	};
 	//console.log("resources id", subtopic.id);
 	return (
 		<div>
@@ -138,6 +167,32 @@ export default function ResourcesDashboard({ subtopic }) {
 														{resource.resource_name.toUpperCase()}
 													</h6>
 												</a>
+
+												{!nameInput && (
+													<div>
+														<button
+															onClick={(e) => createInput(e, resource.id)}
+														>
+															Edit
+														</button>
+													</div>
+												)}
+												{nameInput && (
+													<div>
+														<input
+															onChange={(e) => handleNameChange(e, resource.id)}
+															name="resource_name"
+															value={name}
+															type="text"
+															id="resource_name"
+														/>
+														<button
+														//onClick={(e) => handleNameChange(e, resource.id)}
+														>
+															ok
+														</button>
+													</div>
+												)}
 											</td>
 											<td scope="col" className="col-1">
 												<select
