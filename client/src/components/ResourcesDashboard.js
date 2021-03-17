@@ -43,13 +43,13 @@ export default function ResourcesDashboard({ subtopic }) {
 	};
 
 	const handleCompletedChange = async ({ target }, id) => {
-		const { name, checked } = target;
+		const { name } = target;
 		setCompleted((state) => ({
 			...state,
-			[name]: checked ? true : false,
+			[name]: target.checked ? true : false,
 		}));
 		try {
-			const completeddb = await axios.put(
+			await axios.put(
 				`/resources/${id}`,
 				{ complete: target.checked },
 				{
@@ -59,6 +59,8 @@ export default function ResourcesDashboard({ subtopic }) {
 		} catch (error) {
 			console.log(error);
 		}
+
+		getResources(subtopic.id);
 	};
 
 	const handlePriorityChange = async ({ target }, id) => {
@@ -172,12 +174,13 @@ export default function ResourcesDashboard({ subtopic }) {
 												<label htmlFor="complete">
 													<input
 														type="checkbox"
-														//checked={resource.complete}
+														//checked={resource.complete ? "checked" : ""}
+														checked={resource.complete}
 														name="completed"
 														onChange={(e) =>
 															handleCompletedChange(e, resource.id)
 														}
-														value={completed}
+														//value={resource.complete}
 														id="priority"
 													/>
 												</label>
