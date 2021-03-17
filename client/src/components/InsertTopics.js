@@ -187,7 +187,7 @@ const InsertTopics = () => {
       {topicConfirmation && <div> New topic added!</div>}
 
       <div>
-        <h2> Or/and add a subtopic to any of your topics </h2>
+        <h2> Add a subtopic </h2>
 
         <form onSubmit={handleSubtopicSubmit}>
           <label htmlFor="subtopic" className="form-label">
@@ -210,7 +210,7 @@ const InsertTopics = () => {
               onChange={handleSubtopicChange}
               className="form-select"
             >
-              <option value="empty"></option>
+              <option value="empty">Select a topic</option>
               {filterParent.map((topicName) => (
                 <option key={topicName.id} value={topicName.id}>
                   {" "}
