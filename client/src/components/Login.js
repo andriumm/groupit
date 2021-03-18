@@ -49,7 +49,8 @@ export default function Login() {
             className="form-control"
           />
         </label>
-        <button className="loginButton btn" onClick={login}>
+        <br />
+        <button className="loginButton btn mb-2 mt-1" onClick={login}>
           Login
         </button>
       </div>
