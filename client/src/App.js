@@ -21,60 +21,58 @@ import ProvideAuth from "./components/ProvideAuth";
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
-  const [subtopic, setSubtopic] = useState({});
+	const [subtopic, setSubtopic] = useState({});
 
-  const sentSubtopic = (subtopic) => {
-    setSubtopic(subtopic);
-  };
+	const sentSubtopic = (subtopic) => {
+		setSubtopic(subtopic);
+	};
 
-  return (
-    <ProvideAuth>
-      <Router>
-        <Logo />
-        <NavBar />
-        <div className="d-flex align-items-start">
-          <Menu />
-          <div className="App">
-            <Switch>
-              <Route path="/register">
-                <Register />
-              </Route>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <PrivateRoute path="/addresource">
-                <AddResource />
-              </PrivateRoute>
-              <PrivateRoute path="/dashboard">
-                <Dashboard onUpdateSubtopic={sentSubtopic} />
-              </PrivateRoute>
-              <PrivateRoute path="/topics/:id">
-                <TopicPage onUpdateSubtopic={sentSubtopic} />
-              </PrivateRoute>
-              <PrivateRoute path="/topics">
-                <InsertTopics />
-              </PrivateRoute>
-              <PrivateRoute path="/myprofile">
-                <Profile />
-              </PrivateRoute>
-              <PrivateRoute path="/resources">
-                <ResourcesDashboard subtopic={subtopic} />
-              </PrivateRoute>
-              <Route path="/resetpassword/:id/*">
-                <ResetPassword />
-              </Route>
-              <Route path="/resetpassword">
-                <SendResetPasswordEmail />
-              </Route>
-              <Route path="/">
-                <Home />
-              </Route>
-            </Switch>
-          </div>
-        </div>
-      </Router>
-    </ProvideAuth>
-  );
+	return (
+		<ProvideAuth>
+			<Router>
+				<Logo />
+				<NavBar />
+				<Menu />
+				<div className="App">
+					<Switch>
+						<Route path="/register">
+							<Register />
+						</Route>
+						<Route path="/login">
+							<Login />
+						</Route>
+						<PrivateRoute path="/addresource">
+							<AddResource />
+						</PrivateRoute>
+						<PrivateRoute path="/dashboard">
+							<Dashboard onUpdateSubtopic={sentSubtopic} />
+						</PrivateRoute>
+						<PrivateRoute path="/topics/:id">
+							<TopicPage onUpdateSubtopic={sentSubtopic} />
+						</PrivateRoute>
+						<PrivateRoute path="/topics">
+							<InsertTopics />
+						</PrivateRoute>
+						<PrivateRoute path="/myprofile">
+							<Profile />
+						</PrivateRoute>
+						<PrivateRoute path="/resources/user/:id">
+							<ResourcesDashboard subtopic={subtopic} />
+						</PrivateRoute>
+						<Route path="/resetpassword/:id/*">
+							<ResetPassword />
+						</Route>
+						<Route path="/resetpassword">
+							<SendResetPasswordEmail />
+						</Route>
+						<Route path="/">
+							<Home />
+						</Route>
+					</Switch>
+				</div>
+			</Router>
+		</ProvideAuth>
+	);
 }
 
 export default App;

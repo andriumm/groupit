@@ -8,6 +8,7 @@ import useAuth from "../hooks/useAuth";
 import axios from "../utils/axios";
 
 export default function Dashboard({ onUpdateSubtopic }) {
+
   const [topics, setTopics] = useState([]);
 
   // test test
@@ -130,6 +131,7 @@ export default function Dashboard({ onUpdateSubtopic }) {
       </div>
 
       {/* <div>
+
         {topics.length ? (
           <div>
             <ul>
@@ -163,6 +165,6 @@ export default function Dashboard({ onUpdateSubtopic }) {
           ) : null}
         </div>
       </div> */}
-    </div>
-  );
+		</div>
+	);
 }
