@@ -61,13 +61,13 @@ export default function AddResource() {
 
   const clear = () => {
     setResource({
-      // resource_name: "",
-      // url: "",
-      // format: "",
-      // priority: "1",
-      // complete: "",
-      // reminder: "",
-      // created_date: "",
+      resource_name: "",
+      url: "",
+      format: "",
+      priority: "1",
+      complete: "",
+      reminder: "",
+      created_date: "",
     });
   };
 
@@ -163,7 +163,7 @@ export default function AddResource() {
           onChange={handleChange}
           className="form-label"
         >
-          <select className="form-select">
+          <select id="format" name="format" value={resource.format} onChange={handleChange} className="form-select">
             <option value={`Course`}>Course</option>
             <option value={`Podcast`}>Podcast</option>
             <option value={`Reading`}>Reading</option>
