@@ -84,7 +84,7 @@
   .profile {
     /* margin-bottom: 2%; */
     width: 100%;
-    padding: 20px 0 0 60px;
+    padding: 0px 0 0 60px;
     /* margin: 25px; */
   }
 
@@ -139,10 +139,6 @@
 
   .lineAm {
     padding-bottom: 5px;
-  }
-
-  .registerForm {
-    padding-top: 20px;
   }
 
   .topicFormButton {
