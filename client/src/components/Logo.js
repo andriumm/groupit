@@ -6,7 +6,7 @@ export default function Logo() {
   const auth = useAuth();
 
   return (
-    <div className="logoDiv mb-3 mt-2">
+    <div className="logoDiv mb-3 mt-2" align="center">
       <h1 align="center">
         {!auth.isLoggedIn && (
           <Link to="/" className="logo">

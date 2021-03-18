@@ -44,6 +44,7 @@ export default function Register() {
 
   return (
     <div className="registerForm">
+      <h2>Register</h2>
       <form method="post" onSubmit={handleSubmit}>
         <label className="form-label" htmlFor="name">
           Name
