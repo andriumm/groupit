@@ -41,7 +41,7 @@ export default function ResourcesDashboard({ subtopic }) {
 			const resource = await axios.delete(`/resources/${id}`, {
 				headers: { "x-access-token": localStorage.getItem("token") },
 			});
-			getResources(resource.data);
+			getResources(subtopic.id);
 		} catch (error) {
 			console.log(error);
 		}
