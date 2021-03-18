@@ -236,7 +236,7 @@ const InsertTopics = () => {
           <input
             type="submit"
             value="Add subtopic"
-            className="topicFormButton btn"
+            className="topicFormButton btn mb-5"
           />
         </form>
       </div>

@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <Router>
-      <div>
+      <div classNAme="firstPage" align="center">
         <h2>Don't forget any online resource you are interested in!</h2>
         <p>
           With this app, keep all your links (readings, videos, podcasts...)
