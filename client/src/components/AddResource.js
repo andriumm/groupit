@@ -90,7 +90,7 @@ export default function AddResource() {
       <h2>Add a new resource</h2>
       <form onSubmit={handleSubmit}>
         <label className="form-label">
-          Choose your Topic
+          {/* Choose your Topic */}
           <select
             required
             id="topic_id"
