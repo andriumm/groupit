@@ -150,4 +150,24 @@
     background-color: #71d99e;
     color: #f8fafc;
   }
+
+  .perTopicBoxDiv {
+    width: 100%;
+  }
+
+  #perTopicBox {
+    width: 100%;
+    background-color: white;
+    border-width: 100%;
+    justify-content: space-evenly;
+    position: relative;
+  }
+
+  .titlePerTopic {
+    color: #3a8c7d;
+  }
+
+  .deleteButtonPerTopic {
+    padding: 20px;
+  }
 }

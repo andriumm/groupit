@@ -79,18 +79,20 @@ export default function TopicPage({ onUpdateSubtopic }) {
     <div>
       <h2 className="text-uppercase">{topic.topic_name}</h2>
       {/* What could be added: link on the name of the subtopic to redirect to the Resources Dashboard */}
-      <div className="dashboardBox">
+      <div className="dashboardBox" >
         {subtopics.map((subtopic) => (
-          <div className="mainBox" key={subtopic.id}>
-            <div className="mainBoxHeader">
+          <div className="perTopicBoxDiv" key={subtopic.id}>
+            {/* <div className="mainBox" className="perTopicBoxDiv" key={subtopic.id}> */}
+            {/* <div className="mainBoxHeader" id="perTopicBox"> */}
+            <div id="perTopicBox">
               <h5
-                className="mainTitle text-uppercase"
+                className="titlePerTopic text-uppercase" 
                 onClick={() => goToResourcesDashboard(subtopic)}
               >
                 {subtopic.topic_name}
               </h5>
               <button
-                className="deleteButton btn"
+                className="deleteButtonPerTopic btn"
                 onClick={() => deleteSubtopic(subtopic.id)}
               >
                 {/* <i class=“bi bi-trash”></i> */}
