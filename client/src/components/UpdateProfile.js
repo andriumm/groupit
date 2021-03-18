@@ -42,8 +42,8 @@ export default function UpdateProfile({ profileInfo, onUpdateProfile }) {
   //console.log("details", details);
   return (
     <div>
-      <div>
-        <h3>Update your profile</h3>
+      <div className="separationBoxAm">
+        <h3 className="h3Am">Update your profile</h3>
         <form onSubmit={handleSubmit}>
           <label className="form-label" htmlFor="name">
             Name
@@ -56,7 +56,7 @@ export default function UpdateProfile({ profileInfo, onUpdateProfile }) {
               className="form-control"
             />
           </label>
-          <label className="form-label" htmlFor="username">
+          <label className="form-label" id="cellsAm" htmlFor="username">
             Username
             <input
               type="text"
@@ -67,7 +67,7 @@ export default function UpdateProfile({ profileInfo, onUpdateProfile }) {
               className="form-control"
             />
           </label>
-          <label className="form-label" htmlFor="email">
+          <label className="form-label" id="cellsAm" htmlFor="email">
             Email
             <input
               type="text"
@@ -78,7 +78,7 @@ export default function UpdateProfile({ profileInfo, onUpdateProfile }) {
               className="form-control"
             />
           </label>
-          <button className="loginButton btn">Update</button>
+          <button className="loginButton btn" id="btnAm">Update</button>
         </form>
       </div>
     </div>

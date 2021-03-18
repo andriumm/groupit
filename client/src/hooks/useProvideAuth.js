@@ -7,7 +7,6 @@ function useProvideAuth() {
 
   const history = useHistory();
 
-
   // const signin = (user, cb = () => {}) => {
   //   axios("/users/login", {
   //     method: "POST",
@@ -25,20 +24,20 @@ function useProvideAuth() {
   // };
 
   // test test
-  const signin = async (user, cb = ()=>{} ) => {
-    try{
-        const response = await axios("/users/login", {
-            method: "POST",
-            data: user,
-        })
-        localStorage.setItem("token", response.data.token);
-        setIsLoggedIn(true);
-        // doesn't do anything yet, but gives options to do things if a callback (cb) function is passed
-        cb(response);
+  const signin = async (user, cb = () => {}) => {
+    try {
+      const response = await axios("/users/login", {
+        method: "POST",
+        data: user,
+      });
+      localStorage.setItem("token", response.data.token);
+      setIsLoggedIn(true);
+      // doesn't do anything yet, but gives options to do things if a callback (cb) function is passed
+      cb(response);
     } catch (err) {
-        console.log(err);
+      console.log(err);
     }
-}
+  };
 
   const signout = (cb = () => {}) => {
     localStorage.clear("token");

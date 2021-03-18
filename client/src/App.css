@@ -1,91 +1,153 @@
-.App {
-  font-family: "Roboto", sans-serif;
-  margin: 0 1%;
-}
+@media screen and (min-width: 500px) {
+  .App {
+    font-family: "Roboto", sans-serif;
+    margin: 0 1%;
+  }
 
-.logo {
-  color: #3a8c7d;
-  text-decoration: none;
-}
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #255954;
-}
-h2 {
-  margin-top: 1%;
-}
+  .logo {
+    color: #3a8c7d;
+    text-decoration: none;
 
-.mainBox {
-  float: right;
-  border: 2px solid #1e4040;
-  border-radius: 10px;
-  padding-top: 0;
-  margin-bottom: 1%;
+    position: static;
+  }
 
-  width: 100%;
-}
-.mainTitle {
-  background-color: #3a8c7d;
-  border-radius: 6px 6px 0 0;
-  padding-left: 2%;
-  color: #f8fafc;
-}
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #255954;
+  }
+  h2 {
+    /* Ama added margin bot-top*/
+    margin: 20px 0 20px 0;
+  }
+  h5 {
+    /* Ama added margin*/
+    margin: 5px;
+  }
 
-.subBox {
-  border: 2px solid #1e4040;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 1% 3% 3% 3%;
-}
+  .mainBox {
+    /* Ama Removed border */
+    /* border: 0px solid #1e4040; */
+    border-radius: 10px;
+    padding-top: 0;
+    margin-bottom: 1%;
+    width: 100%;
+    display: inline-block;
+  }
+  .mainTitle {
+    padding-left: 2%;
+    color: #f8fafc;
+    width: 90%;
+    float: left;
+  }
 
-.dashboardBox {
-  float: right;
-}
-/* can't pur the fucing botton next to the title */
-.deleteButton {
-  align-items: flex-end;
-  color: 1e4040;
-  padding: 2%;
-}
-.loginButton {
-  background-color: #71d99e;
-  color: #f8fafc;
-}
+  .mainBoxHeader {
+    background-color: #3a8c7d;
+    /* Ama added padding*/
+    padding: 10px 15px 15px 10px;
+    border-radius: 6px 6px 0 0;
+    border: 50px;
+    display: block;
+  }
+  .deleteButton {
+    align-items: flex-end;
+    padding: 0%;
+    color: #f8fafc;
+  }
 
-.profile {
-  margin-bottom: 2%;
-}
+  .subBox {
+    /* Ama Removed border */
+    /* border: 1px solid #1e4040; */
+    border-radius: 10px;
+    padding: 10px;
+    margin: 1% 3% 3% 3%;
+  }
 
-.navBar {
-  background-color: #3a8c7d;
-}
+  /* can't pur the fucing botton next to the title */
 
-.logoutButton {
-  background-color: transparent;
-  color: #f8fafc;
-  padding: 1;
-}
+  .loginButton {
+    background-color: #71d99e;
+    color: #f8fafc;
+  }
 
-.navBarLink {
-  color: #f8fafc;
-  text-decoration: none;
-}
+  .profile {
+    /* margin-bottom: 2%; */
+    width: 100%;
+    padding: 20px 0 0 60px;
+    /* margin: 25px; */
+  }
 
-.navMenu {
-  position: sticky;
-  float: left;
-  width: 20%;
-  border-color: #009688;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 25px;
-  margin-left: 0.75%;
-  margin-top: 10%;
-}
-.menuList {
-  list-style-type: none;
+  .navBar {
+    background-color: #3a8c7d;
+  }
+
+  .logoutButton {
+    background-color: transparent;
+    color: #f8fafc;
+    padding: 0;
+  }
+
+  .navBarLink {
+    color: #f8fafc;
+    text-decoration: none;
+    vertical-align: middle;
+  }
+
+  .navMenu {
+    position: sticky;
+    float: left;
+    width: 20%;
+    border-width: 1px;
+    border-radius: 25px;
+    margin-left: 0.75%;
+    padding-top: 20px;
+  }
+  .menuList {
+    list-style-type: none;
+  }
+
+  .menuli {
+    padding: 0 5px 5px 0;
+    color: #255954;
+    font-weight: 500;
+  }
+
+  .separationBoxAm {
+    width: 100%;
+    padding: 40px;
+    margin: 25px;
+  }
+
+  #btnAm {
+    margin-left: 10px;
+  }
+
+  #cellsAm {
+    padding-left: 10px;
+  }
+
+  .lineAm {
+    padding-bottom: 5px;
+  }
+
+  .registerForm {
+    padding-top: 20px;
+  }
+
+  .topicFormButton {
+    background-color: #71d99e;
+    color: #f8fafc;
+  }
+
+  .homepageButton {
+    background-color: #71d99e;
+    color: #f8fafc;
+  }
 }
