@@ -61,13 +61,13 @@ export default function AddResource() {
 
   const clear = () => {
     setResource({
-      // resource_name: "",
-      // url: "",
-      // format: "",
-      // priority: "1",
-      // complete: "",
-      // reminder: "",
-      // created_date: "",
+      resource_name: "",
+      url: "",
+      format: "",
+      priority: "1",
+      complete: "",
+      reminder: "",
+      created_date: "",
     });
   };
 
