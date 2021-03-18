@@ -119,7 +119,7 @@ export default function ResourcesDashboard({ subtopic }) {
 		}
 	};
 
-	const createInput = () => {
+	const createInput = ({ target }, id) => {
 		setNameInput(true);
 	};
 	//console.log("resources id", subtopic.id);
@@ -127,8 +127,8 @@ export default function ResourcesDashboard({ subtopic }) {
 		<div>
 			<h3> {subtopic.topic_name}</h3>
 			<div>
-				<table className="table table-light table-striped table-bordered">
-					<thead>
+				<table className="table  table-success text-center ">
+					<thead className="text-uppercase ">
 						<tr>
 							<th scope="col" className="col-2">
 								Name
@@ -158,25 +158,40 @@ export default function ResourcesDashboard({ subtopic }) {
 					<div>
 						{resources.map((resource) => (
 							<div key={resource.id}>
-								<table className="table table-light table-striped table-bordered">
+								<table className="table">
 									<tbody>
 										<tr>
 											<td className="col-2">
-												<a href={`${resource.url}`}>
-													<h6 className="d-inline">
-														{resource.resource_name.toUpperCase()}
-													</h6>
-												</a>
+												<span className="d-flex justify-content-around mx-2">
+													<a
+														href={`${resource.url}`}
+														className="text-decoration-none text-start"
+													>
+														<h6 className="d-flex text-center text-black align-text-bottom text-center fs-5">
+															{resource.resource_name.toUpperCase()}
+														</h6>
+													</a>
 
-												{!nameInput && (
-													<div>
-														<button
-															onClick={(e) => createInput(e, resource.id)}
-														>
-															Edit
-														</button>
-													</div>
-												)}
+													{!nameInput && (
+														<div className="d-flex">
+															<button
+																className="mx-3 btn btn-outline-black btn-sm"
+																onClick={(e) => createInput(e, resource.id)}
+															>
+																<svg
+																	xmlns="http://www.w3.org/2000/svg"
+																	width="16"
+																	height="16"
+																	fill="currentColor"
+																	class="bi bi-pencil-fill"
+																	viewBox="0 0 16 16"
+																>
+																	<path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+																</svg>
+															</button>
+														</div>
+													)}
+												</span>
 												{nameInput && (
 													<div>
 														<input
@@ -194,9 +209,9 @@ export default function ResourcesDashboard({ subtopic }) {
 													</div>
 												)}
 											</td>
-											<td scope="col" className="col-1">
+											<td scope="col" className="col-1 text-center">
 												<select
-													className="custom-select btn"
+													className="custom-select btn btn-outline-success"
 													id="prioritySelect"
 													name="prioritySelect"
 													onChange={(e) => handleFormatChange(e, resource.id)}
@@ -211,7 +226,7 @@ export default function ResourcesDashboard({ subtopic }) {
 													<option value={`Website`}>Website</option>
 												</select>
 											</td>
-											<td scope="col" className="col-1">
+											<td scope="col" className="col-1 text-center">
 												<select
 													className="custom-select btn"
 													id="prioritySelect"
@@ -228,7 +243,7 @@ export default function ResourcesDashboard({ subtopic }) {
 													<option value={5}>5</option>
 												</select>
 											</td>
-											<td scope="col" className="col-1">
+											<td scope="col" className="col-1 text-center ">
 												<label htmlFor="complete">
 													<input
 														type="checkbox"
@@ -240,16 +255,17 @@ export default function ResourcesDashboard({ subtopic }) {
 														}
 														//value={resource.complete}
 														id="priority"
+														className="btn btn-outline-dark"
 													/>
 												</label>
 											</td>
-											<td scope="col" className="col-1">
+											<td scope="col" className="col-1 text-center">
 												{resource.reminder}
 											</td>
 											<td scope="col" className="col-1">
 												{resource.created_date.substring(0, 10)}
 											</td>
-											<td scope="col" className="col-1">
+											<td scope="col" className="col-1 text-center">
 												<button
 													onClick={() => deleteResource(resource.id)}
 													className="btn btn-outline-danger btn-small"
