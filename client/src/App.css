@@ -32,6 +32,10 @@
     margin: 5px;
   }
 
+  .firstPage {
+    margin-right: 30%;
+  }
+
   .mainBox {
     /* Ama Removed border */
     /* border: 0px solid #1e4040; */
