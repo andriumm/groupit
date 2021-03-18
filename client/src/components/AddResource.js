@@ -156,6 +156,7 @@ export default function AddResource() {
           onChange={handleChange}
           className="form-label"
         >
+
           <select id="format" name="format" value={resource.format} onChange={handleChange} className="form-select">
             <option value="" disabled>
               Select an option
@@ -191,6 +192,7 @@ export default function AddResource() {
             id="completed"
             name="complete"
             value="true"
+            className="ms-1"
           />
         </label>
         <label htmlFor="notCompleted" className="form-label ms-2">
@@ -201,6 +203,7 @@ export default function AddResource() {
             id="notCompleted"
             name="complete"
             value="false"
+            className="ms-1"
           />
         </label>
         <br />
@@ -214,7 +217,7 @@ export default function AddResource() {
 						id="reminder"
 					/>
 				</label> */}
-        Reminder?
+        Do you need a reminder?
         <label htmlFor="sendReminder" className="form-label ms-2">
           Yes
           <input
@@ -223,6 +226,7 @@ export default function AddResource() {
             id="sendReminder"
             name="reminder"
             value="true"
+            className="ms-1"
           />
         </label>
         <label htmlFor="noReminder" className="form-label ms-2">
@@ -233,11 +237,12 @@ export default function AddResource() {
             id="noReminder"
             name="reminder"
             value="false"
+            className="ms-1"
           />
         </label>
         <br />
         <label htmlFor="created_date" className="form-label">
-          Created Date
+          Remainder Date
           <input
             onChange={handleChange}
             name="created_date"
