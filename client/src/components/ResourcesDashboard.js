@@ -1,95 +1,72 @@
 import "../App.css";
 import React from "react";
 import { useState, useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 const axios = require("axios");
 
 export default function ResourcesDashboard({ subtopic }) {
-  let history = useHistory();
-  console.log("subtopic1", subtopic);
-  const [resources, setResources] = useState([]);
-  const [completed, setCompleted] = useState(false);
+	let history = useHistory();
+	const { id } = useParams();
 
-  useEffect(() => {
-    getResources(subtopic.id);
-    let token = localStorage.getItem("token");
-    if (!token) {
-      history.push("/login");
-    }
-    console.log("id", subtopic.id);
-  }, []);
+	console.log("subtopic1", subtopic);
+	const [resources, setResources] = useState([]);
+	const [completed, setCompleted] = useState(false);
+	const [nameInput, setNameInput] = useState(false);
+	const [name, setName] = useState("");
 
-  const getResources = async (id) => {
-    try {
-      const resources = await axios.get(`/resources/user/${id}`, {
-        headers: { "x-access-token": localStorage.getItem("token") },
-      });
-      console.log("resources", resources.data.Resources);
-      setResources(resources.data.Resources);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+	useEffect(() => {
+		getResources(id);
+		let token = localStorage.getItem("token");
+		if (!token) {
+			history.push("/login");
+		}
+		console.log("id", subtopic.id);
+	}, []);
 
-  const deleteResource = async (id) => {
-    try {
-      const resource = await axios.delete(`/resources/${id}`, {
-        headers: { "x-access-token": localStorage.getItem("token") },
-      });
-      getResources(resource.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+	const getResources = async (id) => {
+		try {
+			const resources = await axios.get(`/resources/user/${id}`, {
+				headers: { "x-access-token": localStorage.getItem("token") },
+			});
+			console.log("resources", resources.data.Resources);
+			setResources(resources.data.Resources);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
-  const handleCompletedChange = async ({ target }, id) => {
-    const { name } = target;
-    setCompleted((state) => ({
-      ...state,
-      [name]: target.checked ? true : false,
-    }));
-    try {
-      await axios.put(
-        `/resources/${id}`,
-        { complete: target.checked },
-        {
-          headers: { "x-access-token": localStorage.getItem("token") },
-        }
-      );
-    } catch (error) {
-      console.log(error);
-    }
+	const deleteResource = async (id) => {
+		try {
+			const resource = await axios.delete(`/resources/${id}`, {
+				headers: { "x-access-token": localStorage.getItem("token") },
+			});
+			getResources(subtopic.id);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
-    getResources(subtopic.id);
-  };
+	const handleCompletedChange = async ({ target }, id) => {
+		const { name } = target;
+		setCompleted((state) => ({
+			...state,
+			[name]: target.checked ? true : false,
+		}));
+		try {
+			await axios.put(
+				`/resources/${id}`,
+				{ complete: target.checked },
+				{
+					headers: { "x-access-token": localStorage.getItem("token") },
+				}
+			);
+		} catch (error) {
+			console.log(error);
+		}
 
-  const handlePriorityChange = async ({ target }, id) => {
-    try {
-      await axios.put(
-        `/resources/${id}`,
-        { priority: target.value },
-        {
-          headers: { "x-access-token": localStorage.getItem("token") },
-        }
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const handleFormatChange = async ({ target }, id) => {
-    try {
-      await axios.put(
-        `/resources/${id}`,
-        { format: target.value },
-        {
-          headers: { "x-access-token": localStorage.getItem("token") },
-        }
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
+		getResources(subtopic.id);
+	};
 
   //console.log("resources id", subtopic.id);
   return (

@@ -90,7 +90,7 @@ export default function AddResource() {
       <h2>Add a new resource</h2>
       <form onSubmit={handleSubmit}>
         <label className="form-label">
-          Choose your Topic
+          {/* Choose your Topic */}
           <select
             required
             id="topic_id"
@@ -102,13 +102,6 @@ export default function AddResource() {
             <option value="" disabled>
               Select a subtopic
             </option>
-            {/* {topics.map((topic, i) => {
-            return (
-              <option key={topic.id} value={topic.id}>
-                {topic.topic_name}
-              </option>
-            );
-          })} */}
             {topics.map((topic, i) => {
               return topic.Subtopics.map((subtopic, id) => {
                 return (
@@ -163,13 +156,11 @@ export default function AddResource() {
           onChange={handleChange}
           className="form-label"
         >
-          <select
-            id="format"
-            name="format"
-            value={resource.format}
-            onChange={handleChange}
-            className="form-select"
-          >
+
+          <select id="format" name="format" value={resource.format} onChange={handleChange} className="form-select">
+            <option value="" disabled>
+              Select an option
+            </option>
             <option value={`Course`}>Course</option>
             <option value={`Podcast`}>Podcast</option>
             <option value={`Reading`}>Reading</option>
