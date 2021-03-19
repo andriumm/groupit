@@ -51,6 +51,7 @@ You can find the API routes plan here:
 - Improve styling
 - Get the resources by different filters (by topic, subtopic, format, if it is completed or not...).
 - Be able to edit the name of the resource (WIP)
+- Reset password (only works in development mode, so far)
 
 _This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._
 
