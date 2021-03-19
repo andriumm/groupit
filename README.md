@@ -8,8 +8,9 @@ groupIT! is thought as the solution to this modern problem. This app will allow 
 
 ## Dependencies
 
-Run `npm install` in project directory. This will install server-related dependencies such as express.
-cd client and run `npm install`. This will install client dependencies (React).
+- Run `npm install` in project directory. This will install server-related dependencies such as express, nodemailer and crone.
+- Run `cd client` and run `npm install`. This will install client dependencies (React).
+- 
 
 ## Database Prep
 
