@@ -28,7 +28,7 @@ SUPER_SECRET = YOURSECRET;
 
 - Make sure you understand how all the tables are constructed. In your MySQL console, you can run `use database name_of_your_table`; and then `show tables`; to see the structure of the table. Run `describe users` in case you want to check the content of the users table. You can do the same with the rest of the tables.
 
-- ![Db Schema]()
+- ![Db Schema](client/public/Db_Schema_GroupIt.png)
 
 Make sure you understand how the tables are constructed. In your MySQL console, you can see the structure of the tables.
 
@@ -36,7 +36,7 @@ Make sure you understand how the tables are constructed. In your MySQL console, 
 
 You can find the API routes plan here : 
 
-![endpoints]()
+![endpoints](client/public/Wireframe_GroupIt.png)
 
 
 ## Development
