@@ -49,6 +49,8 @@ You can find the API routes plan here:
 
 ## Future features
 - Improve styling
+- Add a process bar, where the user can see the percentage completed of all the resources in the list.
+- Edit the name of the resource once is added in the resources dashboard.
 - Get the resources by different filters (by topic, subtopic, format, if it is completed or not...).
 - Be able to edit the name of the resource (WIP)
 - Reset password (only works in development mode, so far)
