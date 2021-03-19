@@ -34,8 +34,7 @@ SUPER_SECRET = YOURSECRET;
 
 ### Table endpoints
 You can find the API routes plan here: 
-
-![endpoints](https://docs.google.com/spreadsheets/d/1RpaiDPJPZXJc77Qzjmz_yS_Hdr2mjb0nf4W578ph8tk/edit#gid=0)
+[endpoints](https://docs.google.com/spreadsheets/d/1RpaiDPJPZXJc77Qzjmz_yS_Hdr2mjb0nf4W578ph8tk/edit#gid=0)
 
 ## Development
 - Run `npm start` in project directory to start the Express server on port 5000
