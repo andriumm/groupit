@@ -51,7 +51,15 @@ You can find the API routes plan here:
 
 ## Stack
 - Main stack: JavaScript, React.js, Express.js, Node.js, mySQL
-- Dependencies: [axios](https://github.com/axios/axios), [Sequelize](https://sequelize.org/master/index.html), [nodemailer](https://nodemailer.com/about/), [cron](https://github.com/axios/axios)
+- Dependencies: [axios](https://github.com/axios/axios), [Sequelize](https://sequelize.org/master/index.html), [React-Router](https://reactrouter.com/web/guides/quick-start), [nodemailer](https://nodemailer.com/about/), [cron](https://github.com/axios/axios)
+- Style: CSS, [Bootstrap](https://getbootstrap.com/)
+- Wireframe: [Invision](https://www.invisionapp.com/)
+- Deployment: [Heroku](www.heroku.com)
+
+## Future features
+- Improve styling
+- Get the resources by different filters (by topic, subtopic, format, if it is completed or not...).
+- Be able to edit the name of the resource (WIP)
 
 _This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._
 
