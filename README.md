@@ -8,9 +8,9 @@ groupIT! is thought as the solution to this modern problem. This app will allow 
 
 ## Dependencies
 
-- Run `npm install` in project directory. This will install server-related dependencies such as express, nodemailer and crone.
+- Run `npm install` in project directory. This will install server-related dependencies such as express, axios, bycript, jsonwebtoken, nodemailer and crone.
 - Run `cd client` and run `npm install`. This will install client dependencies (React).
-- 
+
 
 ## Database Prep
 
@@ -46,8 +46,8 @@ You can find the API routes plan here :
 - In another terminal, do `cd client` and run `npm start` to start the client in development mode with hot reloading in port 3000.
 
 ## Stack
-- JavaScript, React.js, Express.js, Node.js, mySQL
-- Other libraries: axios, Sequelize, nodemailer
+- Main stack: JavaScript, React.js, Express.js, Node.js, mySQL
+- Dependencies: [axios](https://github.com/axios/axios), [Sequelize](https://sequelize.org/master/index.html), [nodemailer](https://nodemailer.com/about/), [cron](https://github.com/axios/axios)
 
 _This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._
 
