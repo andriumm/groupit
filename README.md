@@ -8,32 +8,45 @@ groupIT! is thought as the solution to this modern problem. This app will allow 
 
 ## Dependencies
 
-Run npm install in project directory. This will install server-related dependencies such as express.
-cd client and run npm install. This will install client dependencies (React).
+Run `npm install` in project directory. This will install server-related dependencies such as express.
+cd client and run `npm install`. This will install client dependencies (React).
 
 ## Database Prep
 
-Access the MySQL interface in your terminal by running mysql -u root -p
-Create a new database: create database projectname
+Access the MySQL interface in your terminal by running `mysql -u root -p`
+Create a new database: `create database projectname`
 Add a .env file to the project folder of this repository containing the MySQL authentication information for MySQL user. For example:
 
-DB_HOST=localhost
+```javascript
+DB_HOST = localhost;
+DB_USER = root;
+DB_NAME = bodyCultureBcn;
+DB_PASS = YOURPASSWORD;
+SUPER_SECRET = YOURSECRET;
+```
+- Run `npm run migrate` in the project folder of this repository, in a new terminal window. This command is a Script that will run Sequelize to create 3 tables called 'users','topics' and 'resources' in your database.
 
-DB_USER=root
+- Make sure you understand how all the tables are constructed. In your MySQL console, you can run `use database name_of_your_table`; and then `show tables`; to see the structure of the table. Run `describe users` in case you want to check the content of the users table. You can do the same with the rest of the tables.
 
-DB_NAME=DBNAME
-
-DB_PASS=YOURPASSWORD
-
--set the steps of the migration with sequelize
-
-- picture of the schema
+- ![Db Schema]()
 
 Make sure you understand how the tables are constructed. In your MySQL console, you can see the structure of the tables.
 
-You can find the API routes plan here : -screeshot of the APIs Excel?
+### Table endpoints
+
+You can find the API routes plan here : 
+
+![endpoints]()
+
 
 ## Development
 
-Run npm start in project directory to start the Express server on port 5000
-In another terminal, do cd client and run npm start to start the client in development mode with hot reloading in port 3000.
+- Run `npm start` in project directory to start the Express server on port 5000
+- In another terminal, do `cd client` and run `npm start` to start the client in development mode with hot reloading in port 3000.
+
+## Stack
+- JavaScript, React.js, Express.js, Node.js, mySQL
+- Other libraries: axios, Sequelize, nodemailer
+
+_This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._
+
