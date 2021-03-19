@@ -4,6 +4,10 @@ In these days and age it is very common to save a lot of online resources for di
 The problem is that then we forget about them, we save new resources and we never come back to them.
 groupIT! is thought as the solution to this modern problem. This app will allow the user to save online resources, cathegorize them by topics and subtopics and be reminded of them if they haven't come back at the resource in a long time.
 
+[First brainstorming about the organization and planification of the project](client/public/Plannification_GroupIt.png)
+
+[Wireframe]((client/public/Wireframe_GroupIt.png))
+
 # Project Setup
 
 ## Dependencies
@@ -35,9 +39,9 @@ Make sure you understand how the tables are constructed. In your MySQL console, 
 
 ### Table endpoints
 
-You can find the API routes plan here : 
+You can find the API routes plan here: 
 
-![endpoints](client/public/Wireframe_GroupIt.png)
+![endpoints](https://docs.google.com/spreadsheets/d/1RpaiDPJPZXJc77Qzjmz_yS_Hdr2mjb0nf4W578ph8tk/edit#gid=0)
 
 
 ## Development
