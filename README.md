@@ -1,5 +1,4 @@
 # Project description
-
 In these days and age it is very common to save a lot of online resources for different topics that interest us and that we want to use in a second moment.
 The problem is that then we forget about them, we save new resources and we never come back to them.
 groupIT! is thought as the solution to this modern problem. This app will allow the user to save online resources, cathegorize them by topics and subtopics and be reminded of them if they haven't come back at the resource in a long time.
@@ -11,13 +10,11 @@ groupIT! is thought as the solution to this modern problem. This app will allow 
 # Project Setup
 
 ## Dependencies
-
 - Run `npm install` in project directory. This will install server-related dependencies such as express, axios, bycript, jsonwebtoken, nodemailer and crone.
 - Run `cd client` and run `npm install`. This will install client dependencies (React).
 
 
 ## Database Prep
-
 Access the MySQL interface in your terminal by running `mysql -u root -p`
 Create a new database: `create database projectname`
 Add a .env file to the project folder of this repository containing the MySQL authentication information for MySQL user. For example:
@@ -38,14 +35,11 @@ SUPER_SECRET = YOURSECRET;
 Make sure you understand how the tables are constructed. In your MySQL console, you can see the structure of the tables.
 
 ### Table endpoints
-
 You can find the API routes plan here: 
 
 ![endpoints](https://docs.google.com/spreadsheets/d/1RpaiDPJPZXJc77Qzjmz_yS_Hdr2mjb0nf4W578ph8tk/edit#gid=0)
 
-
 ## Development
-
 - Run `npm start` in project directory to start the Express server on port 5000
 - In another terminal, do `cd client` and run `npm start` to start the client in development mode with hot reloading in port 3000.
 
