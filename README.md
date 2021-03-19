@@ -26,13 +26,11 @@ DB_NAME = bodyCultureBcn;
 DB_PASS = YOURPASSWORD;
 SUPER_SECRET = YOURSECRET;
 ```
-- Run `npm run migrate` in the project folder of this repository, in a new terminal window. This command is a Script that will run Sequelize to create 3 tables called 'users','topics' and 'resources' in your database.
+- Run `npm run migrate` in the project folder of this repository, in a new terminal window. This command is a script that will run Sequelize to create 3 tables called 'users','topics' and 'resources' in your database.
 
 - Make sure you understand how all the tables are constructed. In your MySQL console, you can run `use database name_of_your_table`; and then `show tables`; to see the structure of the table. Run `describe users` in case you want to check the content of the users table. You can do the same with the rest of the tables.
 
-- ![Db Schema](client/public/Db_Schema_GroupIt.png)
-
-Make sure you understand how the tables are constructed. In your MySQL console, you can see the structure of the tables.
+![Db Schema](client/public/Db_Schema_GroupIt.png)
 
 ### Table endpoints
 You can find the API routes plan here: 
